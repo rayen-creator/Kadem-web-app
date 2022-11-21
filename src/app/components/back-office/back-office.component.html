@@ -1,16 +1,22 @@
 <!-- Layout wrapper -->
 <div class="layout-wrapper layout-content-navbar">
-    <div class="layout-container">
-        <app-sidebar></app-sidebar>
-        <!-- Layout container -->
-        <div class="layout-page">
-            <!-- Navbar -->
-            <app-header></app-header>
-            <!-- / Navbar -->
-            <router-outlet></router-outlet>
+  <div class="layout-container">
+    <app-sidebar></app-sidebar>
+    <!-- Layout container -->
+    <div class="layout-page">
+      <!-- Navbar -->
+      <app-header></app-header>
+      <!-- / Navbar -->
+      <div class="content-wrapper">
+        <!-- Content -->
+
+        <div class="container-xxl flex-grow-1 container-p-y">
+          <router-outlet></router-outlet>
         </div>
-        <!-- / Layout page -->
+      </div>
     </div>
+    <!-- / Layout page -->
+  </div>
 </div>
 <!-- / Layout wrapper -->
 <app-footer></app-footer>

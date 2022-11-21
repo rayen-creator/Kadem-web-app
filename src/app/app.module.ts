@@ -8,6 +8,8 @@ import { LoginComponent } from './components/auth/login/login.component';
 import { SignupComponent } from './components/auth/signup/signup.component';
 import { ResetpwdComponent } from './components/auth/resetpwd/resetpwd.component';
 
+import { RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -16,14 +18,9 @@ import { ResetpwdComponent } from './components/auth/resetpwd/resetpwd.component
     LoginComponent,
     SignupComponent,
     ResetpwdComponent,
-    
   ],
-  imports: [
-    BrowserModule,
-
-    AppRoutingModule
-  ],
+  imports: [BrowserModule, RouterModule, HttpClientModule, AppRoutingModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
