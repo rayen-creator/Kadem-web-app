@@ -2,7 +2,13 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BackOfficeComponent } from './back-office.component';
 
-const routes: Routes = [{ path: '', component: BackOfficeComponent }];
+const routes: Routes = [
+  {
+    path: '', component: BackOfficeComponent, children: [
+      //
+
+    ]
+  }];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
