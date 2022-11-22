@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   //!!!!!!!!! default URL for fake-backend(json_server) test only !!!!!!!!!
-  defaultUrl:'http://localhost:3000'
+  defaultUrl: 'http://localhost:3000',
+  defaultSpringUrl: 'http://localhost:8082/SpringMVC',
 };
 
 /*
