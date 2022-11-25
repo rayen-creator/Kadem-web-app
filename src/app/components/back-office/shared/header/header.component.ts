@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-// import { Router } from '@angular/router';
-// import { Subscription } from 'rxjs';
-// import { AuthService } from 'src/app/core/helpers/auth.service';
+import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { AuthService } from 'src/app/core/helpers/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -9,30 +9,32 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit, OnDestroy {
-  // username:string;
-  // userIsAuthenticated = false;
-  // private authListenerSubs: Subscription;
-  // constructor(  private router: Router,private auth:AuthService) { }
-  constructor() { }
+  username:string | null ;
+  userIsAuthenticated = false;
+  private authListenerSubs: Subscription;
+  
+  constructor(  private router: Router,private auth:AuthService) { }
   ngOnInit(): void {
-    // this.userIsAuthenticated = this.auth.isUserAuth();
-    // this.authListenerSubs = this.auth.getAuthStatusListener().subscribe(
-    //   (isAuthenticated) => {
-    //     this.userIsAuthenticated = isAuthenticated;
-    //   }
-    // )
-    // this.username=this.auth.getUserEmail();
-    // console.log("userIsAuthenticated : "+this.userIsAuthenticated);
+    this.userIsAuthenticated = this.auth.isUserAuth();
+    this.authListenerSubs = this.auth.getAuthStatusListener().subscribe(
+      (isAuthenticated) => {
+        this.userIsAuthenticated = isAuthenticated;
+      }
+    )
+     this. username=this.auth.getUsername();
+
+    
+    console.log("userIsAuthenticated : "+this.userIsAuthenticated);
   }
 
-  // goTologin() {
-  //   this.router.navigate(['/login']);
-  // }
+  goTologin() {
+    this.router.navigate(['/login']);
+  }
 
   ngOnDestroy(): void {
-    // this.authListenerSubs.unsubscribe();
+    this.authListenerSubs.unsubscribe();
  }
-//  logout(){
-//   this.auth.logout();
-//  }
+ logout(){
+  this.auth.logout();
+ }
 }
