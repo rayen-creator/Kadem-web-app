@@ -7,7 +7,7 @@ import { NotfoundpageComponent } from './components/notfoundpage/notfoundpage.co
 import { LoginComponent } from './components/auth/login/login.component';
 import { SignupComponent } from './components/auth/signup/signup.component';
 import { ResetpwdComponent } from './components/auth/resetpwd/resetpwd.component';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -19,7 +19,14 @@ import { HttpClientModule } from '@angular/common/http';
     SignupComponent,
     ResetpwdComponent,
   ],
-  imports: [BrowserModule, RouterModule, HttpClientModule, AppRoutingModule],
+  imports: [
+    FormsModule,
+    ReactiveFormsModule,
+    BrowserModule,
+    RouterModule,
+    HttpClientModule,
+    AppRoutingModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

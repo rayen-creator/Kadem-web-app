@@ -1,5 +1,19 @@
 <div class="card">
-  <h5 class="card-header">Table de contrat</h5>
+  <div class="d-flex justify-content-between">
+    <h5 class="card-header">Table de contrat</h5>
+    <div
+      class="row justify-content-center"
+      style="margin-top: 20px; margin-right: 15px"
+    >
+      <div class="col-sm-12">
+        <a
+          [routerLink]="['/backoffice/contrat/ajouter']"
+          class="btn btn-primary"
+          >Ajouter Contrat</a
+        >
+      </div>
+    </div>
+  </div>
 
   <div
     class="table-responsive text-nowrap"
@@ -43,7 +57,12 @@
                 <i class="bx bx-dots-vertical-rounded"></i>
               </button>
               <div class="dropdown-menu">
-                <a class="dropdown-item" href="javascript:void(0);"
+                <a
+                  class="dropdown-item"
+                  [routerLink]="[
+                    '/backoffice/contrat/modifier',
+                    contrat.idContrat
+                  ]"
                   ><i class="bx bx-edit-alt me-1"></i> Edit</a
                 >
                 <a class="dropdown-item" (click)="delete(contrat.idContrat)"
