@@ -30,9 +30,10 @@ export class LoginComponent implements OnInit {
 
 
   login(form: User) {
-    console.log("Login form", form);
     if (form.email != "" && form.password != "") {
       this.auth.login(form)
+      console.log("Login form", form);
+
 
       // if (this.auth.getToken != null)
       // else {
