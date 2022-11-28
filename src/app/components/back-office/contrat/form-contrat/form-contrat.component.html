@@ -26,7 +26,15 @@
           <div class="card-body">
             <form
               #contratForm="ngForm"
-              (ngSubmit)="contratForm.form.valid && onSumbit()"
+              name="form"
+              (ngSubmit)="
+                Spec.valid &&
+                  dateD.valid &&
+                  DateF.valid &&
+                  Mont.valid &&
+                  onSumbit()
+              "
+              novalidate
             >
               <div class="row mb-3">
                 <label
