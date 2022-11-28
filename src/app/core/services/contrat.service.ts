@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Contrat } from '../models/Contrat';
+import { Contrat, IContratAjouter } from '../models/Contrat';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
@@ -14,10 +14,10 @@ export class ContratService {
     return this.http.get<Contrat[]>(`${baseUrl}/displayallcontrats`);
   }
   addContratService(Contrat: Contrat) {
-    return this.http.post(`${baseUrl}/addContrat`, Contrat);
+    return this.http.post(`${baseUrl}/newContrat`, Contrat);
   }
   deleteContratService(idcontrat: number) {
-    return this.http.delete(`${baseUrl}/removeContrat/${idcontrat}`);
+    return this.http.delete(`${baseUrl}/deleteContrat/${idcontrat}`);
   }
   updateContratService(Contrat: Contrat) {
     return this.http.put(`${baseUrl}/updateContrat`, Contrat);

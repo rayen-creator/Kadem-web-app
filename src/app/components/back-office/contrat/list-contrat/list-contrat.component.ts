@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Contrat } from 'src/app/core/models/Contrat';
 import { ContratService } from 'src/app/core/services/contrat.service';
 
 @Component({
@@ -11,15 +12,23 @@ export class ListContratComponent implements OnInit {
   constructor(private contratService: ContratService) {}
 
   ngOnInit(): void {
-    this.contratService.getListContratService().subscribe((result) => {
-      console.log(result);
-
-      this.contrats = result;
-    });
+    this.refreshData();
   }
 
   delete(idcontrat: number) {
-    this.contratService.deleteContratService(idcontrat).subscribe();
+    this.contratService
+      .deleteContratService(idcontrat)
+      .subscribe(() => this.refreshData());
     this.ngOnInit();
+  }
+  DoArchive_NotArchive(contrat: Contrat) {
+    this.contratService
+      .updateContratService({ ...contrat, archive: !contrat.archive }) //modifier l'archive seulement
+      .subscribe(() => this.refreshData());
+  }
+  refreshData() {
+    this.contratService.getListContratService().subscribe((result) => {
+      this.contrats = result;
+    });
   }
 }

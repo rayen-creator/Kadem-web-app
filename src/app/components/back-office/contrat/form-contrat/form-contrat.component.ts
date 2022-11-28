@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { NgForm } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { of } from 'rxjs';
 import { Contrat } from 'src/app/core/models/Contrat';
 import { Specialite } from 'src/app/core/models/Specialite';
 import { ContratService } from 'src/app/core/services/contrat.service';
@@ -14,15 +16,18 @@ export class FormContratComponent implements OnInit {
   contrat: Contrat = {
     id_contrat: 0,
     archive: false,
-    dateDebutContrat: new Date(),
-    dateFinContrat: new Date(),
-    montantContrat: 0,
-    specialite: Specialite.IA,
+    dateDebutContrat: null!,
+    dateFinContrat: null!,
+    montantContrat: null!,
+    specialite: null!,
   };
+  contratForm: NgForm;
+  currentDate = new Date();
 
   constructor(
     private contratService: ContratService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -35,5 +40,19 @@ export class FormContratComponent implements OnInit {
         });
       }
     });
+  }
+  onSumbit() {
+    if (!this.editable) {
+      this.contratService
+        .addContratService(this.contrat)
+        .subscribe(() => this.router.navigate(['/backoffice/contrat']));
+    } else {
+      this.contratService
+        .updateContratService(this.contrat)
+        .subscribe(() => this.router.navigate(['/backoffice/contrat']));
+    }
+  }
+  compare(_v1: Date, _v2: Date) {
+    return _v1.getDate() > _v2.getDate();
   }
 }

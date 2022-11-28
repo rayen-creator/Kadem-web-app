@@ -43,6 +43,7 @@
                       class="form-select"
                       [(ngModel)]="contrat.specialite"
                       [ngModelOptions]="{ standalone: true }"
+                      required
                       #Spec="ngModel"
                     >
                       <option value="IA">IA</option>
@@ -51,9 +52,13 @@
                       <option value="SECURITE">SECURITE</option>
                     </select>
                   </div>
-                  <div class="form-text">
-                    <div class="alert alert-danger" role="alert">
-                      This is a danger alert — check it out!
+                  <div class="form-text" *ngIf="Spec.invalid && Spec.touched">
+                    <div
+                      class="alert alert-danger"
+                      role="alert"
+                      *ngIf="Spec.hasError('required')"
+                    >
+                      Champ Specialite est obligatoire
                     </div>
                   </div>
                 </div>
@@ -76,12 +81,35 @@
                       type="date"
                       [(ngModel)]="contrat.dateDebutContrat"
                       [ngModelOptions]="{ standalone: true }"
+                      required
+                      [min]="currentDate"
+                      [max]="DateF.value"
                       #dateD="ngModel"
                     />
                   </div>
-                  <div class="form-text">
-                    <div class="alert alert-danger" role="alert">
-                      This is a danger alert — check it out!
+                  <div class="form-text" *ngIf="dateD.invalid && dateD.touched">
+                    <div
+                      class="alert alert-danger"
+                      role="alert"
+                      *ngIf="dateD.hasError('required')"
+                    >
+                      Champ date Debut est obligatoire
+                    </div>
+                    <div
+                      class="alert alert-danger"
+                      role="alert"
+                      *ngIf="dateD.hasError('min')"
+                    >
+                      Champ date Debut doit etre superieur a la date
+                      d'aujourd'hui
+                    </div>
+                    <div
+                      class="alert alert-danger"
+                      role="alert"
+                      *ngIf="dateD.hasError('max')"
+                    >
+                      Champ date Debut doit etre inferieur a la date fin du
+                      contrat
                     </div>
                   </div>
                 </div>
@@ -102,12 +130,26 @@
                       type="date"
                       [(ngModel)]="contrat.dateFinContrat"
                       [ngModelOptions]="{ standalone: true }"
+                      required
+                      [min]="dateD.value"
                       #DateF="ngModel"
                     />
                   </div>
-                  <div class="form-text">
-                    <div class="alert alert-danger" role="alert">
-                      This is a danger alert — check it out!
+                  <div class="form-text" *ngIf="DateF.invalid && DateF.touched">
+                    <div
+                      class="alert alert-danger"
+                      role="alert"
+                      *ngIf="DateF.hasError('required')"
+                    >
+                      Champ date fin est obligatoire
+                    </div>
+                    <div
+                      class="alert alert-danger"
+                      role="alert"
+                      *ngIf="DateF.hasError('min')"
+                    >
+                      Champ date Debut doit etre superieur a la date debut du
+                      contrat
                     </div>
                   </div>
                 </div>
@@ -129,13 +171,18 @@
                       type="number"
                       [(ngModel)]="contrat.montantContrat"
                       [ngModelOptions]="{ standalone: true }"
+                      required
                       #Mont="ngModel"
                       class="form-control"
                     />
                   </div>
-                  <div class="form-text">
-                    <div class="alert alert-danger" role="alert">
-                      This is a danger alert — check it out!
+                  <div class="form-text" *ngIf="Mont.invalid && Mont.touched">
+                    <div
+                      class="alert alert-danger"
+                      role="alert"
+                      *ngIf="Mont.hasError('required')"
+                    >
+                      Champ montant est obligatoire
                     </div>
                   </div>
                 </div>
@@ -143,7 +190,11 @@
 
               <div class="row justify-content-end">
                 <div class="col-sm-10">
-                  <button type="submit" class="btn btn-primary">
+                  <button
+                    type="submit"
+                    (click)="onSumbit()"
+                    class="btn btn-primary"
+                  >
                     {{ editable ? "Modifier" : "Ajouter" }}
                   </button>
                 </div>

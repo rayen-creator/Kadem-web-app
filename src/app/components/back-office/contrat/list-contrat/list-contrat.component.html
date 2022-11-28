@@ -42,10 +42,22 @@
           <td>{{ contrat.dateFinContrat }}</td>
 
           <td *ngIf="contrat.archive">
-            <span class="badge bg-label-success me-1">Archivé</span>
+            <span
+              class="badge bg-label-success me-1"
+              data-bs-toggle="modal"
+              [attr.data-bs-target]="'#smallModal' + contrat.idContrat"
+              style="cursor: pointer"
+              >Archivé</span
+            >
           </td>
           <td *ngIf="!contrat.archive">
-            <span class="badge bg-label-primary me-1">Non Archivé</span>
+            <span
+              class="badge bg-label-danger me-1"
+              data-bs-toggle="modal"
+              [attr.data-bs-target]="'#smallModal' + contrat.idContrat"
+              style="cursor: pointer"
+              >Non Archivé</span
+            >
           </td>
           <td>
             <div class="dropdown">
@@ -71,6 +83,54 @@
               </div>
             </div>
           </td>
+          <div
+            class="modal fade"
+            id="smallModal{{ contrat.idContrat }}"
+            tabindex="-1"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog modal-sm" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel2">Archive</h5>
+                  <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                  ></button>
+                </div>
+                <div class="modal-body">
+                  <div class="row">
+                    <div class="col mb-3">
+                      <p>
+                        Voulez vous
+                        {{ contrat.archive ? "desarchiver" : "archiver" }} le
+                        contrat de l'id n°{{ contrat.idContrat }}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button
+                    type="button"
+                    class="btn btn-outline-secondary"
+                    data-bs-dismiss="modal"
+                  >
+                    Close
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-primary"
+                    (click)="DoArchive_NotArchive(contrat)"
+                    data-bs-dismiss="modal"
+                  >
+                    {{ contrat.archive ? "Desarchiver" : "Archiver" }}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
         </tr>
       </tbody>
     </table>
