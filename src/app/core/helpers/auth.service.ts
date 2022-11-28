@@ -12,7 +12,10 @@ export class AuthService {
   url:string;
   public token: string;
   public username:string;
-  public email:string;
+  public usernameExists:boolean;
+  public emailExists:boolean;
+  private tokenTimer: any;
+
   // Assure l'envoie d'un paramètre aux autres components
   //Un Subject est à la fois un observable ET un observateur. 
   //On peut donc subscribe dessus, mais également lui envoyer des valeurs :
@@ -20,12 +23,12 @@ export class AuthService {
   private isUserAuthenticated = false;
 
   constructor(private http: HttpClient,private router: Router) {
-    this.url=environment.defaultUrl;
+    this.url=environment.NodeJSUrl;
 
   }
 
   signin(user:User){
-   return this.http.post(this.url+'/signup',user);
+    return this.http.post<{usernameExists:boolean,emailExists:boolean}>(this.url+'/api/auth/signup',user);
   }
   getToken() {
     return this.token;
@@ -33,9 +36,6 @@ export class AuthService {
 
   getUsername(){
     return localStorage.getItem('username')
-  }
-  getUserEmail(){
-    return localStorage.getItem('email')
   }
 
   getAuthStatusListener() {
@@ -47,53 +47,77 @@ export class AuthService {
   }
 
   login(user:User) {
-    this.http.post<{ token: string , username:string ,email:string}>(this.url+'/login', user).subscribe(
+    this.http.post<{ accessToken: string , username:string,expiresIn: number  }>(this.url+'/api/auth/login', user).subscribe(
       res => {
         
-        const token = res.token;
+        const token = res.accessToken;
         const username=res.username;
-        const email=res.email;
         this.username=username;
-        this.email=email;
         this.token = token;
         if (token) {
+          const expireInDuration = res.expiresIn;
+
+          console.log(token);
           this.isUserAuthenticated = true;
           this.authStatusListener.next(true);
-          this.saveAuthData(token ,username,email);
+          const now = new Date();
+          const expirationDate = new Date(now.getTime() + expireInDuration * 1000);
+          this.saveAuthData(token ,username,expirationDate);
           this.router.navigate(['/backoffice']);
         }
       }
     )
   }
+  
+
   autoAuthUser() {
     const token = localStorage.getItem('token');
-    if (!token) {
+    const expirationDate = localStorage.getItem('expiration');
+
+    if (!token || !expirationDate ) {
       return;
     }
+    const now = new Date();
+    const expiresIn = new Date(expirationDate).getTime() - now.getTime();
+
+    console.log("expiresIn", expiresIn);
+    if (expiresIn) {
       this.token = token;
       this.isUserAuthenticated = true;
-      this.authStatusListener.next(true);
-    
-  }
+      this.setAuthTimer(expiresIn / 1000);
 
+      this.authStatusListener.next(true);
+    }
+      
+  }
+ 
   logout() {
     this.clearAuthData();
     this.isUserAuthenticated = false;
     this.authStatusListener.next(false);
     this.router.navigate(['/login']);    
   }
+  private setAuthTimer(duration: number) {
+    console.log('Set Timer', duration);
+
+    this.tokenTimer = setTimeout(() => {
+      this.logout();
+    }, duration * 1000);
+  }
+
   private clearAuthData() {
     localStorage.removeItem('token');
     localStorage.removeItem('username');
-    localStorage.removeItem('email');
+    localStorage.removeItem('expiration');
+    localStorage.clear()
+
 
   }
 
-  private saveAuthData(token: string, username:string,email:string) {
+  private saveAuthData(token: string, username:string,expirationDate: Date) {
     localStorage.setItem('token',  token);
     localStorage.setItem('username',  username);
-    localStorage.setItem('email',  email);
-
+    localStorage.setItem('expiration', expirationDate.toISOString());
   }
 
 }
