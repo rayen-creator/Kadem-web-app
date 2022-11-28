@@ -1,0 +1,4 @@
+.input-group .input-group-merge .is-invalid {
+  border: 1px solid red !important;
+  border-radius: 10% !important;
+}

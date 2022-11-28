@@ -24,7 +24,10 @@
             </h5>
           </div>
           <div class="card-body">
-            <form #contratForm="ngForm">
+            <form
+              #contratForm="ngForm"
+              (ngSubmit)="contratForm.form.valid && onSumbit()"
+            >
               <div class="row mb-3">
                 <label
                   class="col-sm-2 col-form-label"
@@ -33,18 +36,15 @@
                 >
                 <div class="col-sm-10">
                   <div class="input-group input-group-merge">
-                    <span
-                      id="basic-icon-default-fullname2"
-                      class="input-group-text"
-                      ><i class="bx bx-file"></i
-                    ></span>
-
                     <select
                       class="form-select"
                       [(ngModel)]="contrat.specialite"
                       [ngModelOptions]="{ standalone: true }"
                       required
                       #Spec="ngModel"
+                      [ngClass]="{
+                        'is-invalid': Spec.touched && Spec.invalid
+                      }"
                     >
                       <option value="IA">IA</option>
                       <option value="RESEAU">RESEAU</option>
@@ -71,11 +71,6 @@
                 >
                 <div class="col-sm-10">
                   <div class="input-group input-group-merge">
-                    <span
-                      id="basic-icon-default-company2"
-                      class="input-group-text"
-                      ><i class="bx bx-calendar-check"></i
-                    ></span>
                     <input
                       class="form-control"
                       type="date"
@@ -85,6 +80,9 @@
                       [min]="currentDate"
                       [max]="DateF.value"
                       #dateD="ngModel"
+                      [ngClass]="{
+                        'is-invalid': dateD.touched && dateD.invalid
+                      }"
                     />
                   </div>
                   <div class="form-text" *ngIf="dateD.invalid && dateD.touched">
@@ -122,9 +120,6 @@
                 >
                 <div class="col-sm-10">
                   <div class="input-group input-group-merge">
-                    <span class="input-group-text"
-                      ><i class="bx bx-calendar-x"></i
-                    ></span>
                     <input
                       class="form-control"
                       type="date"
@@ -133,6 +128,9 @@
                       required
                       [min]="dateD.value"
                       #DateF="ngModel"
+                      [ngClass]="{
+                        'is-invalid': DateF.touched && DateF.invalid
+                      }"
                     />
                   </div>
                   <div class="form-text" *ngIf="DateF.invalid && DateF.touched">
@@ -162,11 +160,6 @@
                 >
                 <div class="col-sm-10">
                   <div class="input-group input-group-merge">
-                    <span
-                      id="basic-icon-default-phone2"
-                      class="input-group-text"
-                      ><i class="bx bx-dollar-circle"></i
-                    ></span>
                     <input
                       type="number"
                       [(ngModel)]="contrat.montantContrat"
@@ -174,6 +167,9 @@
                       required
                       #Mont="ngModel"
                       class="form-control"
+                      [ngClass]="{
+                        'is-invalid': Mont.touched && Mont.invalid
+                      }"
                     />
                   </div>
                   <div class="form-text" *ngIf="Mont.invalid && Mont.touched">
@@ -190,11 +186,7 @@
 
               <div class="row justify-content-end">
                 <div class="col-sm-10">
-                  <button
-                    type="submit"
-                    (click)="onSumbit()"
-                    class="btn btn-primary"
-                  >
+                  <button type="submit" class="btn btn-primary">
                     {{ editable ? "Modifier" : "Ajouter" }}
                   </button>
                 </div>

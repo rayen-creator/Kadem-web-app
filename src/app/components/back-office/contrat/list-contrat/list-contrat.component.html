@@ -37,10 +37,9 @@
             <strong>{{ contrat.idContrat }}</strong>
           </td>
           <td>{{ contrat.specialite }}</td>
-          <td>{{ contrat.montantContrat }}</td>
           <td>{{ contrat.dateDebutContrat }}</td>
           <td>{{ contrat.dateFinContrat }}</td>
-
+          <td>{{ contrat.montantContrat }}</td>
           <td *ngIf="contrat.archive">
             <span
               class="badge bg-label-success me-1"
