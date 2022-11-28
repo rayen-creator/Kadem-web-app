@@ -11,8 +11,9 @@ import { AuthService } from 'src/app/core/helpers/auth.service';
 })
 export class SignupComponent implements OnInit {
   public signupForm: FormGroup;
-  submitted = false;
-
+  public submitted = false;
+  public usernameExists:boolean;
+  public emailExists:boolean;
   constructor(private formBuilder: FormBuilder, private router: Router,private auth:AuthService) { }
 
   ngOnInit(): void {
@@ -61,18 +62,23 @@ export class SignupComponent implements OnInit {
 
   Signup(form : any) {
     this.submitted = true;
+    this.emailExists=false;
+    this.usernameExists=false;
     console.log("submitted :"+this.submitted)
     if (this.signupForm.valid) {
-      console.log('username :' + this.signupForm.value.username);
-      console.log('email :' + this.signupForm.value.email);
-      console.log('password :' + this.signupForm.value.password);
-      console.log('confirm password :' + this.signupForm.value.confirmpassword);
       
-     this.auth.signin(form).subscribe(
-      ()=>{
+     this.auth.signin(form).subscribe( 
+       (res)=>{
+      const emailExists=res.emailExists;
+      const usernameExists=res.usernameExists;
+      this.emailExists=emailExists;
+      this.usernameExists=usernameExists;
+      if ((!emailExists) && (!usernameExists)){
         this.router.navigate(['/login'])
       }
-     )
+       console.log("username exists :"+this.usernameExists);
+       console.log("email exists :"+this.emailExists);
+   })
     } else {
       Customvalidator.validateAllFormFields(this.signupForm); 
     }

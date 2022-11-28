@@ -72,7 +72,7 @@
                     <form [formGroup]='signupForm' id="formAuthentication" (ngSubmit)="Signup(signupForm.value)" class="mb-3">
                         <div class="mb-3">
                             <label for="username" class="form-label">Username</label>
-                            <input type="text" class="form-control" [ngClass]="Valid('username',signupForm)" class="form-control" id="username" formControlName="username" placeholder="Enter your username" />
+                            <input type="text" class="form-control" [ngClass]="submitted && usernameExists ? 'is-invalid' : Valid('username',signupForm)" class="form-control" id="username" formControlName="username" placeholder="Enter your username" />
                             <div *ngIf="signupForm.controls['username'].invalid && (signupForm.controls['username'].dirty || signupForm.controls['username'].touched)">
                                 <div *ngIf="signupForm.controls['username'].hasError('required')" class="text-danger">
                                     username is required
@@ -81,10 +81,15 @@
                                     username must be at least 3 characters
                                 </div>
                             </div>
+                            <div *ngIf="submitted && usernameExists">
+                                <div class="text-danger">
+                                    Username already in use
+                                </div>
+                            </div>
                         </div>
                         <div class="mb-3">
                             <label for="email" class="form-label">Email</label>
-                            <input type="text" class="form-control" [ngClass]="Valid('email',signupForm)" id="email" formControlName="email" placeholder="Enter your email" />
+                            <input type="text" class="form-control" [ngClass]="submitted && emailExists ? 'is-invalid' : Valid('email',signupForm)" id="email" formControlName="email" placeholder="Enter your email" />
                             <div *ngIf="signupForm.controls['email'].invalid && (signupForm.controls['email'].dirty || signupForm.controls['email'].touched)">
                                 <div *ngIf="signupForm.controls['email'].hasError('required')" class="text-danger">
                                     email is required
@@ -95,6 +100,12 @@
                                 </div>
 
                             </div>
+                            <div *ngIf="submitted && emailExists">
+                                <div class="text-danger">
+                                    email already in use
+                                </div>
+                            </div>
+
                         </div>
                         <div class="mb-3 form-password-toggle">
                             <label class="form-label" for="password">password</label>
