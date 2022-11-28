@@ -25,15 +25,9 @@
           </div>
           <div class="card-body">
             <form
-              #contratForm="ngForm"
               name="form"
-              (ngSubmit)="
-                Spec.valid &&
-                  dateD.valid &&
-                  DateF.valid &&
-                  Mont.valid &&
-                  onSumbit()
-              "
+              (ngSubmit)="f.form.valid && onSubmit()"
+              #f="ngForm"
               novalidate
             >
               <div class="row mb-3">
@@ -47,11 +41,11 @@
                     <select
                       class="form-select"
                       [(ngModel)]="contrat.specialite"
-                      [ngModelOptions]="{ standalone: true }"
                       required
-                      #Spec="ngModel"
+                      #specialite="ngModel"
+                      name="specialite"
                       [ngClass]="{
-                        'is-invalid': Spec.touched && Spec.invalid
+                        'is-invalid': specialite.touched && specialite.invalid
                       }"
                     >
                       <option value="IA">IA</option>
@@ -60,11 +54,14 @@
                       <option value="SECURITE">SECURITE</option>
                     </select>
                   </div>
-                  <div class="form-text" *ngIf="Spec.invalid && Spec.touched">
+                  <div
+                    class="form-text"
+                    *ngIf="specialite.invalid && specialite.touched"
+                  >
                     <div
                       class="alert alert-danger"
                       role="alert"
-                      *ngIf="Spec.hasError('required')"
+                      *ngIf="specialite.hasError('required')"
                     >
                       Champ Specialite est obligatoire
                     </div>
@@ -83,28 +80,32 @@
                       class="form-control"
                       type="date"
                       [(ngModel)]="contrat.dateDebutContrat"
-                      [ngModelOptions]="{ standalone: true }"
                       required
                       [min]="currentDate"
-                      [max]="DateF.value"
-                      #dateD="ngModel"
+                      [max]="dateFinContrat.value"
+                      #dateDebutContrat="ngModel"
+                      name="dateDebutContrat"
                       [ngClass]="{
-                        'is-invalid': dateD.touched && dateD.invalid
+                        'is-invalid':
+                          dateDebutContrat.touched && dateDebutContrat.invalid
                       }"
                     />
                   </div>
-                  <div class="form-text" *ngIf="dateD.invalid && dateD.touched">
+                  <div
+                    class="form-text"
+                    *ngIf="dateDebutContrat.invalid && dateDebutContrat.touched"
+                  >
                     <div
                       class="alert alert-danger"
                       role="alert"
-                      *ngIf="dateD.hasError('required')"
+                      *ngIf="dateDebutContrat.hasError('required')"
                     >
                       Champ date Debut est obligatoire
                     </div>
                     <div
                       class="alert alert-danger"
                       role="alert"
-                      *ngIf="dateD.hasError('min')"
+                      *ngIf="dateDebutContrat.hasError('min')"
                     >
                       Champ date Debut doit etre superieur a la date
                       d'aujourd'hui
@@ -112,7 +113,7 @@
                     <div
                       class="alert alert-danger"
                       role="alert"
-                      *ngIf="dateD.hasError('max')"
+                      *ngIf="dateDebutContrat.hasError('max')"
                     >
                       Champ date Debut doit etre inferieur a la date fin du
                       contrat
@@ -132,27 +133,31 @@
                       class="form-control"
                       type="date"
                       [(ngModel)]="contrat.dateFinContrat"
-                      [ngModelOptions]="{ standalone: true }"
                       required
-                      [min]="dateD.value"
-                      #DateF="ngModel"
+                      [min]="dateDebutContrat.value"
+                      #dateFinContrat="ngModel"
+                      name="dateFinContrat"
                       [ngClass]="{
-                        'is-invalid': DateF.touched && DateF.invalid
+                        'is-invalid':
+                          dateFinContrat.touched && dateFinContrat.invalid
                       }"
                     />
                   </div>
-                  <div class="form-text" *ngIf="DateF.invalid && DateF.touched">
+                  <div
+                    class="form-text"
+                    *ngIf="dateFinContrat.invalid && dateFinContrat.touched"
+                  >
                     <div
                       class="alert alert-danger"
                       role="alert"
-                      *ngIf="DateF.hasError('required')"
+                      *ngIf="dateFinContrat.hasError('required')"
                     >
                       Champ date fin est obligatoire
                     </div>
                     <div
                       class="alert alert-danger"
                       role="alert"
-                      *ngIf="DateF.hasError('min')"
+                      *ngIf="dateFinContrat.hasError('min')"
                     >
                       Champ date Debut doit etre superieur a la date debut du
                       contrat
@@ -171,20 +176,24 @@
                     <input
                       type="number"
                       [(ngModel)]="contrat.montantContrat"
-                      [ngModelOptions]="{ standalone: true }"
                       required
-                      #Mont="ngModel"
+                      #montantContrat="ngModel"
                       class="form-control"
+                      name="montantContrat"
                       [ngClass]="{
-                        'is-invalid': Mont.touched && Mont.invalid
+                        'is-invalid':
+                          montantContrat.touched && montantContrat.invalid
                       }"
                     />
                   </div>
-                  <div class="form-text" *ngIf="Mont.invalid && Mont.touched">
+                  <div
+                    class="form-text"
+                    *ngIf="montantContrat.invalid && montantContrat.touched"
+                  >
                     <div
                       class="alert alert-danger"
                       role="alert"
-                      *ngIf="Mont.hasError('required')"
+                      *ngIf="montantContrat.hasError('required')"
                     >
                       Champ montant est obligatoire
                     </div>
@@ -194,7 +203,7 @@
 
               <div class="row justify-content-end">
                 <div class="col-sm-10">
-                  <button type="submit" class="btn btn-primary">
+                  <button class="btn btn-primary">
                     {{ editable ? "Modifier" : "Ajouter" }}
                   </button>
                 </div>

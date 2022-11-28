@@ -41,7 +41,7 @@ export class FormContratComponent implements OnInit {
       }
     });
   }
-  onSumbit() {
+  onSubmit() {
     if (!this.editable) {
       this.contratService
         .addContratService(this.contrat)

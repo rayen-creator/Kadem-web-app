@@ -8,7 +8,7 @@ import { ContratService } from 'src/app/core/services/contrat.service';
   styleUrls: ['./list-contrat.component.css'],
 })
 export class ListContratComponent implements OnInit {
-  contrats: any[];
+  contrats: any[] = [];
   constructor(private contratService: ContratService) {}
 
   ngOnInit(): void {
