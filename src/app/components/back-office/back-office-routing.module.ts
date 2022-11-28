@@ -5,10 +5,12 @@ import { BackOfficeComponent } from './back-office.component';
 const routes: Routes = [
   {
     path: '', component: BackOfficeComponent, children: [
-      //
+      { path: 'departement', loadChildren: () => import('./departement/departement.module').then(m => m.DepartementModule) }
 
     ]
-  }];
+  },
+
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
