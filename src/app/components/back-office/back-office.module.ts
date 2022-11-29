@@ -6,6 +6,8 @@ import { BackOfficeComponent } from './back-office.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
+import { ListProfesorComponent } from './profesor/list-profesor/list-profesor.component';
+import {FormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -13,12 +15,12 @@ import { SidebarComponent } from './shared/sidebar/sidebar.component';
     BackOfficeComponent,
     HeaderComponent,
     FooterComponent,
-    SidebarComponent,
- 
+    SidebarComponent
+
   ],
-  imports: [
-    CommonModule,
-    BackOfficeRoutingModule
-  ]
+    imports: [
+        CommonModule,
+        BackOfficeRoutingModule
+    ]
 })
 export class BackOfficeModule { }

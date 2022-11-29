@@ -7,6 +7,8 @@ import { NotfoundpageComponent } from './components/notfoundpage/notfoundpage.co
 import { LoginComponent } from './components/auth/login/login.component';
 import { SignupComponent } from './components/auth/signup/signup.component';
 import { ResetpwdComponent } from './components/auth/resetpwd/resetpwd.component';
+import {HttpClient, HttpClientModule} from "@angular/common/http";
+import {FormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -16,12 +18,15 @@ import { ResetpwdComponent } from './components/auth/resetpwd/resetpwd.component
     LoginComponent,
     SignupComponent,
     ResetpwdComponent,
-    
+
+
+
   ],
   imports: [
     BrowserModule,
-
-    AppRoutingModule
+    HttpClientModule,
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
