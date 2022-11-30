@@ -1,36 +1,66 @@
 <!-- Hoverable Table rows -->
 
-<div class="container-xxl flex-grow-1 container-p-y">
-    <div class="row">
-        <div class="card">
-            <!-- <h5 class="card-header">Hoverable rows</h5> -->
-            &nbsp;
-            <div class="table-responsive text-nowrap">
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th>Departement's name</th>
-                            <th></th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody class="table-border-bottom-0">
+<div class="table-responsive text-nowrap" *ngIf="dep.nomDepart==SearchedDep || SearchedDep=='' || SearchedDep==null">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Departement's name</th>
+                <th></th>
+                <th>Actions</th>
+            </tr>
+        </thead>
 
-                        <tr *ngFor="let d of Departements">
+        <tbody class="table-border-bottom-0">
 
-                            <td>{{d.nomDepart}}</td>
-                            <td>
-                            </td>
-                            <td>
-                                <a class="btn rounded-pill btn-outline-warning " href="javascript:void(0);"><i class="bx bx-edit-alt me-1"></i> Edit</a> &nbsp;
-                                <a class="btn rounded-pill btn-outline-danger" href="javascript:void(0);"><i class="bx bx-trash me-1"></i> Delete</a>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+            <tr>
+
+                <td>{{dep.nomDepart}}</td>
+                <td>
+                </td>
+                <td>
+                    <a class="btn rounded-pill btn-outline-warning " href=""><i class="bx bx-edit-alt me-1" (click)=" gotoedit()"></i> Edit</a> &nbsp;
+                    <button type="button" class="btn rounded-pill btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modalToggle">
+                        <i class="bx bx-trash me-1"></i> Delete
+                    </button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="modalToggle" aria-labelledby="modalToggleLabel" tabindex="-1" style="display: none" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="modalToggleLabel">Confirmation panel</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">Are you sure you want to delete ? </div>
+                                <div class="modal-footer">
+                                    <button class="btn rounded-pill btn-success" data-bs-dismiss="modal" (click)="notifyDelete() ">
+                                Yes
+                              </button>
+                                    <button class="btn rounded-pill btn-secondary" data-bs-dismiss="modal">
+                                No
+                              </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="container fluid">
+    <div style="margin-top: 30px;margin-bottom: 30px;">
+        <div class="alert alert-danger" *ngIf="dep.nomDepart!=SearchedDep && SearchedDep!='' && SearchedDep!=null">
+            <div class="d-flex justify-content-center">
+                No records found
+
             </div>
+
         </div>
     </div>
+
 </div>
 
 <!--/ Hoverable Table rows -->

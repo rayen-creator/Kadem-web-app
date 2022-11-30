@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Customvalidator } from 'src/app/components/auth/utils/customvalidator';
 import { Departement } from 'src/app/core/models/departement';
 import { DepartementService } from 'src/app/core/services/departement.service';
@@ -13,65 +14,76 @@ export class DepartementAddComponent implements OnInit {
   Departements: Departement[];
   id: number;
   editmode: boolean;
-  public dep: Departement;
-  
+  dep: Departement;
+
   constructor(private depService: DepartementService,
     private router: Router,
-    private ActiveRoute: ActivatedRoute) { }
+    private ActiveRoute: ActivatedRoute,
+    private toastr: ToastrService) { }
 
   ngOnInit(): void {
 
-    this.ActiveRoute.params.subscribe({
-      next: (parms) => {
-        this.id = parms['id'];
-        if (this.id != null) {
+    this.id = this.ActiveRoute.snapshot.params['id'];
+    this.depService.getAlldepartements().subscribe({
+      next: (data :Departement[]) => {
+        this.Departements = data;
+        if (this.Departements.find(d => d.idDepart == this.id)! != null) {
+          this.dep = this.Departements.find(d => d.idDepart == this.id)!;
+          console.log('this dep :'+this.dep.idDepart)
           this.editmode = true;
-          this.depService.getAlldepartements().subscribe({
-            next: (data) => {
-              this.Departements = data;
-              this.editmode = false;
-
-            },
-            error: (error) => {
-              console.log("error : " + error);
-
-            }
-          })
         }else{
           this.dep=new Departement();
+          this.editmode=false;
         }
       },
-      error: () => {
+      error: (err) => {
+        console.log("err : "+err)
 
       }
-    }
-    )
+    })
+
   }
 
 
- 
+
   onSubmit() {
-    if (this.editmode) {
-      this.depService.updateDep(this.id, this.dep).subscribe({
-        next: () => {
+    console.log("editmode :" + this.editmode)
+    if (Object.keys(this.dep).length != 0){
+      if (this.editmode) {
+        this.depService.updateDep(this.id, this.dep).subscribe({
+          next: () => {
+            this.toastr.success('departement has been updated !','Success')
 
-        },
-        error: () => {
+            this.router.navigate(['/backoffice/departement/listDepartement'])
 
-        }
-      })
-    } else {
-      this.depService.addDepartement(this.dep).subscribe({
-        next: () => {
+          },
+          error: () => {
+  
+          }
+        })
+      } else {
+        this.depService.addDepartement(this.dep).subscribe({
+          next: () => {
+            console.log('dep :' + this.dep);
+            this.toastr.success('departement has been added successfully !','Success')
 
-        },
-        error: (err) => {
-          console.log("Error :" + err);
-        }
-      })
+            this.router.navigate(['/backoffice/departement/listDepartement'])
+
+  
+          },
+          error: (err) => {
+            console.log("Error :" + err);
+          }
+        })
+      }
+    }else{
+      this.toastr.error('the form must be filled !','Error')
     }
-    this.router.navigate(['/listDepartement'])
-  }
 
+  }
+back(){
+  this.router.navigate(['/backoffice/departement/listDepartement'])
+
+}
 
 }

@@ -1,14 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DepartementAddComponent } from './departement-add/departement-add.component';
-import { DepartementListComponent } from './departement-list/departement-list.component';
-import { DepartementComponent } from './departement.component';
+import { ParentListComponent } from './parent-list/parent-list.component';
 
 const routes: Routes = [
-  {path :'',component:DepartementComponent,children:[
-    { path: 'listDepartement', component: DepartementListComponent },
-    { path: 'addDepartement', component: DepartementAddComponent },
-  ]}
+  { path: 'update/:id', component: DepartementAddComponent },
+  { path: 'addDepartement', component: DepartementAddComponent },
+  { path:'listDepartement',component:ParentListComponent},
+  // {path :'',component:DepartementComponent,children:[
+   
+
+  // ]}
 
 ];
 

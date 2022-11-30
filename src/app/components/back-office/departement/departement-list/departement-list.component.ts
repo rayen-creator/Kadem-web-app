@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
 import { Departement } from 'src/app/core/models/departement';
-import { DepartementService } from 'src/app/core/services/departement.service';
 
 @Component({
   selector: 'app-departement-list',
@@ -9,12 +9,20 @@ import { DepartementService } from 'src/app/core/services/departement.service';
 })
 export class DepartementListComponent implements OnInit {
   Departements: Departement[];
-  constructor(private depService: DepartementService) { }
+  @Input() dep  : Departement 
+  @Input() SearchedDep :string
+  @Output() notification: EventEmitter<Departement> = new EventEmitter()
+  constructor(private router:Router) { }
 
   ngOnInit(): void {
-    this.depService.getAlldepartements().subscribe((data) => {
-      this.Departements = data;
-    })
+ 
   }
+  notifyDelete() {
+    this.notification.emit(this.dep)
+  }
+ 
+  gotoedit(){
+    this.router.navigate(['/backoffice/departement/update/',this.dep.idDepart])
 
+  }
 }

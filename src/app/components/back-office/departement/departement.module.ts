@@ -5,8 +5,9 @@ import { DepartementRoutingModule } from './departement-routing.module';
 import { DepartementComponent } from './departement.component';
 import { DepartementListComponent } from './departement-list/departement-list.component';
 import { DepartementAddComponent } from './departement-add/departement-add.component';
-import { NavbarComponent } from './navbar/navbar.component';
 import { FormsModule } from '@angular/forms';
+import { ParentListComponent } from './parent-list/parent-list.component';
+
 
 
 @NgModule({
@@ -14,12 +15,13 @@ import { FormsModule } from '@angular/forms';
     DepartementComponent,
     DepartementListComponent,
     DepartementAddComponent,
-    NavbarComponent
+    ParentListComponent,
   ],
   imports: [
     CommonModule,
     DepartementRoutingModule,
-    FormsModule
+    FormsModule,
+ 
   ]
 })
 export class DepartementModule { }
