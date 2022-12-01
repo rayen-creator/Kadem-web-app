@@ -4,24 +4,27 @@ import { AbstractControlOptions, FormBuilder, FormControl, FormGroup, Validators
 import { Customvalidator } from '../utils/customvalidator';
 import { AuthService } from 'src/app/core/helpers/auth.service';
 import { ToastrService } from 'ngx-toastr';
+import { CanComponentLeave } from 'src/app/core/helpers/unsaved-changes.guard';
 
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.css']
 })
-export class SignupComponent implements OnInit {
-  public signupForm: FormGroup;
-  public submitted = false;
-  public usernameExists:boolean;
-  public emailExists:boolean;
+export class SignupComponent implements OnInit, CanComponentLeave {
+   signupForm: FormGroup;
+   submitted = false;
+   usernameExists: boolean;
+   emailExists: boolean;
+   added: boolean;
   constructor(
-    private formBuilder: FormBuilder, 
+    private formBuilder: FormBuilder,
     private router: Router,
-    private auth:AuthService,
+    private auth: AuthService,
     private toastr: ToastrService) { }
 
   ngOnInit(): void {
+    this.added=false;
     this.signupForm = this.formBuilder.group(
       {
         username: ['', [Validators.minLength(3), Validators.required]],
@@ -40,50 +43,56 @@ export class SignupComponent implements OnInit {
           Validators.minLength(8)])
         ],
         confirmpassword: ['', Validators.required],
-        terms :[false ,Validators.requiredTrue]
+        terms: [false, Validators.requiredTrue]
       },
       {
-        Validators: [Customvalidator.MustMatch('password', 'confirmpassword')] 
-      }  as AbstractControlOptions
+        Validators: [Customvalidator.MustMatch('password', 'confirmpassword')]
+      } as AbstractControlOptions
     )
   }
 
-  Valid(controlname:any,signupForm:any){
-   return Customvalidator.Valid(controlname,signupForm)
+  Valid(controlname: any, signupForm: any) {
+    return Customvalidator.Valid(controlname, signupForm)
 
   }
-  
 
-  Signup(form : any) {
+  canLeave(): boolean {
+    if ((this.signupForm.dirty) && (this.added==false)) {
+      return confirm('You have unsaved changes are you sure you wanne leave this page ?');
+    }
+    return true;
+
+  }
+
+  Signup(form: any) {
     this.submitted = true;
-    this.emailExists=false;
-    this.usernameExists=false;
-    console.log("submitted :"+this.submitted)
+    this.emailExists = false;
+    this.usernameExists = false;
+    console.log("submitted :" + this.submitted)
     if (this.signupForm.valid) {
-      
-     this.auth.signin(form).subscribe( 
-       (res)=>{
-      const emailExists=res.emailExists;
-      const usernameExists=res.usernameExists;
-      this.emailExists=emailExists;
-      this.usernameExists=usernameExists;
-      if ((!emailExists) && (!usernameExists)){
-        this.toastr.success('Account created successfully , Time to log in','Account created !')
 
-        this.router.navigate(['/login'])
-      }
-       console.log("username exists :"+this.usernameExists);
-       console.log("email exists :"+this.emailExists);
-   })
+      this.auth.signin(form).subscribe(
+        (res) => {
+          const emailExists = res.emailExists;
+          const usernameExists = res.usernameExists;
+          this.emailExists = emailExists;
+          this.usernameExists = usernameExists;
+          if ((!emailExists) && (!usernameExists)) {
+            this.added=true;
+            this.toastr.success('Account created successfully , Time to log in', 'Account created !')
+
+            this.router.navigate(['/login'])
+          }
+          console.log("username exists :" + this.usernameExists);
+          console.log("email exists :" + this.emailExists);
+        })
     } else {
-      Customvalidator.validateAllFormFields(this.signupForm); 
+      Customvalidator.validateAllFormFields(this.signupForm);
     }
   }
 
 
 
-  goTologin() {
-    this.router.navigate(['/login']);
-  }
+ 
 
 }

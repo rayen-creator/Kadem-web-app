@@ -18,9 +18,8 @@
 
         <div class="card">
             <!-- <h5 class="card-header">Hoverable rows</h5> -->
-
-            <app-departement-list *ngFor="let d of listdep; let i=index " [SearchedDep]="departSearch" [dep]="d" (notification)="deleteDepart($event,i)"></app-departement-list>
-
+            <app-departement-list *ngFor="let d of listdep; let i=index " [SearchedDep]="departSearch" [dep]="d" (notification)="deleteDepart($event,i)">
+            </app-departement-list>
         </div>
 
     </div>

@@ -1,6 +1,6 @@
 <!-- Hoverable Table rows -->
 
-<div class="table-responsive text-nowrap" *ngIf="dep.nomDepart==SearchedDep || SearchedDep=='' || SearchedDep==null">
+<div class="table-responsive text-nowrap" *ngIf="dep.nomDepart==SearchedDep || SearchedDep=='' || SearchedDep==null;else elseBlock">
     <table class="table table-hover">
         <thead>
             <tr>
@@ -18,7 +18,7 @@
                 <td>
                 </td>
                 <td>
-                    <a class="btn rounded-pill btn-outline-warning " href=""><i class="bx bx-edit-alt me-1" (click)=" gotoedit()"></i> Edit</a> &nbsp;
+                    <button class="btn rounded-pill btn-outline-warning " (click)="gotoedit(dep)"><i class="bx bx-edit-alt me-1" ></i> Edit</button> &nbsp;
                     <button type="button" class="btn rounded-pill btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modalToggle">
                         <i class="bx bx-trash me-1"></i> Delete
                     </button>
@@ -50,17 +50,17 @@
     </table>
 </div>
 
-<div class="container fluid">
-    <div style="margin-top: 30px;margin-bottom: 30px;">
-        <div class="alert alert-danger" *ngIf="dep.nomDepart!=SearchedDep && SearchedDep!='' && SearchedDep!=null">
-            <div class="d-flex justify-content-center">
-                No records found
-
+<ng-template #elseBlock>
+    <div class="container fluid">
+        <div style="margin-top: 30px;margin-bottom: 30px;">
+            <div class="alert alert-danger">
+                <div class="d-flex justify-content-center">
+                    No records found
+                </div>
             </div>
-
         </div>
     </div>
+</ng-template>
 
-</div>
 
 <!--/ Hoverable Table rows -->

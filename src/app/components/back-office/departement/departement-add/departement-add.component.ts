@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { Customvalidator } from 'src/app/components/auth/utils/customvalidator';
+import { CanComponentLeave } from 'src/app/core/helpers/unsaved-changes.guard';
 import { Departement } from 'src/app/core/models/departement';
 import { DepartementService } from 'src/app/core/services/departement.service';
 
@@ -10,19 +10,20 @@ import { DepartementService } from 'src/app/core/services/departement.service';
   templateUrl: './departement-add.component.html',
   styleUrls: ['./departement-add.component.css']
 })
-export class DepartementAddComponent implements OnInit {
+export class DepartementAddComponent implements OnInit,CanComponentLeave {
   Departements: Departement[];
   id: number;
   editmode: boolean;
   dep: Departement;
-
+  added :boolean;
   constructor(private depService: DepartementService,
     private router: Router,
     private ActiveRoute: ActivatedRoute,
     private toastr: ToastrService) { }
+  
 
   ngOnInit(): void {
-
+    this.added=false;
     this.id = this.ActiveRoute.snapshot.params['id'];
     this.depService.getAlldepartements().subscribe({
       next: (data :Departement[]) => {
@@ -44,7 +45,13 @@ export class DepartementAddComponent implements OnInit {
 
   }
 
+  canLeave(): boolean {
+    if ((this.dep.nomDepart !=null) && (this.added==false)){
+      return confirm('You have unsaved changes are you sure you wanne leave this page ?');
+    }
+    return true;
 
+  }
 
   onSubmit() {
     console.log("editmode :" + this.editmode)
@@ -52,6 +59,8 @@ export class DepartementAddComponent implements OnInit {
       if (this.editmode) {
         this.depService.updateDep(this.id, this.dep).subscribe({
           next: () => {
+            this.added=true;
+
             this.toastr.success('departement has been updated !','Success')
 
             this.router.navigate(['/backoffice/departement/listDepartement'])
@@ -65,6 +74,7 @@ export class DepartementAddComponent implements OnInit {
         this.depService.addDepartement(this.dep).subscribe({
           next: () => {
             console.log('dep :' + this.dep);
+            this.added=true;
             this.toastr.success('departement has been added successfully !','Success')
 
             this.router.navigate(['/backoffice/departement/listDepartement'])

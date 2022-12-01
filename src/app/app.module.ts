@@ -17,6 +17,7 @@ import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { ToastrModule } from 'ngx-toastr';
+import { UnsavedChangesGuard } from './core/helpers/unsaved-changes.guard';
 
 
 @NgModule({
@@ -35,7 +36,7 @@ import { ToastrModule } from 'ngx-toastr';
     HttpClientModule,
     AppRoutingModule,
     CommonModule,
-    BrowserAnimationsModule, // required animations module
+    BrowserAnimationsModule, 
     ToastrModule.forRoot({
       timeOut: 3500,
       positionClass: 'toast-bottom-right',
@@ -43,7 +44,7 @@ import { ToastrModule } from 'ngx-toastr';
     }), // ToastrModule added
 
   ],
-  providers: [AuthService,
+  providers: [AuthService,UnsavedChangesGuard,
     [{
       provide : HTTP_INTERCEPTORS,
       useClass : AuthInterceptorInterceptor,

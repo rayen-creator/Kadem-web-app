@@ -27,14 +27,14 @@ export class HeaderComponent implements OnInit, OnDestroy {
     console.log("userIsAuthenticated : "+this.userIsAuthenticated);
   }
 
-  goTologin() {
-    this.router.navigate(['/login']);
-  }
+  // goTologin() {
+  //   this.router.navigate(['/login']);
+  // }
 
   ngOnDestroy(): void {
     this.authListenerSubs.unsubscribe();
  }
- logout(){
+ loggingout(){
   this.auth.logout();
  }
 }

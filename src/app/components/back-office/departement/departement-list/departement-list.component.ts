@@ -21,8 +21,8 @@ export class DepartementListComponent implements OnInit {
     this.notification.emit(this.dep)
   }
  
-  gotoedit(){
-    this.router.navigate(['/backoffice/departement/update/',this.dep.idDepart])
+  gotoedit(d:Departement){
+    this.router.navigate(['/backoffice/departement/update',d.idDepart])
 
   }
 }
