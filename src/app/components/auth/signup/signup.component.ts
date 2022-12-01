@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AbstractControlOptions, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Customvalidator } from '../utils/customvalidator';
 import { AuthService } from 'src/app/core/helpers/auth.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-signup',
@@ -14,7 +15,11 @@ export class SignupComponent implements OnInit {
   public submitted = false;
   public usernameExists:boolean;
   public emailExists:boolean;
-  constructor(private formBuilder: FormBuilder, private router: Router,private auth:AuthService) { }
+  constructor(
+    private formBuilder: FormBuilder, 
+    private router: Router,
+    private auth:AuthService,
+    private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.signupForm = this.formBuilder.group(
@@ -48,17 +53,6 @@ export class SignupComponent implements OnInit {
 
   }
   
-  // Valid(controlName: string) {
-  //   if (this.signupForm.controls[controlName].valid && (this.signupForm.controls[controlName].dirty || this.signupForm.controls[controlName].touched)) {
-  //     return 'is-valid'
-  //   }
-  //   else if (this.signupForm.controls[controlName].invalid && (this.signupForm.controls[controlName].dirty || this.signupForm.controls[controlName].touched)) {
-  //     return 'is-invalid'
-  //   }
-  //   else {
-  //     return ''
-  //   }
-  // }
 
   Signup(form : any) {
     this.submitted = true;
@@ -74,6 +68,8 @@ export class SignupComponent implements OnInit {
       this.emailExists=emailExists;
       this.usernameExists=usernameExists;
       if ((!emailExists) && (!usernameExists)){
+        this.toastr.success('Account created successfully , Time to log in','Account created !')
+
         this.router.navigate(['/login'])
       }
        console.log("username exists :"+this.usernameExists);

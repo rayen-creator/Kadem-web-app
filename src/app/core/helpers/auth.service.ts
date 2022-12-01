@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { User } from '../models/user';
@@ -22,7 +23,7 @@ export class AuthService {
   private authStatusListener = new Subject<boolean>();
   private isUserAuthenticated = false;
 
-  constructor(private http: HttpClient,private router: Router) {
+  constructor(private http: HttpClient,private router: Router, private toastr: ToastrService) {
     this.url=environment.NodeJSUrl;
 
   }
@@ -63,6 +64,7 @@ export class AuthService {
           const now = new Date();
           const expirationDate = new Date(now.getTime() + expireInDuration * 1000);
           this.saveAuthData(token ,username,expirationDate);
+          this.toastr.success('Welcome back to your account','Logged In')
           this.router.navigate(['/backoffice']);
         }
       }

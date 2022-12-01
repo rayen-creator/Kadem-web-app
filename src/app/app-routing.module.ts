@@ -9,13 +9,13 @@ import { AuthGuard } from './core/helpers/auth.guard';
 
 
 const routes: Routes = [
-  // ,canActivate:[AuthGuard] 
-  { path: 'backoffice', loadChildren: () => import('./components/back-office/back-office.module').then(m => m.BackOfficeModule) ,canActivate:[AuthGuard]  },
+  
+  { path: 'backoffice', loadChildren: () => import('./components/back-office/back-office.module').then(m => m.BackOfficeModule)  },
   { path: 'login', redirectTo: '', pathMatch: 'full' },
   { path: '', component: LoginComponent },
   { path: 'resetpassword', component: ResetpwdComponent },
   { path: 'signup', component: SignupComponent },
-  { path: 'unauthorized', component: UnauthorizedComponent },
+  { path: 'unauthorized', component: UnauthorizedComponent  },
 
   { path: '**', component: NotfoundpageComponent },
 ];

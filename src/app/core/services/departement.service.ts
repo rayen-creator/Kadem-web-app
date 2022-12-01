@@ -12,7 +12,7 @@ export class DepartementService {
   }
 
   addDepartement(dep: Departement) {
-    return this.httpClient.post(this.url + '/departement/add', dep);
+    return this.httpClient.post(this.url +'/departement/add', dep);
   }
   getAlldepartements(){
     return this.httpClient.get<Departement[]>(this.url+'/departement');
@@ -21,6 +21,6 @@ export class DepartementService {
     return this.httpClient.put(this.url+'/departement/update/'+id,dep)
   }
   DeleteDep(id:number){
-    return this.httpClient.delete(this.url+'/departement/delete'+id);
+    return this.httpClient.delete(this.url+'/departement/delete/'+id);
   }
 }
