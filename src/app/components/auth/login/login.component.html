@@ -6,7 +6,7 @@
                 <div class="card-body">
                     <!-- Logo -->
                     <div class="app-brand justify-content-center">
-                        <a href="index.html" class="app-brand-link gap-2">
+                        <a href="" class="app-brand-link gap-2">
                             <span class="app-brand-logo demo">
                   <svg
                     width="25"
@@ -69,20 +69,34 @@
                     <h4 class="mb-2">Welcome to Sneat! 👋</h4>
                     <p class="mb-4">Please sign-in to your account and start the adventure</p>
 
-                    <form id="formAuthentication" class="mb-3" action="index.html" method="POST">
+                    <form id="formAuthentication" class="mb-3" [formGroup]="loginform" (ngSubmit)="login(loginform.value)">
+                        <!-- Authentification failed -->
+                        <div *ngIf="userNotFound">
+                            authentication failed
+                        </div>
+                        <div *ngIf="loginform.controls['email'].invalid && (loginform.controls['email'].dirty || loginform.controls['email'].touched)">
+                            <div *ngIf="loginform.controls['email'].hasError('required')" class="text-danger">
+                                email is required
+                            </div>
+                        </div>
+                        <div *ngIf="loginform.controls['password'].invalid && (loginform.controls['password'].dirty || loginform.controls['password'].touched)">
+                            <div *ngIf="loginform.controls['password'].hasError('required')" class="text-danger">
+                                password is required
+                            </div>
+                        </div>
                         <div class="mb-3">
-                            <label for="email" class="form-label">Email or Username</label>
-                            <input type="text" class="form-control" id="email" name="email-username" placeholder="Enter your email or username" autofocus />
+                            <label for="email" class="form-label">Email </label>
+                            <input type="text" class="form-control" id="email" formControlName="email" [ngClass]="Valid('email',loginform)" placeholder="Enter your email" />
                         </div>
                         <div class="mb-3 form-password-toggle">
                             <div class="d-flex justify-content-between">
                                 <label class="form-label" for="password">Password</label>
-                                <a routerLink="resetpassword">
+                                <a routerLink="/resetpassword">
                                     <small>Forgot Password?</small>
                                 </a>
                             </div>
                             <div class="input-group input-group-merge">
-                                <input type="password" id="password" class="form-control" name="password" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="password" />
+                                <input type="password" id="password" class="form-control" formControlName="password" [ngClass]="Valid('password',loginform)" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="password" />
                                 <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
                             </div>
                         </div>
@@ -99,7 +113,7 @@
 
                     <p class="text-center">
                         <span>New on our platform?</span>
-                        <a routerLink="signup">
+                        <a routerLink="/signup">
                             <span>Create an account</span>
                         </a>
                     </p>

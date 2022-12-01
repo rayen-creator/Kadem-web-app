@@ -1,0 +1,31 @@
+<div class="container-xxl flex-grow-1 container-p-y">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card mb-4">
+                <h5 class="card-header">Add new Departement</h5>
+                <div class="card-body">
+                    <form #form="ngForm">
+                        <div>
+                            <label for="defaultFormControlInput" class="form-label">Departement name</label>
+                            <input type="text" name="nomDepart" id="nomDepart" class="form-control" [(ngModel)]="dep.nomDepart" minlength="3" required #nomDepart="ngModel" />
+                            <div class="text-danger" *ngIf="nomDepart.invalid && nomDepart.touched">
+                                <div *ngIf="nomDepart.hasError('required')">
+                                    field is required
+                                </div>
+                                <div *ngIf="nomDepart.hasError('minlength')">
+                                    minlength
+                                </div>
+                            </div>
+                        </div>
+                        <div style="margin-top: 25px;">
+                            <button class="btn rounded-pill btn-outline-primary" (click)="onSubmit()">Save</button>&nbsp;&nbsp;
+                            <button class="btn rounded-pill btn-outline-secondary" routerLink="/backoffice/departement/listDepartement">Back</button>
+
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
