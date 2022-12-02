@@ -28,6 +28,7 @@ export class ListContratComponent implements OnInit {
       .updateContratService({ ...contrat, archive: !contrat.archive }) //modifier l'archive seulement
       .subscribe(() => this.refreshData());
   }
+  ///refreshdata
   refreshData() {
     this.contratService.getListContratService().subscribe((result) => {
       this.contrats = result;
