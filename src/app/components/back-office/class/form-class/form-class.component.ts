@@ -5,6 +5,8 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {ClassService} from "../../../../core/services/classService/class.service";
 import {ProfesorService} from "../../../../core/services/profesorService/profesor.service";
 import {Profesor} from "../../../../core/models/profesor";
+import {Student} from "../../../../core/models/student";
+import {StudentService} from "../../../../core/services/studentService/student.service";
 
 @Component({
   selector: 'app-form-class',
@@ -15,21 +17,23 @@ export class FormClassComponent implements OnInit {
   public classe: Class;
   public action: string;
   public form: FormGroup;
-  public prof:Profesor[];
+  public prof: Profesor[];
   public profesor: Profesor;
-  constructor(private classService: ClassService,private profesorService: ProfesorService , private router: Router, private localRoute: ActivatedRoute, private fb: FormBuilder) {
+  public stud: Student[];
+  public student: Student;
+
+
+  constructor(private classService: ClassService, private profesorService: ProfesorService, private studentService: StudentService,
+              private router: Router, private localRoute: ActivatedRoute, private fb: FormBuilder) {
   }
 
   ngOnInit(): void {
     let id = this.localRoute.snapshot.params['id'];
     if (id != null) {
-      this.action = "Update class";
+      this.action = "Add profesor and students";
       this.classService.getClassByID(id).subscribe(
         (data: Class) => {
           this.classe = data;
-          this.classe.professeurs.push(this.profesor);
- 
-
         },
         () => {
           console.log("erreur")
@@ -44,23 +48,55 @@ export class FormClassComponent implements OnInit {
     }
 
 
+    this.profesorService.getAllProfesor().subscribe({
+        next: (data: Profesor[]) => {
+          this.prof = data;
+          this.prof.forEach((i: Profesor) => {
+            this.classe.professeurs.forEach((x: Profesor) => {
+              if (i != x) {
+                let y = this.prof.indexOf(i);
+                this.prof.splice(y, 1);
+
+              }
+            })
+          })
+
+        },
+        error: (err) => {
+          console.log('error' + err);
+
+        }
+      }
+    )
+
+    this.studentService.getAllStudent().subscribe({
+        next: (data: Student[]) => {
+          this.stud = data;
+          this.stud.forEach((i: Student) => {
+            this.classe.etudiants.forEach((x: Student) => {
+              if (i != x) {
+                let y = this.stud.indexOf(i);
+                this.stud.splice(y, 1);
+              }
+            })
+          })
+
+        },
+        error: (err) => {
+          console.log('error' + err);
+
+        }
+      }
+    )
+
     this.form = this.fb.group({
         nom: ['', [Validators.required, Validators.minLength(3)]],
-        profesor:['']
+        profesor: [''],
+        student: ['']
 
       }
     )
 
-    this.profesorService.getAllProfesor().subscribe({
-      next : (data:Profesor[])=>{this.prof=data;
-      },
-      error : (err)=>{
-        console.log('error'+err);
-
-      }
-    }
-
-    )
   }
 
 
@@ -72,12 +108,10 @@ export class FormClassComponent implements OnInit {
         }
       );
     } else {
+      this.classe.professeurs.push(this.profesor);
+      this.classe.etudiants.push(this.student);
       this.classService.update(this.classe).subscribe(
         () => {
-          console.log(this.profesor);
-
-
- // requette sql
           this.router.navigate(['/backoffice/class/']);
 
         }
@@ -88,4 +122,7 @@ export class FormClassComponent implements OnInit {
   }
 
 
+  refresh() {
+    window.location.reload();
+  }
 }

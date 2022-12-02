@@ -31,10 +31,10 @@ export class FormProfesorComponent implements OnInit {
 
 
     this.form=this.fb.group({
-      prenomProf:['',[Validators.required,Validators.minLength(5)]],
-      nomProf:['',[Validators.required,Validators.minLength(5)]],
+      prenomProf:['',[Validators.required,Validators.minLength(3)]],
+      nomProf:['',[Validators.required,Validators.minLength(3)]],
       email:['',[Validators.required,Validators.email]],
-      age:['',[Validators.required]],
+      age:['',[Validators.required,Validators.min(16),Validators.max(90)]],
       phone:['',[Validators.required,Validators.minLength(8)]],
       addresse:['',[Validators.required,Validators.minLength(5)]],
       image:['',[Validators.required,Validators.minLength(5)]]

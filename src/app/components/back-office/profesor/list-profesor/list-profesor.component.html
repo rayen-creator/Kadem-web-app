@@ -1,16 +1,18 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/boxicons/2.1.0/css/boxicons.min.css"
+<link crossorigin="anonymous" href="https://cdnjs.cloudflare.com/ajax/libs/boxicons/2.1.0/css/boxicons.min.css"
       integrity="sha512-pVCM5+SN2+qwj36KonHToF2p1oIvoU3bsqxphdOIWMYmgr4ZqD3t5DjKvvetKhXGc/ZG5REYTT6ltKfExEei/Q=="
-      crossorigin="anonymous" referrerpolicy="no-referrer" xmlns="http://www.w3.org/1999/html"/>
-<link rel="stylesheet"
+      referrerpolicy="no-referrer" rel="stylesheet" xmlns="http://www.w3.org/1999/html"/>
+<link crossorigin="anonymous"
       href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.3.45/css/materialdesignicons.css"
-      integrity="sha256-NAxhqDvtY0l4xn+YVa6WjAcmd94NNfttjNsDmNatFVc=" crossorigin="anonymous"/>
-<div class="container">
+      integrity="sha256-NAxhqDvtY0l4xn+YVa6WjAcmd94NNfttjNsDmNatFVc=" rel="stylesheet"/>
+<div class="container-xxl flex-grow-1 container-p-y">
+
 
   <div class="row align-items-center">
     <div class="col-md-6">
       <div class="mb-3">
         <br>
-        <h1 class="card-title">Profesor list <span class="text-muted fw-normal ms-2" [ngClass]="lengthTable > 2 ? 'red' : 'green'">({{lengthTable}})</span></h1>
+        <h1 class="card-title">Profesor list
+          <span [ngClass]="lengthTable > 2 ? 'red' : 'green'"class="text-muted fw-normal ms-2">({{lengthTable}})</span></h1>
 
 
       </div>
@@ -19,21 +21,18 @@
       <div class="d-flex flex-wrap align-items-center justify-content-end gap-2 mb-6">
         <div>
           <ul class="nav nav-pills">
-            <li class="nav-item">
-              <a href="#" class="nav-link" data-bs-toggle="tooltip" data-bs-placement="top" title="List"><i
-                class="bx bx-list-ul"></i></a>
-            </li>
+
             <li class="nav-item">
               <form>
-                <input class="form-control" type="text" value="find by name" [(ngModel)]="choice"
-                       [ngModelOptions]="{standalone:true}">
+                <input [(ngModel)]="choice" [ngModelOptions]="{standalone:true}" class="form-control" type="text"
+                       value="find by name">
               </form>
             </li>
 
           </ul>
         </div>
         <div>
-          <a routerLink="/backoffice/profesor/form" class="btn btn-primary"><i class="bx bx-plus me-1"></i> Add a
+          <a class="btn btn-primary" routerLink="/backoffice/profesor/form"><i class="bx bx-plus me-1"></i> Add a
             profesor</a>
         </div>
 
@@ -42,20 +41,23 @@
   </div>
 
   <div class="row">
-    <div class="col-xl-9 col-md-12 col-sm-12" *ngFor="let profesor of all ">
-      <div class="card" *ngIf="choice==profesor.nomProf || choice=='' || choice==null ">
+    <div *ngFor="let profesor of all " class="col-xl-6 col-md-12 col-sm-12">
+      <div *ngIf="choice==profesor.nomProf || choice=='' || choice==null " class="card">
         <div class="card-body">
           <div class="dropdown float-end">
-            <a class="text-muted dropdown-toggle font-size-16" href="#" role="button" data-bs-toggle="dropdown"
-               aria-haspopup="true"><i class="bx bx-dots-horizontal-rounded"></i></a>
-            <div class="dropdown-menu dropdown-menu-end"><a class="dropdown-item" href="#">Edit</a><a
-              class="dropdown-item" href="#">Action</a><a class="dropdown-item" href="#">Remove</a></div>
+            <a aria-haspopup="true" class="text-muted dropdown-toggle" data-bs-toggle="dropdown" href="#"
+               role="button"><i class="bx bx-dots-horizontal-rounded"></i></a>
+            <div class="dropdown-menu dropdown-menu-end">
+              <a href="#" class="dropdown-item" [routerLink]="['update',profesor.idProfesseur]" >Edit</a>
+              <a href="#" class="dropdown-item" (click)="Delete(profesor)" >Remove</a>
+            </div>
           </div>
           <div class="d-flex align-items-center">
-            <div><img src="{{profesor.image}}" alt="" class="avatar-md rounded-circle img-thumbnail"/></div>
+            <div><img alt="" class="avatar-md rounded-circle img-thumbnail" src="{{profesor.image}}"/></div>
             <div class="flex-1 ms-3">
-              <h5 class="font-size-16 mb-1"><a href="#"
-                                               class="text-dark">{{profesor.nomProf}} {{profesor.prenomProf  }}</a></h5>
+              <h5 class="font-size-16 mb-1"><a class="text-dark"
+                                               href="#">{{profesor.nomProf}} {{profesor.prenomProf  }} ({{profesor.age}}) </a>
+              </h5>
               <span class="badge badge-soft-success mb-0"><i
                 class="mdi mdi-email font-size-15 align-middle pe-2 text-primary"></i>{{profesor.email}}</span>
             </div>
@@ -67,15 +69,14 @@
             <p class="text-muted mb-0 mt-2"><i
               class="mdi mdi-google-maps font-size-15 align-middle pe-2 text-primary"></i>{{profesor.addresse}}</p>
           </div>
-          <br>
-          <div class="d-lg-flex gap-2 pt-">
-            <button type="button" (click)="Profile(profesor)" class="btn btn-dark btn-sm w-50"><i
-              class="bx bx-user me-1"></i> Profile
-            </button>
-            <a type="button" [routerLink]="['update',profesor.idProfesseur]" class="btn btn-primary btn-sm w-50"><i
-              class="bx bx-message-square-dots me-1"></i> Edit</a>
-            <button type="button" class="btn btn-warning btn-sm w-25 " (click)="Delete(profesor)"> Delete</button>
-          </div>
+
+<!--          <div class="d-lg-flex gap-2 ">-->
+<!--            <div class="w-75"></div>-->
+<!--            <button [routerLink]="['update',profesor.idProfesseur]" class="btn btn-primary btn-sm w-50" type="button"><i-->
+<!--              class="bx bx-message-square-dots me-1"></i> Edit</button>-->
+<!--            <button (click)="Delete(profesor)" class="btn btn-warning btn-sm w-50" type="button"> <i-->
+<!--              class="bx bx-block me-1"></i> Delete</button>-->
+<!--          </div>-->
         </div>
       </div>
     </div>

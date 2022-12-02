@@ -40,7 +40,9 @@
                 <label for="age" class="form-label">Age</label>
                 <input type="number" class="form-control form-control-lg" id="age" name="age" [(ngModel)]="prof.age" formControlName="age"/>
                 <div class="alert alert-danger" *ngIf="form.controls['age'].invalid  && form.controls['age'].touched">
-                  <p *ngIf="form.controls['age'].hasError('required')">age is required</p>
+                  <p *ngIf="form.controls['age'].hasError('required')">Age is required</p>
+                  <p *ngIf="form.controls['age'].hasError('min')">You are too young</p>
+                  <p *ngIf="form.controls['age'].hasError('max')">Sorry but you are too old</p>
 
                 </div>
               </div>
@@ -83,20 +85,6 @@
 
             </div>
 
-
-            <div class="row">
-              <div class="form-outline">
-
-                <label class="form-label">Picture link</label>
-                <input type="link" name="image" class="form-control form-control-lg" [(ngModel)]="prof.image" formControlName="image">
-                <div class="alert alert-danger" *ngIf="form.controls['image'].invalid && form.controls['image'].touched">
-                  <p *ngIf="form.controls['image'].hasError('required')">picture is required</p>
-                  <p *ngIf="form.controls['image'].hasError('minlength')">picture must be a link</p>
-                </div>
-              </div>
-
-            </div>
-
             <div class="row mt-5">
               <div class="form-outline col-md-7">
 
@@ -112,16 +100,33 @@
                 </div>
               </div>
 
-<!--              <div class="form-outline col-md-5">-->
+              <!--              <div class="form-outline col-md-5">-->
 
-<!--                <label class="form-label" >Password</label>-->
-<!--                <input type="pwd" name="pwd" class="form-control form-control-lg" [(ngModel)]="prof.password" formControlName="pwd">-->
-<!--                <div class="alert alert-danger" *ngIf="form.controls['pwd'].invalid && form.controls['pwd'].touched">-->
-<!--                  <p *ngIf="form.controls['pwd'].hasError('required')">picture is required</p>-->
-<!--                  <p *ngIf="form.controls['pwd'].hasError('minlength')">pwd lower then five</p>-->
-<!--                </div>-->
-<!--              </div>-->
+              <!--                <label class="form-label" >Password</label>-->
+              <!--                <input type="pwd" name="pwd" class="form-control form-control-lg" [(ngModel)]="prof.password" formControlName="pwd">-->
+              <!--                <div class="alert alert-danger" *ngIf="form.controls['pwd'].invalid && form.controls['pwd'].touched">-->
+              <!--                  <p *ngIf="form.controls['pwd'].hasError('required')">picture is required</p>-->
+              <!--                  <p *ngIf="form.controls['pwd'].hasError('minlength')">pwd lower then five</p>-->
+              <!--                </div>-->
+              <!--              </div>-->
             </div>
+            <div class="row">
+              <div class="form-outline col-10">
+
+                <label class="form-label">Picture link</label>
+                <input type="link" name="image" class="form-control form-control-lg" [(ngModel)]="prof.image" formControlName="image">
+                <div class="alert alert-danger" *ngIf="form.controls['image'].invalid && form.controls['image'].touched">
+                  <p *ngIf="form.controls['image'].hasError('required')">picture is required</p>
+                  <p *ngIf="form.controls['image'].hasError('minlength')">picture must be a link</p>
+                </div>
+              </div>
+
+             <div class="form-outline col-2 p-0 hide-arrow avatar avatar-md pull-up">
+               <label class="form-label">Picture </label>
+               <img src="{{prof.image}}" style="border: #d9dee3 solid 0.05em ">   </div>
+            </div>
+
+
 
             <div class="row">
               <div class="form-outline">
@@ -148,83 +153,4 @@
 </div>
 
 
-<!--import { Component, OnInit } from '@angular/core';-->
-<!--import {Team} from "../../../../core/models/team";-->
-<!--import {ActivatedRoute, Params, Router} from "@angular/router";-->
-<!--import {TeamService} from "../../../../core/services/team.service";-->
-<!--import {FormControl, FormGroup, Validators} from "@angular/forms";-->
 
-<!--@Component({-->
-<!--selector: 'app-team-form',-->
-<!--templateUrl: './team-form.component.html',-->
-<!--styleUrls: ['./team-form.component.css']-->
-<!--})-->
-<!--export class TeamFormComponent implements OnInit {-->
-<!--teamForm: FormGroup;-->
-<!--id: number;-->
-<!--list:Team[];-->
-<!--editMode = false;-->
-<!--mode:String;-->
-<!--pattern="^[ a-zA-Z][a-zA-Z ]*$";-->
-
-
-<!--constructor(private route: ActivatedRoute, private teamService: TeamService, private router: Router) {-->
-<!--}-->
-
-<!--ngOnInit(): void {-->
-<!--this.teamService.getAllTeams().subscribe(-->
-<!--(data:Team[])=>{-->
-<!--this.list=data;-->
-<!--this.route.params.subscribe((params: Params) => {-->
-<!--this.id = +params['id'];-->
-<!--console.log(params)-->
-<!--this.editMode = params['id'] != null;-->
-<!--if (this.editMode) {-->
-<!--this.mode = "Update"-->
-<!--} else {-->
-<!--this.mode = "Add"-->
-<!--}-->
-<!--this.initForm()-->
-<!--console.log(this.teamForm)-->
-<!--},-->
-<!--() => { console.log('error') },-->
-<!--() => {  }-->
-<!--)-->
-<!--}-->
-<!--)-->
-<!--}-->
-
-<!--private initForm() {-->
-<!--let teamName = '';-->
-<!--let teamLevel = '';-->
-<!--let teamImage = '';-->
-
-
-<!--if(this.editMode) {-->
-<!--const team = this.list.find(u => u.idEquipe == this.id)!-->
-<!--teamName = team.nomEquipe-->
-<!--teamLevel = team.niveau-->
-<!--teamImage = team.image-->
-
-<!--}-->
-<!--this.teamForm = new FormGroup({-->
-<!--'nomEquipe': new FormControl(teamName,[ Validators.required,Validators.pattern(this.pattern),Validators.minLength(3)]),-->
-<!--'niveau': new FormControl(teamLevel, Validators.required),-->
-<!--'image': new FormControl(teamImage, Validators.required),-->
-
-<!--  })-->
-<!--}-->
-
-<!--Back() {-->
-<!--this.router.navigate(['/backoffice/teams'])-->
-<!--}-->
-
-<!--onSubmit() {-->
-<!--if (this.editMode) {-->
-<!--this.teamService.updateTeam(this.id, this.teamForm.value).subscribe()-->
-<!--} else {-->
-<!--this.teamService.addTeam(this.teamForm.value).subscribe()-->
-<!--}-->
-<!--this.router.navigate(['/backoffice/teams'])-->
-<!--}-->
-<!--  }-->
