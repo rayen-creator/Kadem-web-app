@@ -1,0 +1,91 @@
+<!-- Content wrapper -->
+
+    <!-- Content -->
+
+    <div class="container-xxl flex-grow-1 container-p-y">
+      <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Student/</span> {{action}}</h4>
+       <!-- Basic Layout -->
+       <div class="row">
+        <div class="col-xl">
+          <div class="card mb-4">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">Form</h5>
+              </div>
+              <div class="card-body">
+                <form #f="ngForm" >
+                  <div class="form-group mb-3">
+                    <label class="form-label" for="prenomE">First Name</label>
+                    <input [(ngModel)]="etudiant.prenomE" name="prenomE" type="text" 
+                    required minlength="3" pattern="[A-Za-z]{3,12}$" #n="ngModel"class="form-control" id="prenomE" placeholder="Enter your first name" />
+                    <div class="alert alert-danger" *ngIf="n.invalid && n.touched">
+                      <div *ngIf="n.hasError('required')">
+                         this field is required
+                        </div>
+                      <div *ngIf="n.hasError('minlength')">
+                         minlength = 3 !
+                      </div>
+                      <div *ngIf="n.hasError('pattern')">
+                        error pattern
+                     </div>
+                  </div>
+                  </div>
+                  <div class="form-group mb-3">
+                    <label class="form-label" for="nomE">Last Name</label>
+                    <input [(ngModel)]="etudiant.nomE" name="nomE" type="text" class="form-control"
+                    required minlength="3" pattern="[A-Za-z]{3,12}$" #l="ngModel" id="nomE" placeholder="Enter your last name" />
+                    <div class="alert alert-danger" *ngIf="l.invalid && l.touched">
+                      <div *ngIf="l.hasError('required')">
+                         this field is required
+                        </div>
+                      <div *ngIf="l.hasError('minlength')">
+                         minlength = 3 !
+                      </div>
+                      <div *ngIf="l.hasError('pattern')">
+                        error pattern
+                     </div>
+                  </div>
+                  </div>
+                  <div class="form-group mb-3">
+                    <label for="inputState" class="form-label">Option</label>
+                    <select [(ngModel)]="etudiant.option"  required #p="ngModel" name="option" class="form-select" id="exampleFormControlSelect1" aria-label="Default select example">
+                      <option selected>Open to select option</option>
+                      <option value="GAMIX">GAMIX</option>
+                      <option value="SIM">SIM</option>
+                      <option value="NIDS">NIDS</option>
+                      <option value="TWIN">TWIN</option>
+                      <option value="SLEAM">SLEAM</option>
+                    </select>
+                    <div class="alert alert-danger" *ngIf="p.invalid && p.touched">
+                      this field is required
+                    </div>
+                  </div>
+                  <div class=" form-group mb-3 ">
+                    <label for="date-input" class="col-md-2 col-form-label">Date</label>
+                    <div class="col-md-10">
+                      <input class="form-control"  required #d="ngModel" [(ngModel)]="etudiant.dateDebut" name="dateDebut" type="date" value="" id="html5-date-input" />
+                      <div class="alert alert-danger" *ngIf="d.invalid && d.touched">
+                        this field is required
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label  class="form-label">Image</label>
+                      <input  type="text"  name="image" class="form-control"
+                        [(ngModel)]="etudiant.image"
+                        required
+                        #i="ngModel"
+                        placeholder="Image Url"
+                      >
+                    </div>
+                    <div class="alert alert-danger" *ngIf="i.invalid && i.touched">
+                      <div *ngIf="i.hasError('required')">this field is required !</div>
+                    </div>
+                  </div>
+                  <button (click)="save()"   [disabled]="f.invalid" type="submit" class="btn btn-success">{{action}}</button>
+                  &nbsp;
+                  <button class="btn  btn-danger" (click)="Back()">cancel</button>
+                </form>
+              </div> 
+            </div>
+          </div>
+        </div>
+      </div>

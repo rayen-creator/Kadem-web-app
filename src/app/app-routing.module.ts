@@ -12,7 +12,6 @@ const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'resetpassword', component: ResetpwdComponent },
   { path: 'signup', component: SignupComponent },
-
   { path: '**', component: NotfoundpageComponent },
 ];
 
