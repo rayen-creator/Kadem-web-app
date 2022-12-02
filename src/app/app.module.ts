@@ -10,7 +10,7 @@ import { ResetpwdComponent } from './components/auth/resetpwd/resetpwd.component
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
-
+import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,6 +26,7 @@ import { HttpClientModule } from '@angular/common/http';
     RouterModule,
     HttpClientModule,
     AppRoutingModule,
+    AutocompleteLibModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

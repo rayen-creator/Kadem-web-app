@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 const baseUrl = 'http://localhost:8082/SpringMVC/ContartController';
+const StudentUrl = 'http://localhost:8082/SpringMVC/controllerEtudiant';
 @Injectable({
   providedIn: 'root',
 })
@@ -24,5 +25,14 @@ export class ContratService {
   }
   getContratById(id: number) {
     return this.http.get(`${baseUrl}/displayContratById/${id}`);
+  }
+  addcontratToEtudiant(idEtudiant: number, idContrat: number) {
+    return this.http.get(
+      `${baseUrl}/addcontratToEtudiant/${idEtudiant}/${idContrat}`
+    );
+  }
+  /////student
+  DisplayStudents() {
+    return this.http.get(`${StudentUrl}/DisplayStudents`);
   }
 }
