@@ -11,7 +11,7 @@ import {ActivatedRoute} from "@angular/router";
 export class ListProfesorComponent implements OnInit {
   public choice: string;
 
-  public list: Profesor[];
+
   public all: Profesor[];
   public lengthTable: number;
   constructor(private profesorService :ProfesorService,private route: ActivatedRoute,private router:ActivatedRoute) {  }

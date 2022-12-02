@@ -12,6 +12,7 @@ const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'resetpassword', component: ResetpwdComponent },
   { path: 'signup', component: SignupComponent },
+  { path: 'class', loadChildren: () => import('./components/back-office/class/class.module').then(m => m.ClassModule) },
 
   { path: '**', component: NotfoundpageComponent },
 ];

@@ -10,7 +10,9 @@
     <div class="col-md-6">
       <div class="mb-3">
         <br>
-        <h1 class="card-title">Profesor list <span class="text-muted fw-normal ms-2">({{lengthTable}})</span></h1>
+        <h1 class="card-title">Profesor list <span class="text-muted fw-normal ms-2" [ngClass]="lengthTable > 2 ? 'red' : 'green'">({{lengthTable}})</span></h1>
+
+
       </div>
     </div>
     <div class="col-md-6">
@@ -64,9 +66,6 @@
             <!--            <p class="text-muted mb-0 mt-2"><i class="mdi mdi-email font-size-15 align-middle pe-2 text-primary"></i>{{profesor.email}}</p>-->
             <p class="text-muted mb-0 mt-2"><i
               class="mdi mdi-google-maps font-size-15 align-middle pe-2 text-primary"></i>{{profesor.addresse}}</p>
-            <p class="text-muted mb-0 mt-3" style="color: #3b76e1">📖 Classes :</p>
-            <p class="text-muted mb-0 mt-2"><i
-              class="mdi font-size-15 align-middle pe-2 text-primary"></i>{{profesor.classes}}</p>
           </div>
           <br>
           <div class="d-lg-flex gap-2 pt-">

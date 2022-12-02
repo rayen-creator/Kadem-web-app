@@ -12,23 +12,25 @@ import {FormsModule} from "@angular/forms";
 
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    NotfoundpageComponent,
-    LoginComponent,
-    SignupComponent,
-    ResetpwdComponent,
+    declarations: [
+        AppComponent,
+        NotfoundpageComponent,
+        LoginComponent,
+        SignupComponent,
+        ResetpwdComponent,
 
 
-
-  ],
-  imports: [
-    BrowserModule,
-    HttpClientModule,
-    AppRoutingModule,
-    FormsModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    ],
+    imports: [
+        BrowserModule,
+        HttpClientModule,
+        AppRoutingModule,
+        FormsModule
+    ],
+    providers: [],
+    exports: [
+        AppComponent
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }
