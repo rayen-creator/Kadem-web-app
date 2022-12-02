@@ -14,12 +14,13 @@ import { ContratService } from 'src/app/core/services/contrat.service';
 export class FormContratComponent implements OnInit {
   editable = false;
   contrat: Contrat = {
-    id_contrat: 0,
+    idContrat: 0,
     archive: false,
     dateDebutContrat: null!,
     dateFinContrat: null!,
     montantContrat: null!,
     specialite: null!,
+    etudiant: null,
   };
   contratForm: NgForm;
   currentDate = new Date();
