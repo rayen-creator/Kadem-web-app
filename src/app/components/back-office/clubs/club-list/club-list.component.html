@@ -1,0 +1,38 @@
+<div class="container-xxl flex-grow-1 container-p-y">
+
+
+
+
+  <form class="col-md-6">
+    <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="Search">
+  </form>
+  <br>
+
+  <!-- Grid Card -->
+  <h6 class="pb-1 mb-4 text-muted">clubs ({{(all| filter:searchText).length}}) <a routerLink="new"><i class='bx bxs-plus-circle bx-flashing bx-rotate-180' style='color:#17fd00' ></i></a></h6>
+  <div class="row row-cols-1 row-cols-md-3 g-4 mb-5" >
+    <h3 *ngIf="(all| filter:searchText).length === 0"> no elements found !</h3>
+    <app-club
+      *ngFor="let c of all | slice: (page-1) * pageSize : page * pageSize| filter:searchText"
+      [club]="c"
+      (notification)="deleteClub($event)"
+    >
+
+    </app-club>
+
+
+  </div>
+
+  <div class="row g-0 align-items-center pb-4">
+    <div class="col-sm-6">
+      <div><p class="mb-sm-0">Showing {{(page*pageSize)-(pageSize-1)}} to {{page*pageSize}} of {{length}}</p></div>
+    </div>
+    <ngb-pagination
+      [(page)]="page"
+      [pageSize]="pageSize"
+      [collectionSize]="length"></ngb-pagination>
+  </div>
+  <!--/ Card layout -->
+
+
+</div>

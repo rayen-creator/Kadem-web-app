@@ -1,0 +1,18 @@
+<div class="col">
+  <div class="card h-100">
+    <div class="img-wrap">
+      <a class="close" (click)="notifyDeleteTeam()"><h3 class="redTextOverride">&times;</h3></a>
+      <img class="card-img-top" src="{{team.image}}" alt="Card image cap">
+    </div>
+    <div class="card-body">
+      <h4 class="card-title">{{team.nomEquipe}}</h4>
+      <h6 class="card-text" [ngStyle]="{'color':team.niveau === 'JUNIOR' ? 'green' : team.niveau === 'SENIOR'? 'orange' : 'red' }">{{team.niveau}}</h6>
+      <p class="card-text" *ngIf="team.detailEquipe != null">Room : {{team.detailEquipe.salle}}</p>
+      <p class="card-text" *ngIf="team.detailEquipe != null">Thematic : {{team.detailEquipe.thematique}}</p>
+      <p class="card-text" *ngIf="team.detailEquipe != null">Description : {{team.detailEquipe.description}}</p>
+      <a routerLink="update/{{team.idEquipe}}" [ngClass]="['btn', 'btn-outline-warning']">Edit</a>
+      &nbsp;
+      <a routerLink="addDetails/{{team.idEquipe}}" [ngClass]="['btn', 'btn-primary']">add Details</a>
+    </div>
+  </div>
+</div>

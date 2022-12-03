@@ -11,6 +11,7 @@
     "noPropertyAccessFromIndexSignature": true,
     "noImplicitReturns": false,
     "noFallthroughCasesInSwitch": true,
+    "emitDecoratorMetadata": true,
     "sourceMap": true,
     "declaration": false,
     "downlevelIteration": true,

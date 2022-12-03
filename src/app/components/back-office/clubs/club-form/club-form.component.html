@@ -1,0 +1,127 @@
+<form  #f="ngForm">
+
+  <div class="container-xxl flex-grow-1 container-p-y">
+
+
+    <h4 class="fw-bold py-3 mb-4">
+      <span class="text-muted fw-light">{{btn}} /</span> Club
+    </h4>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="card mb-4">
+          <h5 class="card-header">Club</h5>
+          <div class="card-body">
+            <div class="form-group">
+              <label  class="form-label">Name</label>
+              <input
+                type="text"
+                name="name"
+                class="form-control"
+                [(ngModel)]="club.nom"
+                required
+                pattern="[A-Za-z]{0,50}$"
+                minlength="3"
+                #n="ngModel"
+                placeholder="Enactus"
+              >
+            </div>
+            <div class="alert alert-danger" *ngIf="n.invalid && n.touched">
+              <div *ngIf="n.hasError('required')">this field is required !</div>
+              <div *ngIf="n.hasError('minlength')">minlength = 3 !</div>
+              <div *ngIf="n.hasError('pattern')">symbols are not allowed !</div>
+            </div>
+            <br>
+            <div class="form-group">
+              <label  class="form-label">Email</label>
+              <input
+                type="text"
+                name="email"
+                class="form-control"
+                [(ngModel)]="club.email"
+                required
+                email
+                #e="ngModel"
+                placeholder="exemple@email.com"
+              >
+            </div>
+            <div class="alert alert-danger" *ngIf="e.invalid && e.touched">
+              <div *ngIf="e.hasError('required')">this field is required !</div>
+              <div *ngIf="e.hasError('email')">please enter a valid email !</div>
+            </div>
+            <br>
+            <div class="form-group">
+              <label  class="form-label">Phone</label>
+              <input
+                type="number"
+                name="phone"
+                class="form-control"
+                [(ngModel)]="club.phone"
+                required
+                #p="ngModel"
+                placeholder="0"
+              >
+            </div>
+            <div class="alert alert-danger" *ngIf="p.invalid && p.touched">
+              <div *ngIf="p.hasError('required')">this field is required !</div>
+            </div>
+            <br>
+            <div class="form-group">
+              <label  class="form-label">Room</label>
+              <input
+                type="text"
+                name="room"
+                class="form-control"
+                [(ngModel)]="club.room"
+                required
+                #r="ngModel"
+                placeholder="G02"
+              >
+            </div>
+            <div class="alert alert-danger" *ngIf="r.invalid && r.touched">
+              <div *ngIf="r.hasError('required')">this field is required !</div>
+            </div>
+            <br>
+            <div class="form-group">
+              <label  class="form-label">Logo</label>
+              <input
+                type="text"
+                name="logo"
+                class="form-control"
+                [(ngModel)]="club.logo"
+                required
+                #l="ngModel"
+                placeholder="Image Url"
+              >
+            </div>
+            <div class="alert alert-danger" *ngIf="l.invalid && l.touched">
+              <div *ngIf="l.hasError('required')">this field is required !</div>
+            </div>
+            <br>
+            <div class="form-group">
+              <label  class="form-label">Description</label>
+              <input
+                type="textarea"
+                name="room"
+                class="form-control"
+                [(ngModel)]="club.description"
+                #d="ngModel"
+              >
+            </div>
+            <br>
+            <div  class="form-text">We'll never share your details with anyone else.</div>
+            <br>
+            <span *ngIf="f?.invalid && f?.touched" class="help-block">Please enter valid data !</span>
+          </div>
+
+        </div>
+        <button class="btn btn-sm btn-primary" (click)="saveClub()" [disabled]="f?.invalid">Submit</button>
+        &nbsp;
+        <button class="btn btn-sm btn-danger" (click)="Back()">cancel</button>
+      </div>
+
+    </div>
+
+  </div>
+
+</form>

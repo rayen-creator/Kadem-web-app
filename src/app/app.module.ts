@@ -15,8 +15,9 @@ import { AuthGuard } from './core/helpers/auth.guard';
 import { AuthService } from './core/helpers/auth.service';
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
-import { ToastrModule } from 'ngx-toastr';
+import {FormsModule} from "@angular/forms";
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {ToastrModule} from "ngx-toastr";
 import { UnsavedChangesGuard } from './core/helpers/unsaved-changes.guard';
 
 
@@ -28,7 +29,7 @@ import { UnsavedChangesGuard } from './core/helpers/unsaved-changes.guard';
     SignupComponent,
     ResetpwdComponent,
     UnauthorizedComponent,
-    
+
   ],
   imports: [
     BrowserModule,
@@ -36,7 +37,12 @@ import { UnsavedChangesGuard } from './core/helpers/unsaved-changes.guard';
     HttpClientModule,
     AppRoutingModule,
     CommonModule,
-    BrowserAnimationsModule, 
+    BrowserAnimationsModule,
+
+
+    FormsModule,
+    NgbModule,
+    BrowserAnimationsModule,
     ToastrModule.forRoot({
       timeOut: 3500,
       positionClass: 'toast-bottom-right',
@@ -48,7 +54,7 @@ import { UnsavedChangesGuard } from './core/helpers/unsaved-changes.guard';
     [{
       provide : HTTP_INTERCEPTORS,
       useClass : AuthInterceptorInterceptor,
-      multi : true   
+      multi : true
     }, AuthGuard]
   ],
   bootstrap: [AppComponent]

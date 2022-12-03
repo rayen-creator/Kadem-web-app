@@ -1,0 +1,79 @@
+<form id="form_team" [formGroup]="teamForm" (ngSubmit)="onSubmit()" *ngIf="teamForm">
+
+<div class="container-xxl flex-grow-1 container-p-y">
+
+
+  <h4 class="fw-bold py-3 mb-4">
+    <span class="text-muted fw-light">{{mode}} /</span> Team
+  </h4>
+
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card mb-4">
+        <h5 class="card-header">Team</h5>
+        <div class="card-body">
+          <div class="form-group">
+            <label  class="form-label">Name</label>
+            <input
+              type="text"
+              id="name"
+              formControlName="nomEquipe"
+              class="form-control"
+              placeholder="Noxus"
+              >
+          </div>
+          <div class="alert alert-danger" *ngIf="!teamForm.get('nomEquipe')?.valid && teamForm.get('nomEquipe')?.touched">
+            <div *ngIf="teamForm.get('nomEquipe')?.errors?.['required']">this field is required !</div>
+            <div *ngIf="teamForm.get('nomEquipe')?.errors?.['minlength']">minlength = 3 !</div>
+            <div *ngIf="teamForm.get('nomEquipe')?.errors?.['pattern']">symbols are not allowed !</div>
+          </div>
+          <br>
+          <div class=" form-group input-group">
+            <label class="input-group-text" for="level">Level</label>
+            <select
+              class="form-select"
+              id="level"
+              formControlName="niveau"
+            >
+              <option selected="">Choose...</option>
+              <option value="0">JUNIOR</option>
+              <option value="1">SENIOR</option>
+              <option value="2">EXPERT</option>
+            </select>
+          </div>
+          <div class="alert alert-danger" *ngIf="!teamForm.get('niveau')?.valid && teamForm.get('niveau')?.touched">
+            <div *ngIf="teamForm.get('niveau')?.errors?.['required']">this field is required !</div>
+          </div>
+          <br>
+
+          <div class="form-group">
+            <label  class="form-label">Image</label>
+            <input
+              type="text"
+              id="image"
+              class="form-control"
+              placeholder="Image Url"
+              formControlName="image"
+              aria-describedby="defaultFormControlHelp"
+            >
+          </div>
+          <div class="alert alert-danger" *ngIf="!teamForm.get('image')?.valid && teamForm.get('image')?.touched">
+            <div *ngIf="teamForm.get('image')?.errors?.['required']">this field is required !</div>
+          </div>
+          <br>
+          <div  class="form-text">We'll never share your details with anyone else.</div>
+          <br>
+          <span *ngIf="!teamForm?.valid && teamForm?.touched" class="help-block">Please enter valid data !</span>
+        </div>
+
+      </div>
+      <button class="btn btn-sm btn-primary" type="submit" [disabled]="teamForm?.invalid">Submit</button>
+      &nbsp;
+      <button class="btn btn-sm btn-danger" (click)="Back()">cancel</button>
+    </div>
+
+  </div>
+
+</div>
+
+</form>
