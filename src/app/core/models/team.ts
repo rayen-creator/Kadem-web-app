@@ -1,7 +1,10 @@
+import {TeamDetails} from "./teamDetails";
+
 export class Team{
-  id: number;
+  idEquipe: number;
   nomEquipe: string;
   niveau: string;
-  detailEquipe: string;
   image: string;
+  detailEquipe: TeamDetails;
+
 }

@@ -1,0 +1,42 @@
+<div class="container-xxl flex-grow-1 container-p-y">
+  <form class="col-md-6">
+    <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="Search">
+  </form>
+  <br>
+
+  <!-- Examples -->
+
+  <h6 class="pb-1 mb-4 text-muted">Details ({{(detailsList| filter:searchText).length}})</h6>
+  <div class="row mb-5">
+    <h3 *ngIf="(detailsList| filter:searchText).length === 0"> no elements found !</h3>
+<app-detail
+  *ngFor="let d of detailsList | slice: (page-1) * pageSize : page * pageSize | filter:searchText"
+  [detail]="d"
+  (notification)="deleteDetails($event)"
+>
+
+</app-detail>
+  </div>
+
+
+
+      <div class="row g-0 align-items-center pb-4">
+        <div class="col-sm-6">
+          <div><p class="mb-sm-0">Showing {{(page*pageSize)-(pageSize-1)}} to {{page*pageSize}} of {{length}}</p></div>
+        </div>
+        <ngb-pagination
+          [(page)]="page"
+          [pageSize]="pageSize"
+          [collectionSize]="length"></ngb-pagination>
+
+    </div>
+  </div>
+  <!--/ Content types -->
+
+
+
+
+
+
+
+

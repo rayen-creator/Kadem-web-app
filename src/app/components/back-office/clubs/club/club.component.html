@@ -1,0 +1,18 @@
+<div class="col">
+  <div class="card h-100">
+    <div class="img-wrap">
+      <a class="close" (click)="NotifyDeleteClub()"><h3 class="redTextOverride">&times;</h3></a>
+      <img class="card-img-top" src="{{club.logo}}" alt="Card image cap">
+    </div>
+    <div class="card-body">
+      <h3 class="card-title">{{club.nom}}</h3>
+      <h5 class="card-text">Room: {{club.room}}</h5>
+      <h6 class="card-text">Email: {{club.email}}</h6>
+      <h6 class="card-text">Phone: {{club.phone}}</h6>
+
+
+      <p class="card-text">Description : {{club.description}}</p>
+      <a routerLink="update/{{club.idClub}}" [ngClass]="['btn', 'btn-outline-warning']">Edit</a>
+    </div>
+  </div>
+</div>

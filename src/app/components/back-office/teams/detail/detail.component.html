@@ -1,0 +1,16 @@
+<div class="col-md-6 col-lg-4 mb-3">
+  <div class="card">
+    <div class="card-header">
+      <a class="close" (click)="notifyDeleteDetails()"><h3 class="redTextOverride">&times;</h3></a>
+      Room : {{detail.salle}}
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">Thematic : {{detail.thematique}}</h5>
+      <p class="card-text">
+        Description :
+        {{detail.description}}
+      </p>
+      <a routerLink="update/{{detail.idDetailEquipe}}" [ngClass]="['btn', 'btn-outline-warning']">Edit</a>
+    </div>
+  </div>
+</div>
