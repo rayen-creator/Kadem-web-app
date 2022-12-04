@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Entreprise } from 'src/app/core/models/entreprise';
 import { EntrepriseService } from 'src/app/core/services/entreprise.service';
 
@@ -17,7 +18,7 @@ export class FormEntrepriseComponent implements OnInit {
   entreprise : Entreprise;
   pattern="^[ a-zA-Z0-9][a-zA-Z0-9 ]*$";
   mode:String;
-  constructor(private  currentRoute: ActivatedRoute, private entpService: EntrepriseService, 
+  constructor( private toastr: ToastrService,private  currentRoute: ActivatedRoute, private entpService: EntrepriseService, 
 
  private router: Router) { }
 
@@ -76,11 +77,15 @@ export class FormEntrepriseComponent implements OnInit {
     if(this.editMode)
     { 
       this.entpService.updateEntreprise(this.id,this.EntrepriseForm.value).subscribe(
-        ()=> this.router.navigate(['backoffice/entreprises'])
+        ()=>{
+          this.toastr.success('Company has been added !','Success')
+          this.router.navigate(['backoffice/entreprises'])}
       )
    }else {
     this.entpService.addEntreprise(this.EntrepriseForm.value).subscribe(
-      ()=>{ this.router.navigate(['backoffice/entreprises'])}
+      ()=>{ 
+        this.toastr.success('Company has been updated !','Success')
+        this.router.navigate(['backoffice/entreprises'])}
     )
    
   }

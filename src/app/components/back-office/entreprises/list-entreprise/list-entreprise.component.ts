@@ -30,10 +30,20 @@ export class ListEntrepriseComponent implements OnInit {
   }
   delete(entreprise: Entreprise) {
     if(confirm("Are you sure to delete "+entreprise.nom)) {
-      this.EntpServ.deleteEntreprise(entreprise.idEntreprise).subscribe()
-      this.toastr.success(entreprise.nom+' has been deleted !','Success')
-
-      location.reload();
+      this.EntpServ.deleteEntreprise(entreprise.idEntreprise).subscribe(
+        {
+          next: () => {
+            let i = this.listEntp.indexOf(entreprise)
+            this.listEntp.splice(i, 1);
+            this.toastr.success(entreprise.nom+' has been deleted successfully','Success');
+          }, error: (err) => {
+            console.log("err" + err);
+            this.toastr.error('something went wrong !','Error');
+    
+          }
+        }
+      )
+     
       
 
     }

@@ -1,3 +1,5 @@
+import { Departement } from "./departement";
+
 export class Etudiant {
     idEtudiant:number;
     prenomE:string;
@@ -5,4 +7,6 @@ export class Etudiant {
     image: string;
     option:string[];
     dateDebut:Date;
+    departement_id_depart:number
+    
 }

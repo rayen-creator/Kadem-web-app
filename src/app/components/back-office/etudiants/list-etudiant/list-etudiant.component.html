@@ -11,7 +11,7 @@
 
     <div class="collapse navbar-collapse" id="navbar-ex-4">
       <div class="navbar-nav me-auto">
-        <a class="nav-item nav-link active"  aria-disabled="true" href="javascript:void(0)">List of Companies</a>
+        <a class="nav-item nav-link active"  aria-disabled="true" href="javascript:void(0)">List of students</a>
         <a class="nav-item nav-link" routerLink="form"  href="javascript:void(0)">Add Form</a> 
         
       </div>
@@ -68,6 +68,8 @@
               <button type="button"  routerLink="update/{{e.idEtudiant}}" class="btn btn-outline-success">Edit</button>
               &nbsp;
               <button type="button" (click)="deleteEtudiant(e)" class="btn btn-outline-danger">Delete</button>   
+              &nbsp;
+              <button type="button"  routerLink="detail/{{e.idEtudiant}}" class="btn btn-outline-info">Details</button>
             </td>
           </tr>
         </tbody>

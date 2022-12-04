@@ -11,11 +11,17 @@ export class EtudiantService {
 
   constructor(private http : HttpClient) { }
   
+
+
   getAllEtudiants() {
     return this.http.get<Etudiant[]>(this.url+'/Display')
   }
   addEtudiant(etudiant:Etudiant) {
     return this.http.post(this.url+'/Add',etudiant)
+  }
+
+  affect(etud:Etudiant,idd:number) {
+    return this.http.put(this.url+'/affect/'+etud.idEtudiant+'/'+idd,etud)
   }
 
   updateEtudiant(newEtudiant: Etudiant) {

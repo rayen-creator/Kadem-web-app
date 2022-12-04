@@ -47,8 +47,8 @@
                   </div>
                   <div class="form-group mb-3">
                     <label for="inputState" class="form-label">Option</label>
-                    <select [(ngModel)]="etudiant.option"  required #p="ngModel" name="option" class="form-select" id="exampleFormControlSelect1" aria-label="Default select example">
-                      <option selected>Open to select option</option>
+                    <select  placeholder="Enter your option" [(ngModel)]="etudiant.option"  required #p="ngModel" name="option" class="form-select" id="exampleFormControlSelect1" aria-label="Default select example">
+                      <option selected>select option</option>
                       <option value="GAMIX">GAMIX</option>
                       <option value="SIM">SIM</option>
                       <option value="NIDS">NIDS</option>
@@ -59,16 +59,16 @@
                       this field is required
                     </div>
                   </div>
-                  <div class=" form-group mb-3 ">
-                    <label for="date-input" class="col-md-2 col-form-label">Date</label>
-                    <div class="col-md-10">
-                      <input class="form-control"  required #d="ngModel" [(ngModel)]="etudiant.dateDebut" name="dateDebut" type="date" value="" id="html5-date-input" />
-                      <div class="alert alert-danger" *ngIf="d.invalid && d.touched">
-                        this field is required
+                    <div class=" form-group mb-3 ">
+                      <label for="date-input" class="col-md-2 col-form-label">Date</label>
+                      <div class="col-md-10">
+                        <input class="form-control"  required #d="ngModel" [(ngModel)]="etudiant.dateDebut" name="dateDebut" type="date" value="" id="html5-date-input" />
+                        <div class="alert alert-danger" *ngIf="d.invalid && d.touched">
+                          this field is required
+                        </div>
                       </div>
-                    </div>
                     <div class="form-group">
-                      <label  class="form-label">Image</label>
+                      <label  class="form-label">Picture </label>
                       <input  type="text"  name="image" class="form-control"
                         [(ngModel)]="etudiant.image"
                         required
@@ -84,8 +84,13 @@
                   &nbsp;
                   <button class="btn  btn-danger" (click)="Back()">cancel</button>
                 </form>
-              </div> 
-            </div>
+              </div>
           </div>
         </div>
-      </div>
+       </div>
+    </div>
+    
+              
+         
+        
+    

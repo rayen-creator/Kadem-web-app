@@ -4,8 +4,8 @@
     </div>
     <div class="card-body">
       <h4 class="card-title">{{entreprise.nom}}</h4>
-      <h6 class="card-text">Numéro Fiscal: {{entreprise.numFiscal}}</h6>
-      <p class="card-text" >Adresse : {{entreprise.adresse}}</p>
+      <h6 class="card-text">Tax number: {{entreprise.numFiscal}}</h6>
+      <p class="card-text" >Address : {{entreprise.adresse}}</p>
       <button routerLink="update/{{entreprise.idEntreprise}}" type="button" class="btn btn-success">Edit</button>
       &nbsp;
       <button (click)="notifyParent()" type="button" class="btn btn-danger">Delete</button>
