@@ -2,16 +2,15 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Class} from "../../../../core/models/class";
 import {ActivatedRoute, Router} from "@angular/router";
-import {ClassService} from "../../../../core/services/classService/class.service";
-import {ProfesorService} from "../../../../core/services/profesorService/profesor.service";
+import {ClassService} from "../../../../core/services/class.service";
+import {ProfesorService} from "../../../../core/services/profesor.service";
 import {Profesor} from "../../../../core/models/profesor";
-import {Student} from "../../../../core/models/student";
-import {StudentService} from "../../../../core/services/studentService/student.service";
+import {Etudiant} from "../../../../core/models/etudiant";
+import {EtudiantService} from "../../../../core/services/etudiant.service";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
-  selector: 'app-form-class',
-  templateUrl: './form-class.component.html',
-  styleUrls: ['./form-class.component.css']
+  selector: 'app-form-class', templateUrl: './form-class.component.html', styleUrls: ['./form-class.component.css']
 })
 export class FormClassComponent implements OnInit {
   public classe: Class;
@@ -19,29 +18,25 @@ export class FormClassComponent implements OnInit {
   public form: FormGroup;
   public prof: Profesor[];
   public profesor: Profesor;
-  public stud: Student[];
-  public student: Student;
+  public stud: Etudiant[];
+  public student: Etudiant;
+  public test: Profesor[];
 
 
-  constructor(private classService: ClassService, private profesorService: ProfesorService, private studentService: StudentService,
-              private router: Router, private localRoute: ActivatedRoute, private fb: FormBuilder) {
+  constructor(private classService: ClassService, private profesorService: ProfesorService, private studentService: EtudiantService, private router: Router, private localRoute: ActivatedRoute, private fb: FormBuilder, private toastr: ToastrService) {
   }
 
   ngOnInit(): void {
     let id = this.localRoute.snapshot.params['id'];
     if (id != null) {
       this.action = "Add profesor and students";
-      this.classService.getClassByID(id).subscribe(
-        (data: Class) => {
-          this.classe = data;
-        },
-        () => {
-          console.log("erreur")
-        },
-        () => {
-          console.log("complete")
-        }
-      );
+      this.classService.getClassByID(id).subscribe((data: Class) => {
+        this.classe = data;
+      }, () => {
+        console.log("error")
+      }, () => {
+        console.log("complete")
+      });
     } else {
       this.action = "Add class";
       this.classe = new Class();
@@ -49,73 +44,63 @@ export class FormClassComponent implements OnInit {
 
 
     this.profesorService.getAllProfesor().subscribe({
-        next: (data: Profesor[]) => {
-          this.prof = data;
-          this.prof.forEach((i: Profesor) => {
-            this.classe.professeurs.forEach((x: Profesor) => {
-              if (i != x) {
-                let y = this.prof.indexOf(i);
-                this.prof.splice(y, 1);
+      next: (data: Profesor[]) => {
+        this.prof = data.filter((val) => {
+          return !this.classe.professeurs.find((a) => {
+            return val.idProfesseur === a.idProfesseur;
 
-              }
-            })
-          })
+          });
+        });
 
-        },
-        error: (err) => {
-          console.log('error' + err);
+      }, error: (err) => {
+        console.log('error' + err);
 
-        }
+      }, complete: () => {
+
       }
-    )
+    })
 
-    this.studentService.getAllStudent().subscribe({
-        next: (data: Student[]) => {
-          this.stud = data;
-          this.stud.forEach((i: Student) => {
-            this.classe.etudiants.forEach((x: Student) => {
-              if (i != x) {
-                let y = this.stud.indexOf(i);
-                this.stud.splice(y, 1);
-              }
-            })
-          })
+    this.studentService.getAllEtudiant().subscribe({
+      next: (data: Etudiant[]) => {
+        this.stud = data.filter((val) => {
+          return !this.classe.etudiants.find((a) => {
+            return val.idEtudiant === a.idEtudiant;
 
-        },
-        error: (err) => {
-          console.log('error' + err);
+          });
+        });
 
-        }
+
+      }, error: (err) => {
+        console.log('error' + err);
+
+      }, complete: () => {
+
+
       }
-    )
+    })
 
     this.form = this.fb.group({
-        nom: ['', [Validators.required, Validators.minLength(3)]],
-        profesor: [''],
-        student: ['']
+      nom: ['', [Validators.required, Validators.minLength(3)]], profesor: [''], student: ['']
 
-      }
-    )
+    })
 
   }
 
 
   saveClass() {
     if (this.action == 'Add class') {
-      this.classService.addClass(this.classe).subscribe(
-        () => {
-          this.router.navigate(['/backoffice/class/']);
-        }
-      );
+      this.classService.addClass(this.classe).subscribe(() => {
+        this.router.navigate(['/backoffice/class/']);
+        this.toastr.success(this.classe.nom+' added');
+      });
     } else {
       this.classe.professeurs.push(this.profesor);
       this.classe.etudiants.push(this.student);
-      this.classService.update(this.classe).subscribe(
-        () => {
-          this.router.navigate(['/backoffice/class/']);
-
-        }
-      )
+      this.classService.update(this.classe).subscribe(() => {
+        // this.router.navigate(['/backoffice/class/']);
+        window.location.reload();
+        this.toastr.success(this.classe.nom+' updated');
+      })
 
     }
 
@@ -124,5 +109,10 @@ export class FormClassComponent implements OnInit {
 
   refresh() {
     window.location.reload();
+  }
+
+  back() {
+    this.router.navigate(['/backoffice/class/']);
+
   }
 }

@@ -1,20 +1,20 @@
 import { Injectable } from '@angular/core';
-import {environment} from "../../../../environments/environment";
+import {environment} from "../../../environments/environment";
 import {HttpClient} from "@angular/common/http";
-import {Student} from "../../models/student";
+import {Etudiant} from "../models/etudiant";
 
 @Injectable({
   providedIn: 'any'
 })
-export class StudentService {
+export class EtudiantService {
   public url=environment.defaultUrl+'/etudiant'
   constructor(private http:HttpClient) { }
 
-  getAllStudent(){
-    return this.http.get<Student[]>(this.url)
+  getAllEtudiant(){
+    return this.http.get<Etudiant[]>(this.url)
 
   }
-  addStudent(u:Student){
+  addStudent(u:Etudiant){
     return this.http.post(this.url+'/add',u)
 
   }
@@ -22,12 +22,12 @@ export class StudentService {
     return this.http.delete(this.url+'/delete/'+id)
 
   }
-  update(u:Student){
+  update(u:Etudiant){
     return this.http.put(this.url+'/update/'+u.idEtudiant,u)
   }
 
   getStudentByID(id:number): any{
-    return this.http.get<Student>(this.url+'/display/'+id)
+    return this.http.get<Etudiant>(this.url+'/display/'+id)
 
   }
 

@@ -2,38 +2,33 @@
   <div class="col-xl">
     <div class="card mb-4">
       <div class="card-header d-flex justify-content-between align-items-center">
-        <h5 class="mb-0">Create a class</h5>
+        <h5 class="mb-0">Class</h5>
         <small class="text-muted float-end ">{{action}}</small>
       </div>
       <div class="card-body">
-        <div class="row" [ngClass]="{'visually-hidden':action=='Add class'}">
 
-          <div class="col-md-1">
-            <button (click)="refresh()" type="button" class="btn btn-md btn-warning">Refresh</button>
-          </div>
-          <h2 class="col-9">Please refresh the page for a better experience</h2>
-        </div>
         <form [formGroup]="form">
           <div class="mb-3">
-            <label class="form-label" [ngClass]="{'visually-hidden':action!='Add class'}">Class name</label>
+            <label [ngClass]="{'visually-hidden':action!='Add class'}" class="form-label">Class name</label>
 
-            <div class="form-outline" [ngClass]="{'visually-hidden':action!='Add class'}">
+            <div [ngClass]="{'visually-hidden':action!='Add class'}" class="form-outline">
 
-              <input type="text" class="form-control  form-control-lg" placeholder="Ex : 3A45 " aria-label="John Doe"
-                     name="nom" [(ngModel)]="classe.nom" formControlName="nom">
+              <input [(ngModel)]="classe.nom" aria-label="John Doe" class="form-control  form-control-lg"
+                     formControlName="nom"
+                     name="nom" placeholder="Ex : 3A45 " type="text">
 
-              <div class="alert alert-danger" *ngIf="form.controls['nom'].invalid &&form.controls['nom'].touched">
+              <small *ngIf="form.controls['nom'].invalid &&form.controls['nom'].touched" class="alert-danger">
                 <p *ngIf="form.controls['nom'].hasError('required')">first name is required</p>
                 <p *ngIf="form.controls['nom'].hasError('minlength')">first name is invalid</p>
-              </div>
+              </small>
             </div>
 
-            <div class="form-outline row" [ngClass]="{'visually-hidden':action=='Add class'}">
+            <div [ngClass]="{'visually-hidden':action=='Add class'}" class="form-outline row">
 
               <div class="mt-2 mb-3 col-md-3">
                 <label class="form-label">Add a profesor</label>
-                <select name="profesor" class="form-select form-select-lg" [(ngModel)]="profesor"
-                        [ngModelOptions]="{standalone: true}">
+                <select [(ngModel)]="profesor" [ngModelOptions]="{standalone: true}" class="form-select form-select-lg"
+                        name="profesor">
                   <option *ngFor="let p of prof" [ngValue]="p">{{p.prenomProf}} {{p.nomProf}}</option>
 
                 </select>
@@ -43,8 +38,8 @@
 
               <div class="mt-2 mb-3 col-md-3">
                 <label class="form-label">Add a Student</label>
-                <select name="student" class="form-select form-select-lg" [(ngModel)]="student"
-                        [ngModelOptions]="{standalone: true}">
+                <select [(ngModel)]="student" [ngModelOptions]="{standalone: true}" class="form-select form-select-lg"
+                        name="student">
                   <option *ngFor="let s of stud" [ngValue]="s">{{s.prenomE}} {{s.nomE}}</option>
 
                 </select>
@@ -52,12 +47,26 @@
               </div>
             </div>
           </div>
+          <div class="row">
+            <div class="col-9">
+              <button (click)="saveClass()"
+                      [disabled]="form.invalid"
+                      class="btn btn-md btn-success ">Save
+              </button>
+            </div>
 
-          <button (click)="saveClass()"
-                  class="btn btn-md btn-success mt-lg-2"
-                  [disabled]="form.invalid">Save
-          </button>
 
+            <div class="col-3 float-end">
+              <button (click)="back()" class="btn btn-md btn-secondary float-lg-end " type="button">Back to list
+              </button>
+              <button (click)="refresh()" [ngClass]="{'visually-hidden':action=='Add class'}" class="btn btn-md btn-warning float-lg-end "
+                      style="margin-right: 2%" type="button">Refresh
+              </button>
+
+            </div>
+
+
+          </div>
         </form>
       </div>
     </div>

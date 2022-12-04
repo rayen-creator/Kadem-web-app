@@ -1,10 +1,10 @@
 import {Profesor} from "./profesor";
-import {Student} from "./student";
+import {Etudiant} from "./etudiant";
 
 export class Class{
   idClasse: number;
   nom: string;
-  etudiants:Student[];
+  etudiants:Etudiant[];
   professeurs:Profesor[];
 
 }

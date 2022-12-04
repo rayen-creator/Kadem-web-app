@@ -1,4 +1,3 @@
-
 <div class="container py-5 h-100">
   <div class="row justify-content-center align-items-center h-100">
     <div class="col-12 col-lg-9 col-xl-7">
@@ -8,27 +7,31 @@
           <form [formGroup]="form">
             <div class="row">
               <div class="col-md-6 pb-2">
-            <div class="form-outline">
+                <div class="form-outline">
 
-              <label class="form-label">First name</label>
-              <input type="text" name="prenomProf" class="form-control form-control-lg" [(ngModel)]="prof.prenomProf" formControlName="prenomProf" >
-              <div class="alert alert-danger" *ngIf="form.controls['prenomProf'].invalid &&form.controls['prenomProf'].touched">
-                <p *ngIf="form.controls['prenomProf'].hasError('required')">first name is required</p>
-                <p  *ngIf="form.controls['prenomProf'].hasError('minlength')">first name is invalid</p>
+                  <label class="form-label">First name</label>
+                  <input [(ngModel)]="prof.prenomProf" class="form-control form-control-lg" formControlName="prenomProf"
+                         name="prenomProf" type="text">
+                  <small *ngIf="form.controls['prenomProf'].invalid &&form.controls['prenomProf'].touched"
+                       class="alert-danger">
+                    <p *ngIf="form.controls['prenomProf'].hasError('required')">first name is required</p>
+                    <p *ngIf="form.controls['prenomProf'].hasError('minlength')">first name is invalid</p>
+                  </small>
+                </div>
               </div>
-            </div>
-            </div>
               <div class="col-md-6 pb-2">
-            <div class="form-outline">
+                <div class="form-outline">
 
-              <label class="form-label">Last name</label>
-              <input type="text" name="nomProf" class="form-control form-control-lg" [(ngModel)]="prof.nomProf" formControlName="nomProf" >
-              <div class="alert alert-danger" *ngIf="form.controls['nomProf'].invalid && form.controls['nomProf'].touched">
-                <p *ngIf="form.controls['nomProf'].hasError('required')">last name is required</p>
-                <p  *ngIf="form.controls['nomProf'].hasError('minlength')">last name is invalid</p>
+                  <label class="form-label">Last name</label>
+                  <input [(ngModel)]="prof.nomProf" class="form-control form-control-lg" formControlName="nomProf" name="nomProf"
+                         type="text">
+                  <small *ngIf="form.controls['nomProf'].invalid && form.controls['nomProf'].touched"
+                       class="alert-danger">
+                    <p *ngIf="form.controls['nomProf'].hasError('required')">last name is required</p>
+                    <p *ngIf="form.controls['nomProf'].hasError('minlength')">last name is invalid</p>
+                  </small>
+                </div>
               </div>
-            </div>
-            </div>
             </div>
 
 
@@ -36,26 +39,29 @@
               <div class="col-md-3 pb-2">
 
 
-              <div class="form-outline datepicker w-100">
-                <label for="age" class="form-label">Age</label>
-                <input type="number" class="form-control form-control-lg" id="age" name="age" [(ngModel)]="prof.age" formControlName="age"/>
-                <div class="alert alert-danger" *ngIf="form.controls['age'].invalid  && form.controls['age'].touched">
-                  <p *ngIf="form.controls['age'].hasError('required')">Age is required</p>
-                  <p *ngIf="form.controls['age'].hasError('min')">You are too young</p>
-                  <p *ngIf="form.controls['age'].hasError('max')">Sorry but you are too old</p>
+                <div class="form-outline datepicker w-100">
+                  <label class="form-label" for="age">Age</label>
+                  <input [(ngModel)]="prof.age" class="form-control form-control-lg" formControlName="age" id="age" name="age"
+                         type="number"/>
+                  <small *ngIf="form.controls['age'].invalid  && form.controls['age'].touched" class="alert-danger">
+                    <p *ngIf="form.controls['age'].hasError('required')">Age is required</p>
+                    <p *ngIf="form.controls['age'].hasError('min')">You are too young</p>
+                    <p *ngIf="form.controls['age'].hasError('max')">Sorry but you are too old</p>
 
+                  </small>
                 </div>
-              </div>
               </div>
               <div class="col-md-9 pb-2">
-              <div class="form-outline">
-                <label class="form-label" for="phoneNumber">Phone Number</label>
-                <input type="tel" id="phoneNumber" name="phone" class="form-control form-control-lg" [(ngModel)]="prof.phone" formControlName="phone"/>
+                <div class="form-outline">
+                  <label class="form-label" for="phoneNumber">Phone Number</label>
+                  <input [(ngModel)]="prof.phone" class="form-control form-control-lg" formControlName="phone" id="phoneNumber"
+                         name="phone" type="tel"/>
 
-                <div class="alert alert-danger" *ngIf="form.controls['phone'].invalid && form.controls['phone'].touched">
-                  <p *ngIf="form.controls['phone'].hasError('required')">phone is required</p>
-                  <p  *ngIf="form.controls['phone'].hasError('minlength')">phone is invalid</p>
-                </div>
+                  <small *ngIf="form.controls['phone'].invalid && form.controls['phone'].touched"
+                       class="alert-danger">
+                    <p *ngIf="form.controls['phone'].hasError('required')">phone is required</p>
+                    <p *ngIf="form.controls['phone'].hasError('minlength')">phone is invalid</p>
+                  </small>
                 </div>
 
               </div>
@@ -64,22 +70,18 @@
             </div>
 
 
-
-
-
-
-
-
             <div class="row">
               <div class="form-outline">
 
-                <label class="form-label" >Address </label>
-                <input type="text" name="addresse" class="form-control form-control-lg" [(ngModel)]="prof.addresse" formControlName="addresse"/>
+                <label class="form-label">Address </label>
+                <input [(ngModel)]="prof.addresse" class="form-control form-control-lg" formControlName="addresse" name="addresse"
+                       type="text"/>
 
-                <div class="alert alert-danger" *ngIf="form.controls['addresse'].invalid && form.controls['addresse'].touched">
+                <small *ngIf="form.controls['addresse'].invalid && form.controls['addresse'].touched"
+                     class="alert-danger">
                   <p *ngIf="form.controls['addresse'].hasError('required')">addresse is required</p>
-                  <p  *ngIf="form.controls['addresse'].hasError('minlength')">addresse is invalid</p>
-                </div>
+                  <p *ngIf="form.controls['addresse'].hasError('minlength')">addresse is invalid</p>
+                </small>
               </div>
 
 
@@ -91,11 +93,13 @@
 
                 <div class="form-outline">
                   <label class="form-label">Email</label>
-                  <input type="email" name="email" class="form-control form-control-lg" [(ngModel)]="prof.email" formControlName="email">
-                  <div class="alert alert-danger" *ngIf="form.controls['email'].invalid && form.controls['email'].touched">
+                  <input [(ngModel)]="prof.email" class="form-control form-control-lg" formControlName="email" name="email"
+                         type="email">
+                  <small *ngIf="form.controls['email'].invalid && form.controls['email'].touched"
+                       class="alert-danger">
                     <p *ngIf="form.controls['email'].hasError('required')">email is required</p>
-                    <p  *ngIf="form.controls['email'].hasError('email')">email is invalid</p>
-                  </div>
+                    <p *ngIf="form.controls['email'].hasError('email')">email is invalid</p>
+                  </small>
 
                 </div>
               </div>
@@ -111,37 +115,35 @@
               <!--              </div>-->
             </div>
             <div class="row">
-              <div class="form-outline col-10">
+              <div class="form-outline col-11">
 
                 <label class="form-label">Picture link</label>
-                <input type="link" name="image" class="form-control form-control-lg" [(ngModel)]="prof.image" formControlName="image">
-                <div class="alert alert-danger" *ngIf="form.controls['image'].invalid && form.controls['image'].touched">
+                <input [(ngModel)]="prof.image" class="form-control form-control-lg" formControlName="image" name="image"
+                       type="link">
+                <small *ngIf="form.controls['image'].invalid && form.controls['image'].touched"
+                     class="alert-danger">
                   <p *ngIf="form.controls['image'].hasError('required')">picture is required</p>
                   <p *ngIf="form.controls['image'].hasError('minlength')">picture must be a link</p>
-                </div>
+                </small>
               </div>
 
-             <div class="form-outline col-2 p-0 hide-arrow avatar avatar-md pull-up">
-               <label class="form-label">Picture </label>
-               <img src="{{prof.image}}" style="border: #d9dee3 solid 0.05em ">   </div>
+              <div class="form-outline col-1 p-0 hide-arrow avatar avatar-md pull-up">
+                <label class="form-label">Picture </label>
+                <img src="{{prof.image}}" style="border: #d9dee3 solid 0.05em "></div>
             </div>
-
 
 
             <div class="row">
               <div class="form-outline">
-              <div class="mt-4 pt-2">
+                <div class="mt-4 pt-2">
                   <button (click)="saveProduct()"
-                          class="btn btn-md btn-success"
-                          [disabled]="form.invalid" >
+                          [disabled]="form.invalid"
+                          class="btn btn-md btn-success">
                     {{action}}
                   </button>
-              </div>
+                </div>
               </div>
             </div>
-
-
-
 
 
           </form>

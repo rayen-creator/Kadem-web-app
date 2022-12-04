@@ -9,6 +9,9 @@ import { SignupComponent } from './components/auth/signup/signup.component';
 import { ResetpwdComponent } from './components/auth/resetpwd/resetpwd.component';
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {FormsModule} from "@angular/forms";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {ToastrModule} from "ngx-toastr";
+
 
 
 @NgModule({
@@ -25,7 +28,16 @@ import {FormsModule} from "@angular/forms";
         BrowserModule,
         HttpClientModule,
         AppRoutingModule,
-        FormsModule
+        FormsModule,
+        BrowserAnimationsModule,
+        ToastrModule.forRoot({
+        timeOut: 3500,
+        positionClass: 'toast-top-center',
+        preventDuplicates: true,
+        }),
+
+
+
     ],
     providers: [],
     exports: [
