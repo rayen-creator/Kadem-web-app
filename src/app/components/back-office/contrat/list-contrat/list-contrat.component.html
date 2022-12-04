@@ -4,11 +4,11 @@
     <div class="card bg-dark border-0 text-white" style="width: 18rem">
       <img
         class="card-img"
-        src="../assets/img/elements/11.jpg"
+        src="../assets/img/elements/IA.jpg"
         alt="Card image"
       />
       <div class="card-img-overlay">
-        <h5 class="card-title">IA</h5>
+        <h5 class="card-title" style="color: white">IA</h5>
         <p class="card-text">
           <i class="bx bx-file-find"></i> {{ static.IA }} contrats
         </p>
@@ -17,11 +17,11 @@
     <div class="card bg-dark border-0 text-white" style="width: 18rem">
       <img
         class="card-img"
-        src="../assets/img/elements/11.jpg"
+        src="../assets/img/elements/Reseau.png"
         alt="Card image"
       />
       <div class="card-img-overlay">
-        <h5 class="card-title">RESEAU</h5>
+        <h5 class="card-title" style="color: white">RESEAU</h5>
         <p class="card-text">
           <i class="bx bx-file-find"></i>
           {{ static.RESEAU }} contrats
@@ -31,11 +31,11 @@
     <div class="card bg-dark border-0 text-white" style="width: 18rem">
       <img
         class="card-img"
-        src="../assets/img/elements/11.jpg"
+        src="../assets/img/elements/cloudd.jpg"
         alt="Card image"
       />
       <div class="card-img-overlay">
-        <h5 class="card-title">CLOUD</h5>
+        <h5 class="card-title" style="color: white">CLOUD</h5>
         <p class="card-text">
           <i class="bx bx-file-find"></i>
           {{ static.CLOUD }} contrats
@@ -45,11 +45,11 @@
     <div class="card bg-dark border-0 text-white" style="width: 18rem">
       <img
         class="card-img"
-        src="../assets/img/elements/11.jpg"
+        src="../assets/img/elements/securite.png"
         alt="Card image"
       />
       <div class="card-img-overlay">
-        <h5 class="card-title">SECURITE</h5>
+        <h5 class="card-title" style="color: white">SECURITE</h5>
         <p class="card-text">
           <i class="bx bx-file-find"></i>
           {{ static.SECURITE }} contrats
@@ -147,6 +147,11 @@
                     ]"
                     ><i class="bx bx-detail bx-rotate-180"></i> Detail
                   </a>
+                  <a
+                    class="dropdown-item"
+                    routerLink="../{{ contrat.idContrat }}/mission"
+                    ><i class="bx bx-task"></i> Mission</a
+                  >
                 </div>
               </div>
             </td>

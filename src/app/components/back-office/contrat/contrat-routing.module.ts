@@ -11,6 +11,11 @@ const routes: Routes = [
     component: ContratComponent,
     children: [
       { path: '', redirectTo: 'list', pathMatch: 'full' },
+      {
+        path: ':id/mission',
+        loadChildren: () =>
+          import('../mission/mission.module').then((m) => m.MissionModule),
+      },
       { path: 'list', component: ListContratComponent },
       { path: 'ajouter', component: FormContratComponent },
       { path: 'modifier/:id', component: FormContratComponent },

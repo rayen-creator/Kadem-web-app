@@ -24,6 +24,10 @@
       "dom"
     ]
   },
+  "include": [
+    "./src",
+    "node_modules/example"
+  ],
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,

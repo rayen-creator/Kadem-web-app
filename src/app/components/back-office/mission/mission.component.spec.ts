@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FormAddContratComponent } from './form-add-contrat.component';
+import { MissionComponent } from './mission.component';
 
-describe('FormAddContratComponent', () => {
-  let component: FormAddContratComponent;
-  let fixture: ComponentFixture<FormAddContratComponent>;
+describe('MissionComponent', () => {
+  let component: MissionComponent;
+  let fixture: ComponentFixture<MissionComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ FormAddContratComponent ]
+      declarations: [ MissionComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FormAddContratComponent);
+    fixture = TestBed.createComponent(MissionComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,0 +1,161 @@
+<div class="content-wrapper">
+  <!-- Content -->
+
+  <div class="container-xxl flex-grow-1 container-p-y">
+    <h4 class="fw-bold py-3 mb-4">
+      <span class="text-muted fw-light" style="cursor: pointer" routerLink="../"
+        >Liste/</span
+      >
+      {{ editable ? "Modifier" : "Ajouter" }}
+    </h4>
+
+    <!-- Basic Layout & Basic with Icons -->
+    <div class="row">
+      <div class="col-xxl">
+        <div class="card mb-4">
+          <div
+            class="card-header d-flex align-items-center justify-content-between"
+          >
+            <h5 class="mb-0">
+              {{ editable ? "Modifier" : "Ajouter" }} Mission
+            </h5>
+          </div>
+          <div class="card-body">
+            <form
+              name="form"
+              [formGroup]="myForm"
+              (ngSubmit)="myForm.valid && onSubmit()"
+            >
+              <div class="row mb-3">
+                <label
+                  class="col-sm-2 col-form-label"
+                  for="basic-icon-default-company"
+                  >Title</label
+                >
+                <div class="col-sm-10">
+                  <div class="input-group input-group-merge">
+                    <input
+                      class="form-control"
+                      type="text"
+                      required
+                      name="title"
+                      formControlName="title"
+                    />
+                  </div>
+                  <div class="form-text">
+                    <div
+                      class="alert alert-danger"
+                      role="alert"
+                      *ngIf="
+                        myForm.controls['title'].invalid &&
+                        myForm.controls['title'].touched
+                      "
+                    >
+                      Champ Title est obligatoire
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <label
+                  class="col-sm-2 col-form-label"
+                  for="basic-icon-default-company"
+                  >duration</label
+                >
+                <div class="col-sm-10">
+                  <div class="input-group input-group-merge">
+                    <input
+                      class="form-control"
+                      type="number"
+                      required
+                      name="duration"
+                      formControlName="duration"
+                    />
+                  </div>
+                  <div class="form-text">
+                    <div
+                      class="alert alert-danger"
+                      role="alert"
+                      *ngIf="
+                        myForm.controls['duration'].invalid &&
+                        myForm.controls['duration'].touched
+                      "
+                    >
+                      Champ Duration est obligatoire
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <label
+                  class="col-sm-2 col-form-label"
+                  for="basic-icon-default-email"
+                  >technologies</label
+                >
+                <div class="col-sm-10">
+                  <div class="input-group input-group-merge">
+                    <input
+                      class="form-control"
+                      type="text"
+                      required
+                      name="technologies"
+                      formControlName="technologies"
+                    />
+                  </div>
+                  <div class="form-text">
+                    <div
+                      class="alert alert-danger"
+                      role="alert"
+                      *ngIf="
+                        myForm.controls['technologies'].invalid &&
+                        myForm.controls['technologies'].touched
+                      "
+                    >
+                      Champ technologies est obligatoire
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <label
+                  class="col-sm-2 col-form-label"
+                  for="basic-default-message"
+                  >Description</label
+                >
+                <div class="col-sm-10">
+                  <textarea
+                    id="basic-default-message"
+                    name="description"
+                    class="form-control"
+                    aria-describedby="basic-icon-default-message2"
+                    formControlName="description"
+                  ></textarea>
+                  <div class="form-text">
+                    <div
+                      class="alert alert-danger"
+                      role="alert"
+                      *ngIf="
+                        myForm.controls['description'].invalid &&
+                        myForm.controls['description'].touched
+                      "
+                    >
+                      Champ description est obligatoire
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row justify-content-end">
+                <div class="col-sm-10">
+                  <button class="btn btn-primary">
+                    {{ editable ? "Modifier" : "Ajouter" }}
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
