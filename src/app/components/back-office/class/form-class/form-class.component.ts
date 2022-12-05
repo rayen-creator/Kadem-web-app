@@ -60,7 +60,7 @@ export class FormClassComponent implements OnInit {
       }
     })
 
-    this.studentService.getAllEtudiant().subscribe({
+    this.studentService.getAllEtudiants().subscribe({
       next: (data: Etudiant[]) => {
         this.stud = data.filter((val) => {
           return !this.classe.etudiants.find((a) => {
