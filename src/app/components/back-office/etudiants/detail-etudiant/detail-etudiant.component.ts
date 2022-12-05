@@ -12,7 +12,7 @@ import { EtudiantService } from 'src/app/core/services/etudiant.service';
   styleUrls: ['./detail-etudiant.component.css']
 })
 export class DetailEtudiantComponent implements OnInit {
-
+  
   listdep: Departement[];
   departemet:Departement;
   etudiant : Etudiant;

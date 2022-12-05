@@ -46,6 +46,62 @@
                   </div>
                   </div>
                   <div class="form-group mb-3">
+                    <label class="form-label" for="nomE">address</label>
+                    <input [(ngModel)]="etudiant.adress" name="adress" type="text" class="form-control"
+                    required minlength="3"  #k="ngModel" id="nomE" placeholder="Enter your current address" />
+                    <div class="alert alert-danger" *ngIf="k.invalid && k.touched">
+                      <div *ngIf="k.hasError('required')">
+                         this field is required
+                        </div>
+                      <div *ngIf="k.hasError('minlength')">
+                         minlength = 3 !
+                      </div>
+                  </div>
+                  </div>
+                  <div class="form-group mb-3">
+                    <label class="form-label" for="nomE">Email</label>
+                    <input [(ngModel)]="etudiant.email" name="email" type="email" class="form-control"
+                    required minlength="3"  #q="ngModel" id="email" placeholder="john@example.com" />
+                    <div class="alert alert-danger" *ngIf="q.invalid && q.touched">
+                      <div *ngIf="q.hasError('required')">
+                         this field is required
+                        </div>
+                      <div *ngIf="q.hasError('email')">
+                        Email is invalid
+                      </div>
+                     
+                  </div>
+                  </div>
+                  <div class="form-group mb-3">
+                    <label class="form-label" for="age">Age</label>
+                    <input [(ngModel)]="etudiant.age" name="age" type="number" class="form-control"
+                    required min="18" max="50" #age="ngModel" id="age" placeholder="Enter your Age " />
+                    <div class="alert alert-danger" *ngIf="age.invalid && age.touched">
+                      <div *ngIf="age.hasError('required')">
+                         this field is required
+                        </div>
+                      <div *ngIf="age.hasError('min')">
+                        You are too young
+                      </div>
+                      <div *ngIf="age.hasError('max')">
+                        Sorry but you are too old
+                     </div>
+                  </div>
+                  <div class="form-group mb-3">
+                    <label class="form-label" for="phone">Phone</label>
+                    <input [(ngModel)]="etudiant.phone" name="phone" type="tel" class="form-control"
+                    required minlength="8"  #phon="ngModel" id="phone" placeholder="99 789 058" />
+                    <div class="alert alert-danger" *ngIf="phon.invalid && phon.touched">
+                      <div *ngIf="phon.hasError('required')">
+                         this field is required
+                        </div>
+                      <div *ngIf="phon.hasError('minlength')">
+                        phone number is invalid
+                      </div>  
+                    </div>
+                  </div>
+                  </div>
+                  <div class="form-group mb-3">
                     <label for="inputState" class="form-label">Option</label>
                     <select  placeholder="Enter your option" [(ngModel)]="etudiant.option"  required #p="ngModel" name="option" class="form-select" id="exampleFormControlSelect1" aria-label="Default select example">
                       <option selected>select option</option>
