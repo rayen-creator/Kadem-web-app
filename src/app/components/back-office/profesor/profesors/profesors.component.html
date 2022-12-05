@@ -1,0 +1,39 @@
+<link crossorigin="anonymous" href="https://cdnjs.cloudflare.com/ajax/libs/boxicons/2.1.0/css/boxicons.min.css"
+      integrity="sha512-pVCM5+SN2+qwj36KonHToF2p1oIvoU3bsqxphdOIWMYmgr4ZqD3t5DjKvvetKhXGc/ZG5REYTT6ltKfExEei/Q=="
+      referrerpolicy="no-referrer" rel="stylesheet" xmlns="http://www.w3.org/1999/html"/>
+<link crossorigin="anonymous"
+      href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.3.45/css/materialdesignicons.css"
+      integrity="sha256-NAxhqDvtY0l4xn+YVa6WjAcmd94NNfttjNsDmNatFVc=" rel="stylesheet"/>
+
+<div *ngIf="choice==profesor.nomProf || choice=='' || choice==null " class="card col-md-12 col-sm-12 col-lg-12 ">
+  <div class="card-body">
+    <div class="dropdown float-end">
+      <a aria-haspopup="true" class="text-muted dropdown-toggle" data-bs-toggle="dropdown" href="#"
+         role="button"><i class="bx bx-dots-horizontal-rounded"></i></a>
+      <div class="dropdown-menu dropdown-menu-end">
+        <a class="dropdown-item cursor-pointer" routerLink="update/{{profesor.idProfesseur}}">Edit</a>
+        <a (click)="notifyParent()" class="dropdown-item cursor-pointer">Remove</a>
+      </div>
+    </div>
+    <div class="d-flex align-items-center">
+      <div><img alt="" class="avatar-md rounded-circle img-thumbnail" src="{{profesor.image}}"/></div>
+      <div class="flex-1 ms-3">
+        <h5 class="font-size-16 mb-1"><a class="text-dark"
+                                         href="#">{{profesor.nomProf}} {{profesor.prenomProf  }} ({{profesor.age}}) </a>
+        </h5>
+        <span class="badge badge-soft-success mb-0"><i
+          class="mdi mdi-email font-size-15 align-middle pe-2 text-primary"></i>{{profesor.email}}</span>
+      </div>
+    </div>
+    <div class="mt-3 pt-1">
+      <p class="text-muted mb-0"><i
+        class="mdi mdi-phone font-size-15 align-middle pe-2 text-primary"></i> {{profesor.phone}}</p>
+      <!--            <p class="text-muted mb-0 mt-2"><i class="mdi mdi-email font-size-15 align-middle pe-2 text-primary"></i>{{profesor.email}}</p>-->
+      <p class="text-muted mb-0 mt-2"><i
+        class="mdi mdi-google-maps font-size-15 align-middle pe-2 text-primary"></i>{{profesor.addresse}}</p>
+    </div>
+
+  </div>
+</div>
+
+

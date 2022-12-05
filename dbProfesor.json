@@ -1,0 +1,37 @@
+{
+  "profesors": [
+    {
+      "firstName": "ahmed",
+      "lastName": "benguebila",
+      "age": 2,
+      "email": "benguebila_ahmed@yahoo.com",
+      "phone": "29785147",
+      "address": "8rue manouba wra kodem el razi ",
+      "picture": "https://bootdey.com/img/Content/avatar/avatar1.png",
+      "password": "aaaaaaaaaaaaa",
+      "id": 2
+    },
+    {
+      "firstName": "ahmed",
+      "lastName": "benguebila",
+      "age": 9,
+      "email": "benguebila_ahmed@yahoo.com",
+      "phone": "29785147",
+      "address": "8rue manouba f el jema3",
+      "picture": "https://bootdey.com/img/Content/avatar/avatar2.png",
+      "password": "1233333334",
+      "id": 4
+    },
+    {
+      "firstName": "testss",
+      "lastName": "tsssst",
+      "age": 11,
+      "phone": "29785147",
+      "address": "8rue manouba wra el jema3",
+      "picture": "https://bootdey.com/img/Content/avatar/avatar1.png",
+      "email": "benguebilaahmed@gmail.com",
+      "password": "eeeeeeee",
+      "id": 5
+    }
+  ]
+}

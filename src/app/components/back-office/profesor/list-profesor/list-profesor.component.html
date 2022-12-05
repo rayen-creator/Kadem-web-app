@@ -1,0 +1,66 @@
+<link crossorigin="anonymous" href="https://cdnjs.cloudflare.com/ajax/libs/boxicons/2.1.0/css/boxicons.min.css"
+      integrity="sha512-pVCM5+SN2+qwj36KonHToF2p1oIvoU3bsqxphdOIWMYmgr4ZqD3t5DjKvvetKhXGc/ZG5REYTT6ltKfExEei/Q=="
+      referrerpolicy="no-referrer" rel="stylesheet" xmlns="http://www.w3.org/1999/html"/>
+<link crossorigin="anonymous"
+      href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.3.45/css/materialdesignicons.css"
+      integrity="sha256-NAxhqDvtY0l4xn+YVa6WjAcmd94NNfttjNsDmNatFVc=" rel="stylesheet"/>
+<div class="container-xxl flex-grow-1 container-p-y">
+
+
+  <div class="row align-items-center">
+    <div class="col-md-6">
+      <div class="mb-3">
+        <br>
+        <h1 class="card-title">Profesor list
+          <span class="text-muted fw-normal ms-2">({{lengthTable}})</span></h1>
+
+
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="d-flex flex-wrap align-items-center justify-content-end gap-2 mb-6">
+        <div>
+          <ul class="nav nav-pills">
+
+            <li class="nav-item">
+              <form class="d-flex">
+                <div class="input-group">
+                  <span class="input-group-text"><i class="tf-icons bx bx-search"></i></span>
+                  <input [(ngModel)]="searchText" autocomplete="off" class="form-control" name="search" placeholder="Search by name"
+                         type="text">
+                </div>
+              </form>
+            </li>
+
+          </ul>
+        </div>
+        <div>
+          <a class="btn btn-primary" routerLink="/backoffice/profesor/form"><i class="bx bx-plus me-1"></i> Add a
+            profesor</a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!--  <div class="col-xl-6 col-md-12 col-sm-12" >-->
+  <div class="row">
+    <app-profesors (notification)="Delete($event)"
+                   (search)="choice"
+                   *ngFor="let profesor of all | paginate :{itemsPerPage:6,currentPage:p} | filter:searchText "
+                   [profesor]="profesor" class="col-6">
+
+    </app-profesors>
+    <div>
+
+      <div class="justify-content-center d-flex">
+        <div class=" row  g-0 align-items-center pb-4">
+          <pagination-controls (pageChange)="p=$event"></pagination-controls>
+        </div>
+      </div>
+
+      <!--  </div>-->
+
+
+    </div>

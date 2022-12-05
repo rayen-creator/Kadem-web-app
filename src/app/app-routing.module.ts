@@ -14,8 +14,13 @@ const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'resetpassword', component: ResetpwdComponent },
+<<<<<<< HEAD
   { path: 'signup', component: SignupComponent, canDeactivate: [UnsavedChangesGuard] },
   { path: 'unauthorized', component: UnauthorizedComponent },
+=======
+  { path: 'signup', component: SignupComponent },
+  { path: 'class', loadChildren: () => import('./components/back-office/class/class.module').then(m => m.ClassModule) },
+>>>>>>> Professeur
 
   { path: '**', component: NotfoundpageComponent },
 ];
