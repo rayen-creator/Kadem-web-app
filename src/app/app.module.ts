@@ -15,11 +15,15 @@ import { AuthGuard } from './core/helpers/auth.guard';
 import { AuthService } from './core/helpers/auth.service';
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {FormsModule} from "@angular/forms";
+import { FormsModule } from "@angular/forms";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import {ToastrModule} from "ngx-toastr";
+import { ToastrModule } from "ngx-toastr";
 import { UnsavedChangesGuard } from './core/helpers/unsaved-changes.guard';
 
+
+
+import { RouterModule } from '@angular/router';
+import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 
 @NgModule({
   declarations: [
@@ -38,8 +42,8 @@ import { UnsavedChangesGuard } from './core/helpers/unsaved-changes.guard';
     AppRoutingModule,
     CommonModule,
     BrowserAnimationsModule,
-
-
+    AutocompleteLibModule,
+    RouterModule,
     FormsModule,
     NgbModule,
     BrowserAnimationsModule,
@@ -50,11 +54,11 @@ import { UnsavedChangesGuard } from './core/helpers/unsaved-changes.guard';
     }), // ToastrModule added
 
   ],
-  providers: [AuthService,UnsavedChangesGuard,
+  providers: [AuthService, UnsavedChangesGuard,
     [{
-      provide : HTTP_INTERCEPTORS,
-      useClass : AuthInterceptorInterceptor,
-      multi : true
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorInterceptor,
+      multi: true
     }, AuthGuard]
   ],
   bootstrap: [AppComponent]

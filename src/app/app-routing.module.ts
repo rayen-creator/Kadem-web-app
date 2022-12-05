@@ -8,21 +8,20 @@ import { UnauthorizedComponent } from './components/unauthorized/unauthorized.co
 import { AuthGuard } from './core/helpers/auth.guard';
 import { UnsavedChangesGuard } from './core/helpers/unsaved-changes.guard';
 
-
 const routes: Routes = [
 
-  { path: 'backoffice', loadChildren: () => import('./components/back-office/back-office.module').then(m => m.BackOfficeModule), canActivate :[AuthGuard]   },
+  { path: 'backoffice', loadChildren: () => import('./components/back-office/back-office.module').then(m => m.BackOfficeModule), canActivate: [AuthGuard] },
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'resetpassword', component: ResetpwdComponent },
-  { path: 'signup', component: SignupComponent , canDeactivate : [UnsavedChangesGuard]  },
-  { path: 'unauthorized', component: UnauthorizedComponent  },
+  { path: 'signup', component: SignupComponent, canDeactivate: [UnsavedChangesGuard] },
+  { path: 'unauthorized', component: UnauthorizedComponent },
 
   { path: '**', component: NotfoundpageComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class AppRoutingModule { }

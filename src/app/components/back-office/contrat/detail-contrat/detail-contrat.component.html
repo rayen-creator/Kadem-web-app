@@ -1,0 +1,134 @@
+<div class="content-wrapper">
+  <!-- Content -->
+  <div
+    class="bs-toast toast fade show bg-{{ TypeToast }}"
+    role="alert"
+    aria-live="assertive"
+    aria-atomic="true"
+    *ngIf="isNotifShowed"
+    style="position: fixed; top: 10px; right: 10px"
+  >
+    <div class="toast-header">
+      <i class="bx bx-bell me-2"></i>
+      <div class="me-auto fw-semibold">Alerte</div>
+      <small>1 min ago</small>
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="toast"
+        aria-label="Close"
+      ></button>
+    </div>
+    <div class="toast-body">
+      {{ toastBody }}
+    </div>
+  </div>
+
+  <div class="container-xxl flex-grow-1 container-p-y">
+    <h4 class="fw-bold py-3 mb-4">
+      <span
+        class="text-muted fw-light"
+        style="cursor: pointer"
+        [routerLink]="['/backoffice/contrat/list']"
+        >Liste/</span
+      >
+      Details
+    </h4>
+    <div class="card mb-3">
+      <div class="row g-0">
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title">{{ contrat.specialite }}</h5>
+            <p class="card-text" style="font-size: 20px">
+              <i class="bx bx-calendar-check" style="font-size: 20px"></i>
+              {{ contrat.dateDebutContrat }}
+            </p>
+            <p class="card-text" style="font-size: 20px">
+              <i class="bx bx-calendar-x" style="font-size: 20px"></i>
+              {{ contrat.dateFinContrat }}
+            </p>
+            <p class="card-text" style="font-size: 20px">
+              <i class="bx bx-dollar-circle" style="font-size: 20px"></i>
+              {{ contrat.montantContrat }}
+            </p>
+            <p class="card-text" *ngIf="contrat.archive">
+              <span class="badge bg-label-success me-1">Archivé</span>
+            </p>
+            <p class="card-text" *ngIf="!contrat.archive">
+              <span class="badge bg-label-danger me-1">Non Archivé</span>
+            </p>
+
+            <div
+              class="alert alert-info"
+              *ngIf="contrat.etudiant == null"
+              role="alert"
+            >
+              Ce contrat n'a pas encore .. si vous voulez ..
+              <a
+                style="cursor: pointer"
+                (click)="onShow()"
+                *ngIf="!contrat.archive"
+                >cliquer içi
+              </a>
+            </div>
+            <div
+              class="card mb-3"
+              *ngIf="contrat.etudiant != null"
+              style="box-shadow: 10px 5px 5px gray"
+            >
+              <div class="row g-0">
+                <div class="col-md-2">
+                  <img
+                    class="card-img card-img-left"
+                    src="../assets/img/elements/user.png"
+                    alt="Card image"
+                  />
+                </div>
+                <div class="col-md-10">
+                  <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                      <h5 class="card-title">
+                        {{
+                          contrat.etudiant?.prenomE +
+                            " " +
+                            contrat.etudiant?.nomE
+                        }}
+                      </h5>
+                      <p
+                        class="card-text"
+                        (click)="onShow()"
+                        *ngIf="!contrat.archive"
+                      >
+                        <i class="bx bx-edit"></i>
+                      </p>
+                    </div>
+                    <p class="card-text">
+                      <i class="bx bxs-baby-carriage"></i>
+                      {{ contrat.etudiant?.date_naissance }}
+                    </p>
+
+                    <p class="card-text">
+                      <i class="bx bx-book-open"></i>
+                      {{ contrat.etudiant?.option }}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="isShowed">
+      <div class="divider">
+        <div class="divider-text">
+          <i class="bx bx-user-plus" style="font-size: 25px"></i>
+        </div>
+      </div>
+      <app-affecter-etudiant
+        [ContratId]="contrat.idContrat"
+        (newStudentAssigned)="enAffect($event)"
+      ></app-affecter-etudiant>
+    </div>
+  </div>
+</div>

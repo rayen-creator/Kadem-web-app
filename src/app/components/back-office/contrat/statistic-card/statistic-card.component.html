@@ -1,0 +1,44 @@
+<div class="row">
+  <div class="col-md">
+    <div class="card">
+      <div class="row g-0">
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title">Dates</h5>
+            <p class="card-text" style="width: 500px">
+              <apx-chart
+                [series]="series"
+                [chart]="chart"
+                [dataLabels]="dataLabels"
+                [plotOptions]="plotOptions"
+                [yaxis]="yaxis"
+                [xaxis]="xaxis"
+                [fill]="fill"
+                [title]="title"
+              ></apx-chart>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md">
+    <div class="card">
+      <div class="row g-0">
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title">Specialite</h5>
+            <p class="card-text">
+              <apx-chart
+                [series]="series1"
+                [chart]="chart1"
+                [labels]="labels"
+                [responsive]="responsive"
+              ></apx-chart>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

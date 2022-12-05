@@ -1,0 +1,274 @@
+<!-- Cards -->
+
+<div class="nav-align-top mb-4">
+  <ul class="nav nav-pills mb-3 nav-fill" role="tablist">
+    <li class="nav-item">
+      <button
+        type="button"
+        class="nav-link active"
+        role="tab"
+        data-bs-toggle="tab"
+        data-bs-target="#navs-pills-justified-home"
+        aria-controls="navs-pills-justified-home"
+        aria-selected="true"
+      >
+        <i class="bx bx-math"></i> Dashboard 1
+      </button>
+    </li>
+    <li class="nav-item">
+      <button
+        type="button"
+        class="nav-link"
+        role="tab"
+        data-bs-toggle="tab"
+        data-bs-target="#navs-pills-justified-profile"
+        aria-controls="navs-pills-justified-profile"
+        aria-selected="false"
+      >
+        <i class="bx bx-stats"></i> Dashboard 2
+      </button>
+    </li>
+  </ul>
+  <div class="tab-content" style="background: none; box-shadow: none">
+    <div
+      class="tab-pane fade active show"
+      id="navs-pills-justified-home"
+      role="tabpanel"
+    >
+      <div class="d-flex justify-content-sm-around align-items-sm-center pb-5">
+        <div class="card bg-dark border-0 text-white" style="width: 20%">
+          <img
+            class="card-img"
+            src="../assets/img/elements/IA.jpg"
+            alt="Card image"
+          />
+          <div class="card-img-overlay">
+            <h5 class="card-title" style="color: white">IA</h5>
+            <p class="card-text">
+              <i class="bx bx-file-find"></i> {{ static.IA }} contrats
+            </p>
+          </div>
+        </div>
+        <div class="card bg-dark border-0 text-white" style="width: 20%">
+          <img
+            class="card-img"
+            src="../assets/img/elements/Reseau.png"
+            alt="Card image"
+          />
+          <div class="card-img-overlay">
+            <h5 class="card-title" style="color: white">RESEAU</h5>
+            <p class="card-text">
+              <i class="bx bx-file-find"></i>
+              {{ static.RESEAU }} contrats
+            </p>
+          </div>
+        </div>
+        <div class="card bg-dark border-0 text-white" style="width: 20%">
+          <img
+            class="card-img"
+            src="../assets/img/elements/cloudd.jpg"
+            alt="Card image"
+          />
+          <div class="card-img-overlay">
+            <h5 class="card-title" style="color: white">CLOUD</h5>
+            <p class="card-text">
+              <i class="bx bx-file-find"></i>
+              {{ static.CLOUD }} contrats
+            </p>
+          </div>
+        </div>
+        <div class="card bg-dark border-0 text-white" style="width: 20%">
+          <img
+            class="card-img"
+            src="../assets/img/elements/securite.png"
+            alt="Card image"
+          />
+          <div class="card-img-overlay">
+            <h5 class="card-title" style="color: white">SECURITE</h5>
+            <p class="card-text">
+              <i class="bx bx-file-find"></i>
+              {{ static.SECURITE }} contrats
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="tab-pane fade"
+      id="navs-pills-justified-profile"
+      role="tabpanel"
+    >
+      <div>
+        <app-statistic-card [ContratList]="contrats"></app-statistic-card>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="card">
+    <div class="d-flex justify-content-between">
+      <h5 class="card-header">Table de contrat</h5>
+      <div
+        class="row justify-content-center"
+        style="margin-top: 20px; margin-right: 15px"
+      >
+        <div class="col-sm-12">
+          <a
+            [routerLink]="['/backoffice/contrat/ajouter']"
+            class="btn btn-primary"
+            >Ajouter Contrat</a
+          >
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="table-responsive text-nowrap"
+      [ngStyle]="{ height: contrats.length <= 3 ? '300px' : 'auto' }"
+    >
+      <table class="table">
+        <thead class="table-light">
+          <tr>
+            <th>IdContrat</th>
+            <th>Specialite</th>
+            <th>dateDebutContrat</th>
+            <th>dateFinContrat</th>
+            <th>montantContrat</th>
+            <th>Archivé</th>
+          </tr>
+        </thead>
+        <tbody class="table-border-bottom-0">
+          <tr
+            *ngFor="
+              let contrat of contrats
+                | paginate : { itemsPerPage: 5, currentPage: p }
+            "
+          >
+            <td>
+              <i class="fab fa-angular fa-lg text-danger me-3"></i>
+              <strong>{{ contrat.idContrat }}</strong>
+            </td>
+            <td>{{ contrat.specialite }}</td>
+            <td>{{ contrat.dateDebutContrat }}</td>
+            <td>{{ contrat.dateFinContrat }}</td>
+            <td>{{ contrat.montantContrat }}</td>
+            <td *ngIf="contrat.archive">
+              <span
+                class="badge bg-label-success me-1"
+                data-bs-toggle="modal"
+                [attr.data-bs-target]="'#smallModal' + contrat.idContrat"
+                style="cursor: pointer"
+                >Archivé</span
+              >
+            </td>
+            <td *ngIf="!contrat.archive">
+              <span
+                class="badge bg-label-danger me-1"
+                data-bs-toggle="modal"
+                [attr.data-bs-target]="'#smallModal' + contrat.idContrat"
+                style="cursor: pointer"
+                >Non Archivé</span
+              >
+            </td>
+            <td>
+              <div class="dropdown">
+                <button
+                  type="button"
+                  class="btn p-0 dropdown-toggle hide-arrow"
+                  data-bs-toggle="dropdown"
+                >
+                  <i class="bx bx-dots-vertical-rounded"></i>
+                </button>
+                <div class="dropdown-menu">
+                  <a
+                    class="dropdown-item"
+                    [routerLink]="[
+                      '/backoffice/contrat/modifier',
+                      contrat.idContrat
+                    ]"
+                    ><i class="bx bx-edit-alt me-1"></i> Edit</a
+                  >
+                  <a class="dropdown-item" (click)="delete(contrat.idContrat)"
+                    ><i class="bx bx-trash me-1"></i> Delete</a
+                  >
+                  <a
+                    class="dropdown-item"
+                    [routerLink]="[
+                      '/backoffice/contrat/detailContrat',
+                      contrat.idContrat
+                    ]"
+                    ><i class="bx bx-detail bx-rotate-180"></i> Detail
+                  </a>
+                  <a
+                    class="dropdown-item"
+                    routerLink="../{{ contrat.idContrat }}/mission"
+                    ><i class="bx bx-task"></i> Mission</a
+                  >
+                </div>
+              </div>
+            </td>
+            <div
+              class="modal fade"
+              id="smallModal{{ contrat.idContrat }}"
+              tabindex="-1"
+              aria-hidden="true"
+            >
+              <div class="modal-dialog modal-sm" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel2">Archive</h5>
+                    <button
+                      type="button"
+                      class="btn-close"
+                      data-bs-dismiss="modal"
+                      aria-label="Close"
+                    ></button>
+                  </div>
+                  <div class="modal-body">
+                    <div class="row">
+                      <div class="col mb-3">
+                        <p>
+                          Voulez vous
+                          {{ contrat.archive ? "desarchiver" : "archiver" }} le
+                          contrat de l'id n°{{ contrat.idContrat }}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button
+                      type="button"
+                      class="btn btn-outline-secondary"
+                      data-bs-dismiss="modal"
+                    >
+                      Close
+                    </button>
+                    <button
+                      type="button"
+                      class="btn btn-primary"
+                      (click)="DoArchive_NotArchive(contrat)"
+                      data-bs-dismiss="modal"
+                    >
+                      {{ contrat.archive ? "Desarchiver" : "Archiver" }}
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <pagination-controls
+      (pageChange)="p = $event"
+      (pageBoundsCorrection)="p = $event"
+      previousLabel="Previous"
+      nextLabel="Next"
+      screenReaderPaginationLabel="Pagination"
+      screenReaderPageLabel="page"
+      screenReaderCurrentLabel="You're on page"
+      class="pagination"
+    >
+    </pagination-controls>
+  </div>
+</div>

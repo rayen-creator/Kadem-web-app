@@ -1,0 +1,223 @@
+<div class="content-wrapper">
+  <!-- Content -->
+
+  <div class="container-xxl flex-grow-1 container-p-y">
+    <h4 class="fw-bold py-3 mb-4">
+      <span
+        class="text-muted fw-light"
+        style="cursor: pointer"
+        [routerLink]="['/backoffice/contrat/list']"
+        >Liste/</span
+      >
+      {{ editable ? "Modifier" : "Ajouter" }}
+    </h4>
+
+    <!-- Basic Layout & Basic with Icons -->
+    <div class="row">
+      <div class="col-xxl">
+        <div class="card mb-4">
+          <div
+            class="card-header d-flex align-items-center justify-content-between"
+          >
+            <h5 class="mb-0">
+              {{ editable ? "Modifier" : "Ajouter" }} Contrat
+            </h5>
+          </div>
+          <div class="card-body">
+            <form
+              name="form"
+              (ngSubmit)="
+                f.form.valid &&
+                  !compare(currentDate, dateDebutContrat.value) &&
+                  !compare(dateDebutContrat.value, dateFinContrat.value) &&
+                  onSubmit()
+              "
+              #f="ngForm"
+              novalidate
+            >
+              <div class="row mb-3">
+                <label
+                  class="col-sm-2 col-form-label"
+                  for="basic-icon-default-fullname"
+                  >Specialite</label
+                >
+                <div class="col-sm-10">
+                  <div class="input-group input-group-merge">
+                    <select
+                      class="form-select"
+                      [(ngModel)]="contrat.specialite"
+                      required
+                      #specialite="ngModel"
+                      name="specialite"
+                      [ngClass]="{
+                        'is-invalid': specialite.touched && specialite.invalid
+                      }"
+                    >
+                      <option value="IA">IA</option>
+                      <option value="RESEAU">RESEAU</option>
+                      <option value="CLOUD">CLOUD</option>
+                      <option value="SECURITE">SECURITE</option>
+                    </select>
+                  </div>
+                  <div
+                    class="form-text"
+                    *ngIf="specialite.invalid && specialite.touched"
+                  >
+                    <div
+                      class="alert alert-danger"
+                      role="alert"
+                      *ngIf="specialite.hasError('required')"
+                    >
+                      Champ Specialite est obligatoire
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <label
+                  class="col-sm-2 col-form-label"
+                  for="basic-icon-default-company"
+                  >date Debut Contrat</label
+                >
+                <div class="col-sm-10">
+                  <div class="input-group input-group-merge">
+                    <input
+                      class="form-control"
+                      type="date"
+                      [(ngModel)]="contrat.dateDebutContrat"
+                      required
+                      #dateDebutContrat="ngModel"
+                      name="dateDebutContrat"
+                      [ngClass]="{
+                        'is-invalid':
+                          dateDebutContrat.touched && dateDebutContrat.invalid
+                      }"
+                    />
+                  </div>
+                  <div
+                    class="form-text"
+                    *ngIf="dateDebutContrat.invalid && dateDebutContrat.touched"
+                  >
+                    <div
+                      class="alert alert-danger"
+                      role="alert"
+                      *ngIf="dateDebutContrat.hasError('required')"
+                    >
+                      Champ date Debut est obligatoire
+                    </div>
+                  </div>
+                  <div class="form-text">
+                    <div
+                      class="alert alert-danger"
+                      role="alert"
+                      *ngIf="
+                        dateDebutContrat.touched &&
+                        !dateDebutContrat.hasError('required') &&
+                        compare(currentDate, dateDebutContrat.value)
+                      "
+                    >
+                      Champ date Debut doit etre superieur a la date
+                      d'aujourd'hui
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <label
+                  class="col-sm-2 col-form-label"
+                  for="basic-icon-default-email"
+                  >dateFinContrat</label
+                >
+                <div class="col-sm-10">
+                  <div class="input-group input-group-merge">
+                    <input
+                      class="form-control"
+                      type="date"
+                      [(ngModel)]="contrat.dateFinContrat"
+                      required
+                      #dateFinContrat="ngModel"
+                      name="dateFinContrat"
+                      [ngClass]="{
+                        'is-invalid':
+                          dateFinContrat.touched && dateFinContrat.invalid
+                      }"
+                    />
+                  </div>
+                  <div
+                    class="form-text"
+                    *ngIf="dateFinContrat.invalid && dateFinContrat.touched"
+                  >
+                    <div
+                      class="alert alert-danger"
+                      role="alert"
+                      *ngIf="dateFinContrat.hasError('required')"
+                    >
+                      Champ date fin est obligatoire
+                    </div>
+                  </div>
+                  <div class="form-text">
+                    <div
+                      class="alert alert-danger"
+                      role="alert"
+                      *ngIf="
+                        dateFinContrat.touched &&
+                        !dateFinContrat.hasError('required') &&
+                        compare(dateDebutContrat.value, dateFinContrat.value)
+                      "
+                    >
+                      Champ date Fin doit etre superieur a la date debut du
+                      contrat
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <label
+                  class="col-sm-2 form-label"
+                  for="basic-icon-default-phone"
+                  >montantContrat</label
+                >
+                <div class="col-sm-10">
+                  <div class="input-group input-group-merge">
+                    <input
+                      type="number"
+                      [(ngModel)]="contrat.montantContrat"
+                      required
+                      #montantContrat="ngModel"
+                      class="form-control"
+                      name="montantContrat"
+                      [ngClass]="{
+                        'is-invalid':
+                          montantContrat.touched && montantContrat.invalid
+                      }"
+                    />
+                  </div>
+                  <div
+                    class="form-text"
+                    *ngIf="montantContrat.invalid && montantContrat.touched"
+                  >
+                    <div
+                      class="alert alert-danger"
+                      role="alert"
+                      *ngIf="montantContrat.hasError('required')"
+                    >
+                      Champ montant est obligatoire
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row justify-content-end">
+                <div class="col-sm-10">
+                  <button class="btn btn-primary">
+                    {{ editable ? "Modifier" : "Ajouter" }}
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
