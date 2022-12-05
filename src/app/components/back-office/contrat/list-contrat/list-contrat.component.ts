@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Contrat } from 'src/app/core/models/Contrat';
 import { Specialite } from 'src/app/core/models/Specialite';
 import { ContratService } from 'src/app/core/services/contrat.service';
@@ -11,7 +11,8 @@ import { ContratService } from 'src/app/core/services/contrat.service';
 export class ListContratComponent implements OnInit {
   contrats: Contrat[] = [];
   static = { IA: 0, CLOUD: 0, SECURITE: 0, RESEAU: 0 };
-  constructor(private contratService: ContratService) {}
+  p: number = 1;
+  constructor(private contratService: ContratService) { }
 
   ngOnInit(): void {
     this.refreshData();

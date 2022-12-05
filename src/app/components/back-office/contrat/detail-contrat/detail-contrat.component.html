@@ -1,5 +1,28 @@
 <div class="content-wrapper">
   <!-- Content -->
+  <div
+    class="bs-toast toast fade show bg-{{ TypeToast }}"
+    role="alert"
+    aria-live="assertive"
+    aria-atomic="true"
+    *ngIf="isNotifShowed"
+    style="position: fixed; top: 10px; right: 10px"
+  >
+    <div class="toast-header">
+      <i class="bx bx-bell me-2"></i>
+      <div class="me-auto fw-semibold">Alerte</div>
+      <small>1 min ago</small>
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="toast"
+        aria-label="Close"
+      ></button>
+    </div>
+    <div class="toast-body">
+      {{ toastBody }}
+    </div>
+  </div>
 
   <div class="container-xxl flex-grow-1 container-p-y">
     <h4 class="fw-bold py-3 mb-4">

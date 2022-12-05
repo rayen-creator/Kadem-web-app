@@ -26,7 +26,12 @@
           <div class="card-body">
             <form
               name="form"
-              (ngSubmit)="f.form.valid && onSubmit()"
+              (ngSubmit)="
+                f.form.valid &&
+                  !compare(currentDate, dateDebutContrat.value) &&
+                  !compare(dateDebutContrat.value, dateFinContrat.value) &&
+                  onSubmit()
+              "
               #f="ngForm"
               novalidate
             >
@@ -81,8 +86,6 @@
                       type="date"
                       [(ngModel)]="contrat.dateDebutContrat"
                       required
-                      [min]="currentDate"
-                      [max]="dateFinContrat.value"
                       #dateDebutContrat="ngModel"
                       name="dateDebutContrat"
                       [ngClass]="{
@@ -102,21 +105,19 @@
                     >
                       Champ date Debut est obligatoire
                     </div>
+                  </div>
+                  <div class="form-text">
                     <div
                       class="alert alert-danger"
                       role="alert"
-                      *ngIf="dateDebutContrat.hasError('min')"
+                      *ngIf="
+                        dateDebutContrat.touched &&
+                        !dateDebutContrat.hasError('required') &&
+                        compare(currentDate, dateDebutContrat.value)
+                      "
                     >
                       Champ date Debut doit etre superieur a la date
                       d'aujourd'hui
-                    </div>
-                    <div
-                      class="alert alert-danger"
-                      role="alert"
-                      *ngIf="dateDebutContrat.hasError('max')"
-                    >
-                      Champ date Debut doit etre inferieur a la date fin du
-                      contrat
                     </div>
                   </div>
                 </div>
@@ -134,7 +135,6 @@
                       type="date"
                       [(ngModel)]="contrat.dateFinContrat"
                       required
-                      [min]="dateDebutContrat.value"
                       #dateFinContrat="ngModel"
                       name="dateFinContrat"
                       [ngClass]="{
@@ -154,12 +154,18 @@
                     >
                       Champ date fin est obligatoire
                     </div>
+                  </div>
+                  <div class="form-text">
                     <div
                       class="alert alert-danger"
                       role="alert"
-                      *ngIf="dateFinContrat.hasError('min')"
+                      *ngIf="
+                        dateFinContrat.touched &&
+                        !dateFinContrat.hasError('required') &&
+                        compare(dateDebutContrat.value, dateFinContrat.value)
+                      "
                     >
-                      Champ date Debut doit etre superieur a la date debut du
+                      Champ date Fin doit etre superieur a la date debut du
                       contrat
                     </div>
                   </div>

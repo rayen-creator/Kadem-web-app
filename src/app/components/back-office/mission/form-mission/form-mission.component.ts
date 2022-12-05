@@ -20,21 +20,25 @@ export class FormMissionComponent implements OnInit {
     technologies: new FormControl('', Validators.required),
     description: new FormControl('', Validators.required),
   });
+  idParent: number;
+  idChild: number;
 
   constructor(
     private missionService: MissionService,
     private contratService: ContratService,
     private route: ActivatedRoute,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.route.parent?.params.subscribe((parentParam) => {
+      this.idParent = +parentParam['id'];
       this.contratService
         .getContratById(+parentParam['id'])
         .subscribe((res) => (this.contrat = res as Contrat));
       this.route.params.subscribe((param) => {
         if (param['idm'] !== undefined) {
+          this.idChild = +param['idm'];
           this.editable = true;
           this.missionService
             .displayMissionByID(+param['idm'])
@@ -64,11 +68,11 @@ export class FormMissionComponent implements OnInit {
     if (!this.editable) {
       this.missionService
         .addMission({ ...this.myForm.value, contrat: this.contrat })
-        .subscribe(() => this.router.navigate(['../']));
+        .subscribe(() => this.router.navigateByUrl('backoffice/contrat/' + this.idParent + '/mission'));
     } else {
       this.missionService
-        .updateMission({ ...this.myForm.value, contrat: this.contrat })
-        .subscribe(() => this.router.navigate(['../']));
+        .updateMission({ ...this.myForm.value, contrat: this.contrat, idMission: this.idChild })
+        .subscribe(() => this.router.navigateByUrl('backoffice/contrat/' + this.idParent + '/mission'));
     }
   }
 }

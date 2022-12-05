@@ -23,13 +23,13 @@ export class FormContratComponent implements OnInit {
     etudiant: null,
   };
   contratForm: NgForm;
-  currentDate = new Date();
+  currentDate = Date.now();
 
   constructor(
     private contratService: ContratService,
     private route: ActivatedRoute,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.route.params.subscribe((param) => {
@@ -37,7 +37,6 @@ export class FormContratComponent implements OnInit {
         this.editable = true;
         this.contratService.getContratById(+param['id']).subscribe((result) => {
           this.contrat = result as Contrat;
-          console.log(this.contrat);
         });
       }
     });
@@ -53,7 +52,7 @@ export class FormContratComponent implements OnInit {
         .subscribe(() => this.router.navigate(['/backoffice/contrat']));
     }
   }
-  compare(_v1: Date, _v2: Date) {
-    return _v1.getDate() > _v2.getDate();
+  compare(_v1: any, _v2: any) {
+    return new Date(_v1) > new Date(_v2);
   }
 }

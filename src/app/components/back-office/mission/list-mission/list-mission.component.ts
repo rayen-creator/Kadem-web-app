@@ -12,8 +12,9 @@ export class ListMissionComponent implements OnInit {
   constructor(
     private missionService: MissionService,
     private route: ActivatedRoute
-  ) {}
+  ) { }
   missions: Mission[] = [];
+  p: number = 1;
   ngOnInit(): void {
     this.route.parent?.params.subscribe((param) => {
       this.refreshData(+param['id']);

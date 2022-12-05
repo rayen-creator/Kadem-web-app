@@ -9,6 +9,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DetailContratComponent } from './detail-contrat/detail-contrat.component';
 import { AffecterEtudiantComponent } from './affecter-etudiant/affecter-etudiant.component';
 import { AutocompleteLibModule } from 'angular-ng-autocomplete';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { NgApexchartsModule } from "ng-apexcharts";
+import { StatisticCardComponent } from './statistic-card/statistic-card.component'
 @NgModule({
   declarations: [
     ContratComponent,
@@ -16,6 +19,7 @@ import { AutocompleteLibModule } from 'angular-ng-autocomplete';
     FormContratComponent,
     DetailContratComponent,
     AffecterEtudiantComponent,
+    StatisticCardComponent,
   ],
   imports: [
     FormsModule,
@@ -23,6 +27,9 @@ import { AutocompleteLibModule } from 'angular-ng-autocomplete';
     CommonModule,
     ContratRoutingModule,
     AutocompleteLibModule,
+    NgxPaginationModule,
+    NgApexchartsModule
+
   ],
 })
-export class ContratModule {}
+export class ContratModule { }
