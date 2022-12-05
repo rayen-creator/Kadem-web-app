@@ -1,34 +1,37 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {environment} from "../../../environments/environment";
-import {HttpClient} from "@angular/common/http";
-import {Etudiant} from "../models/etudiant";
+import { environment } from 'src/environments/environment';
+import { Etudiant } from '../models/etudiant';
 
 @Injectable({
-  providedIn: 'any'
+  providedIn: 'root'
 })
 export class EtudiantService {
-  public url=environment.defaultUrl+'/etudiant'
-  constructor(private http:HttpClient) { }
+  public url= environment.defaultUrl+'/Etudiant'
 
-  getAllEtudiant(){
-    return this.http.get<Etudiant[]>(this.url)
+  constructor(private http : HttpClient) { }
+  
 
+
+  getAllEtudiants() {
+    return this.http.get<Etudiant[]>(this.url+'/Display')
   }
-  addStudent(u:Etudiant){
-    return this.http.post(this.url+'/add',u)
-
-  }
-  delete(id:number){
-    return this.http.delete(this.url+'/delete/'+id)
-
-  }
-  update(u:Etudiant){
-    return this.http.put(this.url+'/update/'+u.idEtudiant,u)
+  addEtudiant(etudiant:Etudiant) {
+    return this.http.post(this.url+'/Add',etudiant)
   }
 
-  getStudentByID(id:number): any{
-    return this.http.get<Etudiant>(this.url+'/display/'+id)
-
+  affect(etud:Etudiant,idd:number) {
+    return this.http.put(this.url+'/affect/'+etud.idEtudiant+'/'+idd,etud)
   }
 
+  updateEtudiant(newEtudiant: Etudiant) {
+    return this.http.put(this.url+'/Modify/'+newEtudiant.idEtudiant,newEtudiant)
+  }
+
+  getEtudiantById(id:number){
+    return this.http.get<Etudiant>(this.url+'/Retrieve/'+id)
+  }
+  deleteEtudiant(id:number){
+    return this.http.delete(this.url+'/Remove/'+id)
+  }
 }

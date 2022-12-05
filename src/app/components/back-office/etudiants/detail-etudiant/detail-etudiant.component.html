@@ -1,0 +1,41 @@
+<div class="row">
+    <div class="col-md-10" style="margin: 50px;">
+            <div class="card">
+                <h5 class="card-header">Student Details</h5>
+                <!-- Account -->
+                <div class="card-body">
+                <div class="d-flex align-items-start align-items-sm-center gap-4">
+                    <img src={{etudiant.image}} alt="user-avatar" class="d-block rounded" height="200" width="200" id="uploadedAvatar" />
+                    <div class="card-body">
+                        <h3 class="card-title">Full Name: {{etudiant.prenomE}} {{etudiant.nomE}}</h3>
+                        <br>
+                        <h5>Option:
+                            <span [ngClass]="{'badge bg-label-primary':etudiant.option === 'GAMIX' ,
+                            'badge bg-label-success':etudiant.option === 'SIM' ,'badge bg-label-warning':etudiant.option === 'NIDS', 'badge bg-label-info':etudiant.option === 'TWIN' ,
+                              'badge bg-label-dark':etudiant.option === 'JUNIOR' }"  class="badge bg-label-primary me-2" >{{etudiant.option}}</span></h5>
+            
+                              <br>
+                       
+                        <h6>Email: {{etudiant.email}}</h6> 
+                        <h6>Age: {{etudiant.age}}</h6> 
+                        <h6 class="card-text" >Adress: {{etudiant.adress}} </h6> 
+                        <h6 class="card-text" >Phone Number: {{etudiant.phone}} </h6>    
+                        <h6 class="card-text" >Date of Inscription: {{etudiant.dateDebut}} </h6>
+                    </div>
+                    <form #f="ngForm" > 
+                        <div class="form-group mb-3"  >
+                            <label  for="inputState" class="form-label">Assign a Departemet</label>
+                            <select  placeholder="Enter Departemet" name="Departemet" required #x="ngModel" class="form-select " [(ngModel)]="departemet"
+                            [ngModelOptions]="{standalone: true}">
+                            <option selected> select Departemet</option>
+                            <option *ngFor="let d of listdep" [ngValue]="d">{{d.nomDepart}} </option>
+                        </select>
+                            <div class="alert alert-danger" *ngIf="x.invalid && x.touched">
+                            this field is required
+                            </div>
+                        </div>
+                    </form> 
+                </div>
+                <button  (click)="save()"   [disabled]="f.invalid" type="submit" class="btn btn-success ">Assign</button>
+                &nbsp;
+                </div>

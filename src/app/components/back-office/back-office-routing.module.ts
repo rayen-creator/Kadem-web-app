@@ -11,7 +11,10 @@ const routes: Routes = [
       { path: 'clubs', loadChildren: () => import('./clubs/clubs.module').then(m => m.ClubsModule) },
       {path: 'contrat',loadChildren: () =>import('./contrat/contrat.module').then((m) => m.ContratModule)},
       {path:'profesor',loadChildren: () => import('./profesor/profesor.module').then(m => m.ProfesorModule)},
-      {path:'class',loadChildren: () => import('./class/class.module').then(m => m.ClassModule)}
+      {path:'class',loadChildren: () => import('./class/class.module').then(m => m.ClassModule)},
+      { path: 'etudiants', loadChildren: () => import('./etudiants/etudiants.module').then(m => m.EtudiantsModule) },
+      { path: 'entreprises', loadChildren: () => import('./entreprises/entreprises.module').then(m => m.EntreprisesModule) }
+    
 
 
     ]

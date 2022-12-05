@@ -1,0 +1,93 @@
+
+
+<!-- Contextual Classes -->
+<br>
+<nav class="navbar navbar-example navbar-expand-lg bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" [ngStyle]="{'font-size.px':20}" href="javascript:void(0)">Kadem</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbar-ex-4">
+      <div class="navbar-nav me-auto">
+        <a class="nav-item nav-link active"  aria-disabled="true" href="javascript:void(0)">List of students</a>
+        <a class="nav-item nav-link" routerLink="form"  href="javascript:void(0)">Add Form</a> 
+        
+      </div>
+
+      <form class="d-flex">
+        <div class="input-group">
+          <span class="input-group-text"><i class="tf-icons bx bx-search"></i></span>
+          <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="Search by name">
+        </div>
+      </form>
+    </div>
+  </div>
+</nav>
+
+  
+    
+
+<div class="container-xxl flex-grow-1 container-p-y">
+  <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light"></span> List of Students</h4>
+  <div class="card">
+    
+    <h5 class="card-header">Table</h5>
+    <div class="table-responsive text-nowrap">
+      <table class="table">
+        <thead>
+          <tr> 
+            <th>First Name </th>
+            <th>Last Name </th>
+            <th>Image </th>
+            <th>Date Debut </th>
+            <th>Option </th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody class="table-border-bottom-0">
+          <tr class="table-default" *ngFor="let e of listEtud | slice: (page-1) * pageSize : page * pageSize
+          | filter:searchText">
+            <td>{{e.prenomE}}</td>
+            <td>{{e.nomE}}</td>
+            <td>
+              <ul class="list-unstyled users-list m-0 avatar-group d-flex align-items-center">
+                <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top" class="avatar avatar-m pull-up" title="Lilian Fuller">
+                  <img src="{{e.image}}" alt="Avatar" class="rounded-circle">
+                </li>
+              </ul>  
+            </td>
+            <td>{{e.dateDebut}}</td>
+            <td><span [ngClass]="{'badge bg-label-primary':e.option === 'GAMIX' ,
+              'badge bg-label-success':e.option === 'SIM' ,
+              'badge bg-label-warning':e.option === 'NIDS',
+              'badge bg-label-info':e.option === 'TWIN' ,
+              'badge bg-label-dark':e.option === 'JUNIOR' }"  class="badge bg-label-primary me-2" >{{e.option}}</span></td>
+            <td>
+              <button type="button"  routerLink="update/{{e.idEtudiant}}" class="btn btn-outline-success">Edit</button>
+              &nbsp;
+              <button type="button" (click)="deleteEtudiant(e)" class="btn btn-outline-danger">Delete</button>   
+              &nbsp;
+              <button type="button"  routerLink="detail/{{e.idEtudiant}}" class="btn btn-outline-info">Details</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      
+    
+    </div>
+  </div> 
+</div>
+    <div class="justify-content-center d-flex">
+      <div class=" row  g-0 align-items-center pb-4">
+        <div class="col-sm">
+          <div><p class="mb-sm">Showing {{(page*pageSize)-(pageSize-1)}} to {{page*pageSize}} of {{length}}</p></div>
+        </div>
+        <ngb-pagination  style="align-items: center;"
+          [(page)]="page"
+          [pageSize]="pageSize"
+          [collectionSize]="length"></ngb-pagination>
+      </div>
+   </div>
+   

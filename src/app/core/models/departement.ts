@@ -3,3 +3,5 @@ export class Departement {
      nomDepart:string;
 
 }
+
+}
