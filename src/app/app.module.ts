@@ -7,6 +7,8 @@ import { NotfoundpageComponent } from './components/notfoundpage/notfoundpage.co
 import { LoginComponent } from './components/auth/login/login.component';
 import { SignupComponent } from './components/auth/signup/signup.component';
 import { ResetpwdComponent } from './components/auth/resetpwd/resetpwd.component';
+import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -20,8 +22,11 @@ import { ResetpwdComponent } from './components/auth/resetpwd/resetpwd.component
   ],
   imports: [
     BrowserModule,
-
-    AppRoutingModule
+    HttpClientModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

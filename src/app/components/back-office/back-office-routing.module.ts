@@ -5,10 +5,12 @@ import { BackOfficeComponent } from './back-office.component';
 const routes: Routes = [
   {
     path: '', component: BackOfficeComponent, children: [
-      //
+      { path: 'universite', loadChildren: () => import('./universite/universite.module').then(m => m.UniversiteModule) },
+      { path: 'conventions', loadChildren: () => import('./conventions/conventions.module').then(m => m.ConventionsModule) }
 
     ]
-  }];
+  },
+  ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

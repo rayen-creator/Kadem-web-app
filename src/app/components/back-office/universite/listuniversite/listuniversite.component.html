@@ -1,0 +1,104 @@
+<!-- Contextual Classes -->
+<br>
+<div class="p-3 text-center text-white" style="background-color: #131921">
+  <div class="container">
+    <div class="row">
+      
+<nav class="navbar navbar-example navbar-expand-lg blue">
+  <div class="container-fluid">
+    <a class="navbar-brand" routerLink="universities" [ngStyle]="{'font-size.px':20}"
+      href="javascript:void(0)">Universities</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbar-ex-4">
+      <div class="navbar-nav me-auto">
+        <a class="nav-item nav-link active" (click)="Back()" aria-disabled="true" href="javascript:void(0)">conventions</a>
+        <a class="nav-item nav-link" routerLink="form" href="javascript:void(0)">Add University</a>
+
+      </div>
+
+      <form class="d-flex">
+        <div class="input-group">
+          <span class="input-group-text"><i class="tf-icons bx bx-search"></i></span>
+          <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off"
+            placeholder="Search by name">
+        </div>
+      </form>
+    </div>
+  </div>
+</nav>
+
+
+
+
+<div class="container-xxl flex-grow-1 container-p-y">
+  <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light"></span> List of Universities</h4>
+  <div class="card">
+
+
+    <div class="table-responsive text-nowrap">
+      <table class="table table-dark">
+        <thead>
+          <tr>
+            <th>University Name</th>
+            <th>Emplacement</th>
+            <th>Image </th>
+            <th>Date_fondation</th>
+            <th>Aggregation</th>
+            <th>Description</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody class="table-border-bottom-0">
+          <tr class="table-dark" *ngFor="let  u of listUniv  | slice: (page-1) * pagesize : page * pagesize
+          | filter:searchText">
+            <td>
+              
+              <i class="fab fa-sketch fa-lg text-warning me-3"></i>
+              
+              <strong>{{u.nomUniv}}</strong>
+
+            </td>
+            <td>{{u.emplacement}}</td>
+            <td>
+              <ul class="list-unstyled users-list m-0 avatar-group d-flex align-items-center">
+                <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top"
+                  class="avatar avatar-m pull-up" title={{u.nomUniv}}>
+                  <img src="{{u.img}}" alt="Avatar" class="rounded-circle">
+                </li>
+              </ul>
+            </td>
+            <td>{{u.date_fondation}}</td>
+            <td>
+              <span class="badge bg-label-primary me-1" >{{u.accrediation}}</span>
+              
+            </td>
+            <td>
+              <button type="button" routerLink="update/{{u.idUniv}}" class="btn btn-outline-success">Edit</button>
+              &nbsp;
+              <button type="button" (click)="deleteUniversite(u)" class="btn btn-outline-danger">Delete</button>
+            </td>
+            <td>
+            
+          </td>
+          </tr>
+        </tbody>
+      </table>
+
+
+    </div>
+  </div>
+</div>
+<div class="justify-content-center d-flex">
+  <div class=" row  g-0 align-items-center pb-4">
+    <div class="col-sm">
+      <div>
+        <p class="mb-sm">Showing {{(page*pagesize)-(pagesize-1)}} to {{page*pagesize}} of {{length}}</p>
+      </div>
+    </div>
+    
+
+  </div>
+</div>

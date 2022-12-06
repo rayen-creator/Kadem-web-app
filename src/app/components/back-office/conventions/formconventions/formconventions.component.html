@@ -1,0 +1,108 @@
+<!-- Content wrapper -->
+
+<!-- Content -->
+
+<div class="p-3 text-center text-white" style="background-color: #131921">
+    <div class="container">
+
+        <!-- Basic Layout -->
+        <div class="container-xxl flex-grow-1 container-p-y">
+            <div class="row">
+                <div class="col-xl">
+                    <div class="card mb-4">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <h5 class="mb-0">Form</h5>
+                        </div>
+                        <div class="card-body">
+                            <form #f="ngForm">
+                                <div class="form-group mb-3">
+                                    <label class="form-label" for=" nomUniv">Company Name</label>
+                                    <div class="input-group input-group-merge">
+                                        <span id="basic-icon-default-company2" class="input-group-text"><i
+                                                class="bx bx-buildings"></i></span>
+                                        <input [(ngModel)]="conventions.name" name="nomUniv" type="text" required
+                                            minlength="3" #n="ngModel" class="form-control" id="nomUniv"
+                                            placeholder="Enter University name"
+                                            aria-describedby="basic-icon-default-company2" />
+                                        <div class="alert alert-danger" *ngIf="n.invalid && n.touched">
+                                            <div *ngIf="n.hasError('required')">
+                                                this field is required
+                                            </div>
+                                            <div *ngIf="n.hasError('minlength')">
+                                                minlength = 3 !
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="inputState" class="form-label">country</label>
+                                    <select [(ngModel)]="conventions.country" required #p="ngModel" name="option"
+                                        class="form-select" id="exampleFormControlSelect1"
+                                        aria-label="Default select example">
+                                        <option selected>Open to select option</option>
+                                        <option value="tunisia">tunisia</option>
+                                        <option value="france">france</option>
+                                    </select>
+                                    <div class="alert alert-danger" *ngIf="p.invalid && p.touched">
+                                        this field is required
+                                    </div>
+                                </div>
+
+
+
+
+
+                                <div class="form-group">
+                                    <label class="form-label">Logo</label>
+                                    <input type="text" name="image" class="form-control" [(ngModel)]="conventions.logo"
+                                        required #i="ngModel" placeholder="Image Url">
+                                </div>
+                                <div class="alert alert-danger" *ngIf="i.invalid && i.touched">
+                                    <div *ngIf="i.hasError('required')">this field is required !</div>
+                                </div>
+                               
+
+
+                                <div class="form-group mb-3">
+                                    <label class="form-label" for=" nomUniv">Duration</label>
+                                    <div class="input-group input-group-merge">
+                                        <span id="basic-icon-default-company2" class="input-group-text"></span>
+                                        <input [(ngModel)]="conventions.duration_agreement" name="nomUniv" type=number required
+                                            minlength="3" #n="ngModel" class="form-control" id="nomUniv"
+                                            placeholder="Example : 3 years"
+                                            aria-describedby="basic-icon-default-company2" />
+                                        <div class="alert alert-danger" *ngIf="n.invalid && n.touched">
+                                            <div *ngIf="n.hasError('required')">
+                                                this field is required
+                                            </div>
+                                            <div *ngIf="n.hasError('minnumber')">
+                                                minlength = 3 !
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label" for="basic-icon-default-message">Details</label>
+                                    <div class="input-group input-group-merge">
+                                        <span id="basic-icon-default-message2" class="input-group-text"><i
+                                                class="bx bx-comment"></i></span>
+                                        <input type="text" name="description" class="form-control"
+                                            [(ngModel)]="conventions.details_agreement" required #c="ngModel">
+                                        <textarea id="basic-icon-default-message" class="form-control"
+                                            placeholder="Details"
+                                            aria-describedby="basic-icon-default-message2"></textarea>
+                                    </div>
+                                </div>
+                                <button (click)="save()" [disabled]="f.invalid" type="submit"
+                                    class="btn btn-success">{{action}}</button>
+                                &nbsp;
+                                <button class="btn  btn-danger" (click)="Back()">cancel</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
