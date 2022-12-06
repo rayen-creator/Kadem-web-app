@@ -1,35 +1,21 @@
 
 
 <!-- Contextual Classes -->
-<br>
-<nav class="navbar navbar-example navbar-expand-lg bg-light">
-  <div class="container-fluid">
-    <a class="navbar-brand" [ngStyle]="{'font-size.px':20}" href="javascript:void(0)">Kadem</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="">
-      <span class="navbar-toggler-icon"></span>
-    </button>
 
-    <div class="collapse navbar-collapse" id="navbar-ex-4">
-      <div class="navbar-nav me-auto">
-        <a class="nav-item nav-link active"  aria-disabled="true" href="javascript:void(0)">List of students</a>
-        <a class="nav-item nav-link" routerLink="form"  href="javascript:void(0)">Add Form</a> 
-        
-      </div>
-
-      <form class="d-flex">
-        <div class="input-group">
-          <span class="input-group-text"><i class="tf-icons bx bx-search"></i></span>
-          <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="Search by name">
-        </div>
-      </form>
-    </div>
-  </div>
-</nav>
 
   
     
 
 <div class="container-xxl flex-grow-1 container-p-y">
+  <div style="width: 30%;margin-left: 700px;">
+    <form class="d-flex justify-content-end">
+      <div class="input-group">
+        <span class="input-group-text"><i class="tf-icons bx bx-search"></i></span>
+        <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="Search by name">
+      </div>
+    </form>
+  </div>
+
   <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light"></span> List of Students</h4>
   <div class="card">
     

@@ -25,9 +25,6 @@ import { DetailEtudiantComponent } from './detail-etudiant/detail-etudiant.compo
     EtudiantsRoutingModule,
     NgbPaginationModule,
     Ng2SearchPipeModule ,
-    
-    
-    
   ]
 })
 export class EtudiantsModule { }

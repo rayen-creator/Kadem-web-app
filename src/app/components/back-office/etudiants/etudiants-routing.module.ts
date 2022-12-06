@@ -5,10 +5,13 @@ import { EtudiantsComponent } from './etudiants.component';
 import { FormEtudiantComponent } from './form-etudiant/form-etudiant.component';
 import { ListEtudiantComponent } from './list-etudiant/list-etudiant.component';
 
-const routes: Routes = [{ path: '', component: ListEtudiantComponent},
+const routes: Routes = [{ path: '', component: EtudiantsComponent,children:[
+  { path: 'list', component: ListEtudiantComponent},
   {path:'form',component:FormEtudiantComponent},
   {path:'update/:id', component:FormEtudiantComponent},
   {path:'detail/:id', component:DetailEtudiantComponent}
+]},
+  
   
 
 ] 

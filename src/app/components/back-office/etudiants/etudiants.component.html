@@ -1,1 +1,17 @@
+<nav class="navbar navbar-example navbar-expand-lg bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" [ngStyle]="{'font-size.px':20}" href="javascript:void(0)">Kadem</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbar-ex-4">
+            <div class="navbar-nav me-auto">
+                <a class="nav-item nav-link " aria-disabled="true" [routerLink]="['list']"
+                    [routerLinkActive]="['is-active']">List of students</a>
+                <a class="nav-item nav-link" [routerLink]="['form']" [routerLinkActive]="['is-active']">Add Form</a>
+            </div>
+        </div>
+    </div>
+</nav>
 <router-outlet></router-outlet>
