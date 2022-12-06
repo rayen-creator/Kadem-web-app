@@ -1,111 +1,109 @@
-
 <!-- Contextual Classes -->
 <br>
-<div class="p-3 text-center text-white" style="background-color: #a7c7f6">
-  <div class="container">
-    <div class="row">
-      
+<div class="p-3 text-center text-white">
+    <div class="container">
+        <div class="row">
 
-        <nav class="navbar navbar-example navbar-expand-lg blue">
-            <div class="container-fluid">
-             
-          
-              <div class="collapse navbar-collapse" id="navbar-ex-4">
-                <div class="navbar-nav me-auto">
-                  
-                  <a class="nav-item nav-link" routerLink="form" href="javascript:void(0)">Add Agreement</a>
-          
+
+            <nav class="navbar navbar-example navbar-expand-lg blue">
+                <div class="container-fluid">
+
+
+                    <div class="collapse navbar-collapse" id="navbar-ex-4">
+                        <div class="navbar-nav me-auto">
+
+                            <a class="nav-item nav-link" routerLink="form" href="javascript:void(0)">Add Agreement</a>
+
+                        </div>
+
+                        <form class="d-flex">
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="tf-icons bx bx-search"></i></span>
+                                <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="Search by name">
+
+                            </div>
+                        </form>
+                    </div>
                 </div>
-          
-                <form class="d-flex">
-                  <div class="input-group">
-                    <span class="input-group-text"><i class="tf-icons bx bx-search"></i></span>
-                    <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off"
-                      placeholder="Search by name">
-          
-                  </div>
-                </form>
-              </div>
-            </div>
-          </nav>
+            </nav>
 
 
 
-<div class="container-xxl flex-grow-1 container-p-y">
-  <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light"></span> List of Agreements</h4>
-  
-  <div class="card">
+            <div class="container-xxl flex-grow-1 container-p-y">
+                <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light"></span> List of Agreements</h4>
+
+                <div class="card">
 
 
-    <div class="table-responsive text-nowrap">
-        
-      <table class="table table-dark">
-        
-        <thead>
-          <tr>
-            <th>Company or University Name</th>
-            <th>Country</th>
-            <th>Logo </th>
-            <th>duration_agreement</th>
-            <th>details_agreement</th>
-            <th></th>
-          </tr>
-        </thead>
-        
-        <tbody class="table-border-bottom-0">
-          <tr class="table-dark" *ngFor="let  c of listCnv  | slice: (page-1) * pagesize : page * pagesize
+                    <div class="table-responsive text-nowrap">
+
+                        <table class="table table-dark">
+
+                            <thead>
+                                <tr>
+                                    <th>Company or University Name</th>
+                                    <th>Country</th>
+                                    <th>Logo </th>
+                                    <th>duration_agreement</th>
+                                    <th>details_agreement</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+
+                            <tbody class="table-border-bottom-0">
+                                <tr class="table-dark" *ngFor="let  c of listCnv  | slice: (page-1) * pagesize : page * pagesize
           | filter:searchText">
-            
-            
-           
-            <td>
-              <i class="fab fa-sketch fa-lg text-warning me-3"></i>
-              <strong>{{c.name}}</strong>
-            </td>
-            
-            <td><span [ngClass]="{'badge bg-label-primary':c.country === 'france' ,
+
+
+
+                                    <td>
+                                        <i class="fab fa-sketch fa-lg text-warning me-3"></i>
+                                        <strong>{{c.name}}</strong>
+                                    </td>
+
+                                    <td><span [ngClass]="{'badge bg-label-primary':c.country === 'france' ,
                 'badge bg-label-success':c.country === 'tunisia' 
-                 }"  class="badge bg-label-primary me-2" >{{c.country}}</span></td>
-            
-           
-            <td>
-              
-              <ul class="list-unstyled users-list m-0 avatar-group d-flex align-items-center">
-                <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top"
-                  class="avatar avatar-m pull-up" title={{c.nom}}>
-                  <img src="{{c.logo}}" alt="Avatar" class="rounded-circle">
-                </li>
-              </ul>
-            </td>
-            <td>{{c.details_agreement}}</td>
-            <td>
-              <span class="badge bg-label-primary me-1" >{{c.duration_agreement}}</span>
-              
-            </td>
-            <td>
-              <button type="button" routerLink="update/{{c.idc}}" class="btn btn-outline-success">Edit</button>
-              &nbsp;
-              <button type="button" (click)="deleteConventions(c)" class="btn btn-outline-danger">Delete</button>
-              
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      
+                 }" class="badge bg-label-primary me-2">{{c.country}}</span></td>
 
 
-    </div>
-  </div>
-</div>
-<div class="justify-content-center d-flex">
-  <div class=" row  g-0 align-items-center pb-4">
-    <div class="col-sm">
-      <div>
-        <button type="button" (click)="Back()"  >Back</button>
-        <p class="mb-sm">Showing {{(page*pagesize)-(pagesize-1)}} to {{page*pagesize}} of {{length}}</p>
-      </div>
-    </div>
-    
+                                    <td>
 
-  </div>
-</div>
+                                        <ul class="list-unstyled users-list m-0 avatar-group d-flex align-items-center">
+                                            <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top" class="avatar avatar-m pull-up" title={{c.nom}}>
+                                                <img src="{{c.logo}}" alt="Avatar" class="rounded-circle">
+                                            </li>
+                                        </ul>
+                                    </td>
+                                    <td>{{c.details_agreement}}</td>
+                                    <td>
+                                        <span class="badge bg-label-primary me-1">{{c.duration_agreement}}</span>
+
+                                    </td>
+                                    <td>
+                                        <button type="button" routerLink="affect/{{c.idc}}" class="btn btn-outline-success">Assign</button> &nbsp;
+
+                                        <button type="button" routerLink="update/{{c.idc}}" class="btn btn-outline-success">Edit</button> &nbsp;
+                                        <button type="button" (click)="deleteConventions(c)" class="btn btn-outline-danger">Delete</button>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+
+
+                    </div>
+                </div>
+            </div>
+            <div class="justify-content-center d-flex">
+                <div class=" row  g-0 align-items-center pb-4">
+                    <div class="col-sm">
+                        <div>
+                            <button type="button" (click)="Back()">Back</button>
+                            <p class="mb-sm">Showing {{(page*pagesize)-(pagesize-1)}} to {{page*pagesize}} of {{length}}</p>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>

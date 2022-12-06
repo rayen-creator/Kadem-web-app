@@ -12,8 +12,6 @@ const routes: Routes = [{ path: '', component: EtudiantsComponent,children:[
   {path:'detail/:id', component:DetailEtudiantComponent}
 ]},
   
-  
-
 ] 
 
 @NgModule({

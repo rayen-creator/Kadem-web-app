@@ -10,7 +10,7 @@ import { UnsavedChangesGuard } from './core/helpers/unsaved-changes.guard';
 
 const routes: Routes = [
 
-  { path: 'backoffice', loadChildren: () => import('./components/back-office/back-office.module').then(m => m.BackOfficeModule) },
+  { path: 'backoffice', loadChildren: () => import('./components/back-office/back-office.module').then(m => m.BackOfficeModule) , canActivate :[AuthGuard] },
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'resetpassword', component: ResetpwdComponent },

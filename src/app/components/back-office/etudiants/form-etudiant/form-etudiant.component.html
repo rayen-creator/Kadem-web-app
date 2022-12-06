@@ -1,109 +1,103 @@
 <!-- Content wrapper -->
 
-    <!-- Content -->
+<!-- Content -->
 
-    <div class="container-xxl flex-grow-1 container-p-y">
-      <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Student/</span> {{action}}</h4>
-       <!-- Basic Layout -->
-       <div class="row">
+<div class="container-xxl flex-grow-1 container-p-y">
+    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Student/</span> {{action}}</h4>
+    <!-- Basic Layout -->
+    <div class="row">
         <div class="col-xl">
-          <div class="card mb-4">
-            <div class="card-header d-flex justify-content-between align-items-center">
-                <h5 class="mb-0">Form</h5>
-              </div>
-              <div class="card-body">
-                <form #f="ngForm" >
-                  <div class="form-group mb-3">
-                    <label class="form-label" for="prenomE">First Name</label>
-                    <input [(ngModel)]="etudiant.prenomE" name="prenomE" type="text" 
-                    required minlength="3" pattern="[A-Za-z]{3,12}$" #n="ngModel"class="form-control" id="prenomE" placeholder="Enter your first name" />
-                    <div class="alert alert-danger" *ngIf="n.invalid && n.touched">
-                      <div *ngIf="n.hasError('required')">
-                         this field is required
+            <div class="card mb-4">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">Form</h5>
+                </div>
+                <div class="card-body">
+                    <form #f="ngForm">
+                        <div class="form-group mb-3">
+                            <label class="form-label" for="prenomE">First Name</label>
+                            <input [(ngModel)]="etudiant.prenomE" name="prenomE" type="text" required minlength="3" pattern="[A-Za-z]{3,12}$" #n="ngModel" class="form-control" id="prenomE" placeholder="Enter your first name" />
+                            <div class="alert alert-danger" *ngIf="n.invalid && n.touched">
+                                <div *ngIf="n.hasError('required')">
+                                    this field is required
+                                </div>
+                                <div *ngIf="n.hasError('minlength')">
+                                    minlength = 3 !
+                                </div>
+                                <div *ngIf="n.hasError('pattern')">
+                                    error pattern
+                                </div>
+                            </div>
                         </div>
-                      <div *ngIf="n.hasError('minlength')">
-                         minlength = 3 !
-                      </div>
-                      <div *ngIf="n.hasError('pattern')">
-                        error pattern
-                     </div>
-                  </div>
-                  </div>
-                  <div class="form-group mb-3">
-                    <label class="form-label" for="nomE">Last Name</label>
-                    <input [(ngModel)]="etudiant.nomE" name="nomE" type="text" class="form-control"
-                    required minlength="3" pattern="[A-Za-z]{3,12}$" #l="ngModel" id="nomE" placeholder="Enter your last name" />
-                    <div class="alert alert-danger" *ngIf="l.invalid && l.touched">
-                      <div *ngIf="l.hasError('required')">
-                         this field is required
+                        <div class="form-group mb-3">
+                            <label class="form-label" for="nomE">Last Name</label>
+                            <input [(ngModel)]="etudiant.nomE" name="nomE" type="text" class="form-control" required minlength="3" pattern="[A-Za-z]{3,12}$" #l="ngModel" id="nomE" placeholder="Enter your last name" />
+                            <div class="alert alert-danger" *ngIf="l.invalid && l.touched">
+                                <div *ngIf="l.hasError('required')">
+                                    this field is required
+                                </div>
+                                <div *ngIf="l.hasError('minlength')">
+                                    minlength = 3 !
+                                </div>
+                                <div *ngIf="l.hasError('pattern')">
+                                    error pattern
+                                </div>
+                            </div>
                         </div>
-                      <div *ngIf="l.hasError('minlength')">
-                         minlength = 3 !
-                      </div>
-                      <div *ngIf="l.hasError('pattern')">
-                        error pattern
-                     </div>
-                  </div>
-                  </div>
-                  <div class="form-group mb-3">
-                    <label class="form-label" for="nomE">address</label>
-                    <input [(ngModel)]="etudiant.adress" name="adress" type="text" class="form-control"
-                    required minlength="3"  #k="ngModel" id="nomE" placeholder="Enter your current address" />
-                    <div class="alert alert-danger" *ngIf="k.invalid && k.touched">
-                      <div *ngIf="k.hasError('required')">
-                         this field is required
+                        <div class="form-group mb-3">
+                            <label class="form-label" for="nomE">address</label>
+                            <input [(ngModel)]="etudiant.adress" name="adress" type="text" class="form-control" required minlength="3" #k="ngModel" id="nomE" placeholder="Enter your current address" />
+                            <div class="alert alert-danger" *ngIf="k.invalid && k.touched">
+                                <div *ngIf="k.hasError('required')">
+                                    this field is required
+                                </div>
+                                <div *ngIf="k.hasError('minlength')">
+                                    minlength = 3 !
+                                </div>
+                            </div>
                         </div>
-                      <div *ngIf="k.hasError('minlength')">
-                         minlength = 3 !
-                      </div>
-                  </div>
-                  </div>
-                  <div class="form-group mb-3">
-                    <label class="form-label" for="nomE">Email</label>
-                    <input [(ngModel)]="etudiant.email" name="email" type="email" class="form-control"
-                    required minlength="3"  #q="ngModel" id="email" placeholder="john@example.com" />
-                    <div class="alert alert-danger" *ngIf="q.invalid && q.touched">
-                      <div *ngIf="q.hasError('required')">
-                         this field is required
+                        <div class="form-group mb-3">
+                            <label class="form-label" for="nomE">Email</label>
+                            <input [(ngModel)]="etudiant.email" name="email" type="email" class="form-control" required minlength="3" #q="ngModel" id="email" placeholder="john@example.com" />
+                            <div class="alert alert-danger" *ngIf="q.invalid && q.touched">
+                                <div *ngIf="q.hasError('required')">
+                                    this field is required
+                                </div>
+                                <div *ngIf="q.hasError('email')">
+                                    Email is invalid
+                                </div>
+
+                            </div>
                         </div>
-                      <div *ngIf="q.hasError('email')">
-                        Email is invalid
-                      </div>
-                     
-                  </div>
-                  </div>
-                  <div class="form-group mb-3">
-                    <label class="form-label" for="age">Age</label>
-                    <input [(ngModel)]="etudiant.age" name="age" type="number" class="form-control"
-                    required min="18" max="50" #age="ngModel" id="age" placeholder="Enter your Age " />
-                    <div class="alert alert-danger" *ngIf="age.invalid && age.touched">
-                      <div *ngIf="age.hasError('required')">
-                         this field is required
+                        <div class="form-group mb-3">
+                            <label class="form-label" for="age">Age</label>
+                            <input [(ngModel)]="etudiant.age" name="age" type="number" class="form-control" required min="18" max="50" #age="ngModel" id="age" placeholder="Enter your Age " />
+                            <div class="alert alert-danger" *ngIf="age.invalid && age.touched">
+                                <div *ngIf="age.hasError('required')">
+                                    this field is required
+                                </div>
+                                <div *ngIf="age.hasError('min')">
+                                    You are too young
+                                </div>
+                                <div *ngIf="age.hasError('max')">
+                                    Sorry but you are too old
+                                </div>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label class="form-label" for="phone">Phone</label>
+                                <input [(ngModel)]="etudiant.phone" name="phone" type="tel" class="form-control" required minlength="8" #phon="ngModel" id="phone" placeholder="99 789 058" />
+                                <div class="alert alert-danger" *ngIf="phon.invalid && phon.touched">
+                                    <div *ngIf="phon.hasError('required')">
+                                        this field is required
+                                    </div>
+                                    <div *ngIf="phon.hasError('minlength')">
+                                        phone number is invalid
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                      <div *ngIf="age.hasError('min')">
-                        You are too young
-                      </div>
-                      <div *ngIf="age.hasError('max')">
-                        Sorry but you are too old
-                     </div>
-                  </div>
-                  <div class="form-group mb-3">
-                    <label class="form-label" for="phone">Phone</label>
-                    <input [(ngModel)]="etudiant.phone" name="phone" type="tel" class="form-control"
-                    required minlength="8"  #phon="ngModel" id="phone" placeholder="99 789 058" />
-                    <div class="alert alert-danger" *ngIf="phon.invalid && phon.touched">
-                      <div *ngIf="phon.hasError('required')">
-                         this field is required
-                        </div>
-                      <div *ngIf="phon.hasError('minlength')">
-                        phone number is invalid
-                      </div>  
-                    </div>
-                  </div>
-                  </div>
-                  <div class="form-group mb-3">
-                    <label for="inputState" class="form-label">Option</label>
-                    <select  placeholder="Enter your option" [(ngModel)]="etudiant.option"  required #p="ngModel" name="option" class="form-select" id="exampleFormControlSelect1" aria-label="Default select example">
+                        <div class="form-group mb-3">
+                            <label for="inputState" class="form-label">Option</label>
+                            <select placeholder="Enter your option" [(ngModel)]="etudiant.option" required #p="ngModel" name="option" class="form-select" id="exampleFormControlSelect1" aria-label="Default select example">
                       <option selected>select option</option>
                       <option value="GAMIX">GAMIX</option>
                       <option value="SIM">SIM</option>
@@ -111,42 +105,31 @@
                       <option value="TWIN">TWIN</option>
                       <option value="SLEAM">SLEAM</option>
                     </select>
-                    <div class="alert alert-danger" *ngIf="p.invalid && p.touched">
-                      this field is required
-                    </div>
-                  </div>
-                    <div class=" form-group mb-3 ">
-                      <label for="date-input" class="col-md-2 col-form-label">Date</label>
-                      <div class="col-md-10">
-                        <input class="form-control"  required #d="ngModel" [(ngModel)]="etudiant.dateDebut" name="dateDebut" type="date" value="" id="html5-date-input" />
-                        <div class="alert alert-danger" *ngIf="d.invalid && d.touched">
-                          this field is required
+                            <div class="alert alert-danger" *ngIf="p.invalid && p.touched">
+                                this field is required
+                            </div>
                         </div>
-                      </div>
-                    <div class="form-group">
-                      <label  class="form-label">Picture </label>
-                      <input  type="text"  name="image" class="form-control"
-                        [(ngModel)]="etudiant.image"
-                        required
-                        #i="ngModel"
-                        placeholder="Image Url"
-                      >
-                    </div>
-                    <div class="alert alert-danger" *ngIf="i.invalid && i.touched">
-                      <div *ngIf="i.hasError('required')">this field is required !</div>
-                    </div>
-                  </div>
-                  <button (click)="save()"   [disabled]="f.invalid" type="submit" class="btn btn-success">{{action}}</button>
-                  &nbsp;
-                  <button class="btn  btn-danger" (click)="Back()">cancel</button>
-                </form>
-              </div>
-          </div>
+                        <div class=" form-group mb-3 ">
+                            <label for="date-input" class="col-md-2 col-form-label">Date</label>
+                            <div class="col-md-10">
+                                <input class="form-control" required #d="ngModel" [(ngModel)]="etudiant.dateDebut" name="dateDebut" type="date" value="" id="html5-date-input" />
+                                <div class="alert alert-danger" *ngIf="d.invalid && d.touched">
+                                    this field is required
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Picture </label>
+                                <input type="text" name="image" class="form-control" [(ngModel)]="etudiant.image" required #i="ngModel" placeholder="Image Url">
+                            </div>
+                            <div class="alert alert-danger" *ngIf="i.invalid && i.touched">
+                                <div *ngIf="i.hasError('required')">this field is required !</div>
+                            </div>
+                        </div>
+                        <button (click)="save()" [disabled]="f.invalid" type="submit" class="btn btn-success">{{action}}</button> &nbsp;
+                        <button class="btn  btn-danger" routerLink="/backoffice/etudiants/list">cancel</button>
+                    </form>
+                </div>
+            </div>
         </div>
-       </div>
     </div>
-    
-              
-         
-        
-    
+</div>

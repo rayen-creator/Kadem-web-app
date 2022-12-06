@@ -11,10 +11,10 @@ import { DepartementService } from 'src/app/core/services/departement.service';
   styleUrls: ['./form-etudiant.component.css']
 })
 export class FormEtudiantComponent implements OnInit {
-  etudiant : Etudiant;
+  etudiant: Etudiant;
   listdep: Departement[];
   public action: string;
-  departemet:Departement;
+  departemet: Departement;
   constructor(private router: Router,
     private etudServ: EtudiantService,
     private currentRoute: ActivatedRoute,
@@ -23,50 +23,52 @@ export class FormEtudiantComponent implements OnInit {
 
   ngOnInit(): void {
     this.depServ.getAlldepartements().subscribe(
-      (data)=>{this.listdep = data},
-      ()=> {},
-      ()=> {},
-      );
-      this.etudiant = new Etudiant();
-      let id= this.currentRoute.snapshot.params['id'];
-    if(id!=null){
+      (data) => { this.listdep = data },
+      () => { },
+      () => { },
+    );
+    this.etudiant = new Etudiant();
+    let id = this.currentRoute.snapshot.params['id'];
+    if (id != null) {
       //update
-      this.action="Update";
+      this.action = "Update";
       //this.product= this.productService.getProductByID(id);
       this.etudServ.getEtudiantById(id).subscribe(
-       ((object:Etudiant)=> this.etudiant=object))
+        ((object: Etudiant) => this.etudiant = object))
       // this.depServ.getdepartementById(this.etudiant.departement_id_depart).subscribe(
-       // ((object:Departement)=> this.departemet=object))
-     
+      // ((object:Departement)=> this.departemet=object))
 
-     // console.log(this.etudiant.departement_id_depart)
+
+      // console.log(this.etudiant.departement_id_depart)
       //console.log(this.departemet)
-     // 
-    }else
-    { this.action="Add";
-      this.etudiant = new Etudiant();}
+      // 
+    } else {
+      this.action = "Add";
+      this.etudiant = new Etudiant();
     }
-    Back() {
-      this.router.navigate(['backoffice/etudiants'])
-    }
-  
-  save(){
-    if(this.action=='Add')
-    { 
-    this.etudServ.addEtudiant(this.etudiant).subscribe(
-      ()=>{
-        this.toastr.success('student has been added !','Success')
-        this.router.navigate(['backoffice/etudiants'])}
-    )
-   }else {
-    this.etudServ.updateEtudiant(this.etudiant).subscribe(
-      ()=>{
-        this.toastr.success('student has been updated !','Success')
-        this.router.navigate(['backoffice/etudiants'])}
-    )
   }
-  } 
-   
+  Back() {
+    this.router.navigate(['backoffice/etudiants'])
+  }
+
+  save() {
+    if (this.action == 'Add') {
+      this.etudServ.addEtudiant(this.etudiant).subscribe(
+        () => {
+          this.toastr.success('student has been added !', 'Success')
+          this.router.navigate(['backoffice/etudiants/list'])
+        }
+      )
+    } else {
+      this.etudServ.updateEtudiant(this.etudiant).subscribe(
+        () => {
+          this.toastr.success('student has been updated !', 'Success')
+          this.router.navigate(['backoffice/etudiants/list'])
+        }
+      )
+    }
+  }
+
 
 
 }

@@ -40,10 +40,10 @@ export class DetailEtudiantComponent implements OnInit {
     this.etudServ.affect(this.etudiant,this.departemet.idDepart).subscribe(
       ()=>{
         this.toastr.success('Departement has been updated !','Success')
-        this.router.navigate(['backoffice/etudiants'])} 
+        this.router.navigate(['backoffice/etudiants/list'])} 
       )
   }
   Back() {
-    this.router.navigate(['backoffice/etudiants'])
+    this.router.navigate(['backoffice/etudiants/list'])
   }
 }

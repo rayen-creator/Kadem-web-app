@@ -21,11 +21,6 @@ export class AuthInterceptorInterceptor implements HttpInterceptor {
         "Authorization", `Bearer ${authToken}`
        )
     });
-  //   const authRequest=request.clone({
-  //     setHeaders: {
-  //       Authorization: `Bearer ${authToken}`
-  //     }
-  // });
       return next.handle(authRequest).pipe(
       catchError(error => {
         if (error.status === 401 || error.status === 403) {
@@ -33,6 +28,5 @@ export class AuthInterceptorInterceptor implements HttpInterceptor {
         return throwError(() => new Error(error));
       })
     );
-    // return next.handle(request);
   }
 }
