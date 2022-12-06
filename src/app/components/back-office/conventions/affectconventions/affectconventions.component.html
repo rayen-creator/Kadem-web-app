@@ -1,0 +1,35 @@
+<div class="row">
+    <div class="col-md-10" style="margin: 50px;">
+            <div class="card">
+                <!--h5 class="card-header">Student Details</h5>
+                <!-- Account -->
+                <div class="card-body">
+                <!--div class="d-flex align-items-start align-items-sm-center gap-4">
+                    <img src={{etudiant.image}} alt="user-avatar" class="d-block rounded" height="100" width="100" id="uploadedAvatar" />
+                    <div class="card-body">
+                        <h4 class="card-title">{{etudiant.prenomE}} {{etudiant.nomE}}</h4>
+                        <h6 class="card-text">{{etudiant.option}} </h6>
+                        <p class="card-text" >{{etudiant.dateDebut}} </p>
+                    </div-->
+                    <form #f="ngForm">
+                        <div class="form-group mb-3">
+                            <label for="inputState" class="form-label">University</label>
+                            <select placeholder="Enter Departemet" name="Departemet" required
+                                #x="ngModel" class="form-select " [(ngModel)]="universite"
+                                [ngModelOptions]="{standalone: true}">
+                                <option selected> select University</option>
+                                <option *ngFor="let d of listuniv" [ngValue]="d">{{d.nomUniv}} </option>
+                            </select>
+                            <div class="alert alert-danger" *ngIf="x.invalid && x.touched">
+                                this field is required
+                            </div>
+                        </div>
+                    </form>
+                    <button (click)="add()"    type="submit" class="btn btn-success">Assign</button>
+
+                    
+
+
+
+                &nbsp;
+                </div>
