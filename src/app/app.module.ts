@@ -18,11 +18,6 @@ import { FormsModule } from "@angular/forms";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrModule } from "ngx-toastr";
 import { UnsavedChangesGuard } from './core/helpers/unsaved-changes.guard';
-
-import { HttpClientModule } from '@angular/common/http';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
-
 import { RouterModule } from '@angular/router';
 import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 
