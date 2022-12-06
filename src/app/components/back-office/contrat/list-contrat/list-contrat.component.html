@@ -56,10 +56,10 @@
             alt="Card image"
           />
           <div class="card-img-overlay">
-            <h5 class="card-title" style="color: white">RESEAU</h5>
+            <h5 class="card-title" style="color: white">RESEAUX</h5>
             <p class="card-text">
               <i class="bx bx-file-find"></i>
-              {{ static.RESEAU }} contrats
+              {{ static.RESEAUX }} contrats
             </p>
           </div>
         </div>
@@ -149,8 +149,8 @@
               <strong>{{ contrat.idContrat }}</strong>
             </td>
             <td>{{ contrat.specialite }}</td>
-            <td>{{ contrat.dateDebutContrat }}</td>
-            <td>{{ contrat.dateFinContrat }}</td>
+            <td>{{ contrat.dateDebutContrat | date }}</td>
+            <td>{{ contrat.dateFinContrat | date }}</td>
             <td>{{ contrat.montantContrat }}</td>
             <td *ngIf="contrat.archive">
               <span

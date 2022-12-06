@@ -41,11 +41,11 @@
             <h5 class="card-title">{{ contrat.specialite }}</h5>
             <p class="card-text" style="font-size: 20px">
               <i class="bx bx-calendar-check" style="font-size: 20px"></i>
-              {{ contrat.dateDebutContrat }}
+              {{ contrat.dateDebutContrat | date }}
             </p>
             <p class="card-text" style="font-size: 20px">
               <i class="bx bx-calendar-x" style="font-size: 20px"></i>
-              {{ contrat.dateFinContrat }}
+              {{ contrat.dateFinContrat | date }}
             </p>
             <p class="card-text" style="font-size: 20px">
               <i class="bx bx-dollar-circle" style="font-size: 20px"></i>
@@ -63,7 +63,8 @@
               *ngIf="contrat.etudiant == null"
               role="alert"
             >
-              Ce contrat n'a pas encore .. si vous voulez ..
+              Ce contrat n'a pas encore etait affecter a un etudiant si vous
+              voulez affecter un etudiant
               <a
                 style="cursor: pointer"
                 (click)="onShow()"
@@ -104,12 +105,12 @@
                     </div>
                     <p class="card-text">
                       <i class="bx bxs-baby-carriage"></i>
-                      {{ contrat.etudiant?.date_naissance }}
+                      {{ contrat.etudiant?.dateDebut | date }}
                     </p>
 
                     <p class="card-text">
                       <i class="bx bx-book-open"></i>
-                      {{ contrat.etudiant?.option }}
+                      {{ contrat.etudiant?.options }}
                     </p>
                   </div>
                 </div>

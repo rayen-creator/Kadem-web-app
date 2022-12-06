@@ -54,7 +54,7 @@
                       }"
                     >
                       <option value="IA">IA</option>
-                      <option value="RESEAU">RESEAU</option>
+                      <option value="RESEAUX">RESEAUX</option>
                       <option value="CLOUD">CLOUD</option>
                       <option value="SECURITE">SECURITE</option>
                     </select>
@@ -209,7 +209,7 @@
 
               <div class="row justify-content-end">
                 <div class="col-sm-10">
-                  <button class="btn btn-primary">
+                  <button class="btn btn-primary" [disabled]="!f.form.valid">
                     {{ editable ? "Modifier" : "Ajouter" }}
                   </button>
                 </div>

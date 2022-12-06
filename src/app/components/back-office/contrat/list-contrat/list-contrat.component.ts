@@ -10,9 +10,9 @@ import { ContratService } from 'src/app/core/services/contrat.service';
 })
 export class ListContratComponent implements OnInit {
   contrats: Contrat[] = [];
-  static = { IA: 0, CLOUD: 0, SECURITE: 0, RESEAU: 0 };
+  static = { IA: 0, CLOUD: 0, SECURITE: 0, RESEAUX: 0 };
   p: number = 1;
-  constructor(private contratService: ContratService) { }
+  constructor(private contratService: ContratService) {}
 
   ngOnInit(): void {
     this.refreshData();
@@ -32,13 +32,15 @@ export class ListContratComponent implements OnInit {
   ///refreshdata
   refreshData() {
     this.contratService.getListContratService().subscribe((result) => {
-      this.contrats = result;
+      console.log(result);
+
+      this.contrats = result as Contrat[];
       this.static.IA = result.filter((r: any) => r.specialite === 'IA').length;
       this.static.CLOUD = result.filter(
         (r: any) => r.specialite === 'CLOUD'
       ).length;
-      this.static.RESEAU = result.filter(
-        (r: any) => r.specialite === 'RESEAU'
+      this.static.RESEAUX = result.filter(
+        (r: any) => r.specialite === 'RESEAUX'
       ).length;
       this.static.SECURITE = result.filter(
         (r: any) => r.specialite === 'SECURITE'
