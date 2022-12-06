@@ -29,13 +29,15 @@ export class FormContratComponent implements OnInit {
     private contratService: ContratService,
     private route: ActivatedRoute,
     private router: Router
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.route.params.subscribe((param) => {
       if (param['id'] !== undefined) {
         this.editable = true;
         this.contratService.getContratById(+param['id']).subscribe((result) => {
+          console.log(result);
+
           this.contrat = result as Contrat;
         });
       }
