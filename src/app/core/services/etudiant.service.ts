@@ -7,10 +7,10 @@ import { Etudiant } from '../models/etudiant';
   providedIn: 'root'
 })
 export class EtudiantService {
-  public url= environment.defaultUrl+'/Etudiant'
+  public url= environment.defaultUrl+'/etudiant'
 
   constructor(private http : HttpClient) { }
-  
+
 
 
   getAllEtudiants() {

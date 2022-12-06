@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { ContratService } from 'src/app/core/services/contrat.service';
+import { EtudiantService } from 'src/app/core/services/etudiant.service';
 @Component({
   selector: 'app-affecter-etudiant',
   templateUrl: './affecter-etudiant.component.html',
@@ -11,10 +12,13 @@ export class AffecterEtudiantComponent implements OnInit {
   @Input() ContratId: any;
   @Output() newStudentAssigned = new EventEmitter();
   tempStudent: any;
-  constructor(private contratService: ContratService) {}
+  constructor(
+    private contratService: ContratService,
+    private etudService: EtudiantService
+  ) {}
 
   ngOnInit(): void {
-    this.contratService.DisplayStudents().subscribe((res) => {
+    this.etudService.getAllEtudiants().subscribe((res) => {
       this.data = res;
     });
     console.log(this.ContratId);

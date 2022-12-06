@@ -13,12 +13,16 @@ const routes: Routes = [
       {path:'profesor',loadChildren: () => import('./profesor/profesor.module').then(m => m.ProfesorModule)},
       {path:'class',loadChildren: () => import('./class/class.module').then(m => m.ClassModule)},
       { path: 'etudiants', loadChildren: () => import('./etudiants/etudiants.module').then(m => m.EtudiantsModule) },
-      { path: 'entreprises', loadChildren: () => import('./entreprises/entreprises.module').then(m => m.EntreprisesModule) }
+      { path: 'entreprises', loadChildren: () => import('./entreprises/entreprises.module').then(m => m.EntreprisesModule) },
+      { path: 'universite', loadChildren: () => import('./universite/universite.module').then(m => m.UniversiteModule) },
+      { path: 'conventions', loadChildren: () => import('./conventions/conventions.module').then(m => m.ConventionsModule) }
+
     
 
 
     ]
-  }];
+  },
+  ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

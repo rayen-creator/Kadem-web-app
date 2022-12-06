@@ -1,0 +1,30 @@
+
+<br>
+<div class="p-3 text-center text-white" style="background-color: #a7c7f6">
+    <div class="container">
+ <div class="row row-cols-1 row-cols-md-3 g-4 mb-5">
+    
+    
+    <br>
+  <app-parent [universite]="u" *ngFor="let u of listUniv" > </app-parent>
+    </div>
+
+ 
+
+<!--div class="row mb-5">
+    <div class="col-md-6 col-xl-4" *ngFor="let  u of listUniv ">
+        <br>
+        <div class="card mb-3">
+            <div class="card bg-dark border-0 text-white ">
+             <img class="card-img-top" src={{u.img}} alt="Card image" />
+                <div class="card-img-overlay">
+                    <h5 class="card-title " >{{u.nomUniv}}</h5>
+                    <p class="card-text">
+                        {{u.description}}
+                    </p>
+                    <p class="card-text">Last updated 3 mins ago</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div-->
