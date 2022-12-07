@@ -35,14 +35,14 @@ export class StatisticCardComponent implements OnInit {
       this.series1 = [
         this.calculateData(res, 'IA'),
         this.calculateData(res, 'CLOUD'),
-        this.calculateData(res, 'RESEAU'),
+        this.calculateData(res, 'RESEAUX'),
         this.calculateData(res, 'SECURITE')
       ];
       this.chart1 = {
         width: 410,
         type: "pie"
       };
-      this.labels = ["IA", "CLOUD", "RESEAU", "SECURITE"];
+      this.labels = ["IA", "CLOUD", "RESEAUX", "SECURITE"];
       this.responsive = [
         {
           breakpoint: 580,
