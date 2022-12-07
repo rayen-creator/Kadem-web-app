@@ -94,7 +94,7 @@ export class AuthService {
       this.token = token;
       this.isUserAuthenticated = true;
       this.setAuthTimer(expiresIn / 1000);
-
+      this.router.navigate(['/backoffice']);
       this.authStatusListener.next(true);
     }
 
