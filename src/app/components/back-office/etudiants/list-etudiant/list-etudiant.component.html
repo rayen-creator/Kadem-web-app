@@ -2,9 +2,14 @@
 
 
 
+<nav class="nav nav-pills nav-fill">
+    <a class="nav-item nav-link active" aria-disabled="true" [routerLinkActive]="['is-active']"   aria-selected="true">List of students</a>
+    <a class="nav-item nav-link" routerLink="form"  aria-selected="true">Add Form</a>
+  </nav>
 
-
+  
 <div class="container-xxl flex-grow-1 container-p-y">
+    
     <div style="width: 30%;margin-left: 700px;">
         <form class="d-flex justify-content-end">
             <div class="input-group">
@@ -14,7 +19,9 @@
         </form>
     </div>
 
-    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light"></span> List of Students</h4>
+
+    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light"></span> List of Students ({{(listEtud).length}})</h4>
+   
     <div class="card">
 
         <h5 class="card-header">Table</h5>
@@ -42,16 +49,19 @@
                                 </li>
                             </ul>
                         </td>
-                        <td>{{e.dateDebut}}</td>
+                        <td>{{e.dateDebut | date }}</td>
                         <td><span [ngClass]="{'badge bg-label-primary':e.option === 'GAMIX' ,
-              'badge bg-label-success':e.option === 'SIM' ,
-              'badge bg-label-warning':e.option === 'NIDS',
-              'badge bg-label-info':e.option === 'TWIN' ,
-              'badge bg-label-dark':e.option === 'JUNIOR' }" class="badge bg-label-primary me-2">{{e.option}}</span></td>
+                                              'badge bg-label-success':e.option === 'SIM' ,
+                                              'badge bg-label-warning':e.option === 'NIDS',
+                                              'badge bg-label-info':e.option === 'TWIN' ,
+                                              'badge bg-label-dark':e.option === 'JUNIOR' }" class="badge bg-label-primary me-2">{{e.option}}</span></td>
+                        
+                        
                         <td>
                             <button type="button" routerLink="/backoffice/etudiants/update/{{e.idEtudiant}}" class="btn btn-outline-success">Edit</button> &nbsp;
                             <button type="button" (click)="deleteEtudiant(e)" class="btn btn-outline-danger">Delete</button> &nbsp;
-                            <button type="button" routerLink="/backoffice/etudiants/detail/{{e.idEtudiant}}" class="btn btn-outline-info">Details</button>
+                            <button type="button" routerLink="/backoffice/etudiants/detail/{{e.idEtudiant}}" class="btn btn-outline-info">Details</button> &nbsp;
+                            <button class="btn btn-outline-warning btn-block" (click)="openPDF(e)">Attestation</button>
                         </td>
                     </tr>
                 </tbody>
@@ -65,7 +75,7 @@
     <div class=" row  g-0 align-items-center pb-4">
         <div class="col-sm">
             <div>
-                <p class="mb-sm">Showing {{(page*pageSize)-(pageSize-1)}} to {{page*pageSize}} of {{length}}</p>
+                <p class="mb-sm">Showing {{(page*pageSize)-(pageSize-1)}} to {{page*pageSize}} of {{(listEtud).length}}</p>
             </div>
         </div>
         <ngb-pagination style="align-items: center;" [(page)]="page" [pageSize]="pageSize" [collectionSize]="length"></ngb-pagination>

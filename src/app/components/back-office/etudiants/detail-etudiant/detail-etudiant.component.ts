@@ -34,16 +34,17 @@ export class DetailEtudiantComponent implements OnInit {
       this.etudServ.getEtudiantById(id).subscribe(
         ((object:Etudiant)=> this.etudiant=object))
       }
+      console.log(this.etudiant)
   }
 
   save(){
     this.etudServ.affect(this.etudiant,this.departemet.idDepart).subscribe(
       ()=>{
-        this.toastr.success('Departement has been updated !','Success')
-        this.router.navigate(['backoffice/etudiants/list'])} 
+        this.toastr.success('Departement has been assigned !','Success')
+        this.router.navigate(['backoffice/etudiants'])} 
       )
   }
   Back() {
-    this.router.navigate(['backoffice/etudiants/list'])
+    this.router.navigate(['backoffice/etudiants'])
   }
 }

@@ -1,6 +1,10 @@
 <!-- Content wrapper -->
 
 <!-- Content -->
+<nav class="nav nav-pills nav-fill">
+    <a class="nav-item nav-link " aria-disabled="false"   routerLink="/backoffice/etudiants" [routerLinkActive]="['is-active']"   aria-selected="false">List of students</a>
+    <a class="nav-item nav-link active" aria-disabled="true"   aria-selected="true">Add Form</a>
+  </nav>
 
 <div class="container-xxl flex-grow-1 container-p-y">
     <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Student/</span> {{action}}</h4>
@@ -57,7 +61,7 @@
                         </div>
                         <div class="form-group mb-3">
                             <label class="form-label" for="nomE">Email</label>
-                            <input [(ngModel)]="etudiant.email" name="email" type="email" class="form-control" required minlength="3" #q="ngModel" id="email" placeholder="john@example.com" />
+                            <input [(ngModel)]="etudiant.email" name="email" type="email" email class="form-control"  #q="ngModel" id="email" placeholder="john@example.com" />
                             <div class="alert alert-danger" *ngIf="q.invalid && q.touched">
                                 <div *ngIf="q.hasError('required')">
                                     this field is required
@@ -126,7 +130,7 @@
                             </div>
                         </div>
                         <button (click)="save()" [disabled]="f.invalid" type="submit" class="btn btn-success">{{action}}</button> &nbsp;
-                        <button class="btn  btn-danger" routerLink="/backoffice/etudiants/list">cancel</button>
+                        <button class="btn  btn-danger" routerLink="/backoffice/etudiants">cancel</button>
                     </form>
                 </div>
             </div>

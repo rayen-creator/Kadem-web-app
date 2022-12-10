@@ -5,7 +5,7 @@
                 <!-- Account -->
                 <div class="card-body">
                 <div class="d-flex align-items-start align-items-sm-center gap-4">
-                    <img src={{etudiant.image}} alt="user-avatar" class="d-block rounded" height="200" width="200" id="uploadedAvatar" />
+                    <img src={{etudiant.image}} alt="user-avatar" class="d-block rounded" [ngStyle]="{'max-width.px': 250,'max-height.px': 250}"  id="uploadedAvatar" />
                     <div class="card-body">
                         <h3 class="card-title">Full Name: {{etudiant.prenomE}} {{etudiant.nomE}}</h3>
                         <br>
@@ -20,7 +20,9 @@
                         <h6>Age: {{etudiant.age}}</h6> 
                         <h6 class="card-text" >Adress: {{etudiant.adress}} </h6> 
                         <h6 class="card-text" >Phone Number: {{etudiant.phone}} </h6>    
-                        <h6 class="card-text" >Date of Inscription: {{etudiant.dateDebut}} </h6>
+                        <h6 class="card-text" >Date of Inscription: {{etudiant.dateDebut | date }} </h6>
+                       
+                       
                     </div>
                     <form #f="ngForm" > 
                         <div class="form-group mb-3"  >
@@ -36,6 +38,8 @@
                         </div>
                     </form> 
                 </div>
-                <button  (click)="save()"   [disabled]="f.invalid" type="submit" class="btn btn-success ">Assign</button>
+                <br>
+                <button  (click)="save()"   [disabled]="f.invalid" type="submit"  class="btn btn-success ">Assign</button>
                 &nbsp;
+                <button class="btn  btn-danger" routerLink="/backoffice/etudiants">cancel</button>
                 </div>

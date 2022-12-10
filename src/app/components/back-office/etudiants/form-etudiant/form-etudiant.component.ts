@@ -56,14 +56,14 @@ export class FormEtudiantComponent implements OnInit {
       this.etudServ.addEtudiant(this.etudiant).subscribe(
         () => {
           this.toastr.success('student has been added !', 'Success')
-          this.router.navigate(['backoffice/etudiants/list'])
+          this.router.navigate(['backoffice/etudiants'])
         }
       )
     } else {
       this.etudServ.updateEtudiant(this.etudiant).subscribe(
         () => {
           this.toastr.success('student has been updated !', 'Success')
-          this.router.navigate(['backoffice/etudiants/list'])
+          this.router.navigate(['backoffice/etudiants'])
         }
       )
     }

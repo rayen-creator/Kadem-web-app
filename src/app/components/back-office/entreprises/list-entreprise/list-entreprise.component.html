@@ -1,3 +1,8 @@
+<nav class="nav nav-pills nav-fill">
+    <a class="nav-item nav-link active" aria-disabled="true" [routerLinkActive]="['is-active']"   aria-selected="true">List of Companies</a>
+    <a class="nav-item nav-link" routerLink="form"  aria-selected="true">Add Form</a>
+  </nav>
+
 <div class="container-xxl flex-grow-1 container-p-y">
     <div style="width: 30%;margin-left: 700px;">
         <form class="d-flex justify-content-end">
@@ -7,7 +12,7 @@
             </div>
         </form>
     </div>
-    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light"></span> List of Companies</h4>
+    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light"></span> List of Companies ({{(listEntp).length}})</h4>
     <div class="row row-cols-1 row-cols-md-3 g-4 mb-5">
 
         <app-entreprise [entreprise]="e" *ngFor="let e of listEntp | slice: (page-1) * pageSize : page * pageSize
@@ -17,7 +22,7 @@
         <div class=" row  g-0 align-items-center pb-4">
             <div class="col-sm">
                 <div>
-                    <p class="mb-sm">Showing {{(page*pageSize)-(pageSize-1)}} to {{page*pageSize}} of {{length}}</p>
+                    <p class="mb-sm">Showing {{(page*pageSize)-(pageSize-1)}} to {{page*pageSize}} of {{(listEntp).length}}</p>
                 </div>
             </div>
             <ngb-pagination style="align-items: center;" [(page)]="page" [pageSize]="pageSize" [collectionSize]="length">

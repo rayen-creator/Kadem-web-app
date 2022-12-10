@@ -79,20 +79,20 @@ export class FormEntrepriseComponent implements OnInit {
       this.entpService.updateEntreprise(this.id,this.EntrepriseForm.value).subscribe(
         ()=>{
           this.toastr.success('Company has been added !','Success')
-          this.router.navigate(['backoffice/entreprises/list'])}
+          this.router.navigate(['backoffice/entreprises'])}
       )
    }else {
     this.entpService.addEntreprise(this.EntrepriseForm.value).subscribe(
       ()=>{ 
         this.toastr.success('Company has been updated !','Success')
-        this.router.navigate(['backoffice/entreprises/list'])}
+        this.router.navigate(['backoffice/entreprises'])}
     )
    
   }
 }
 
 Back() {
-  this.router.navigate(['backoffice/entreprises/list'])
+  this.router.navigate(['backoffice/entreprises'])
 }
 
 
