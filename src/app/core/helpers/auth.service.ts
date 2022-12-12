@@ -66,7 +66,7 @@ export class AuthService {
             const expirationDate = new Date(now.getTime() + expireInDuration * 1000);
             this.saveAuthData(token, username, expirationDate);
             this.toastr.success('Welcome back to your account', 'Logged In')
-            this.router.navigate(['/backoffice']);
+            this.router.navigate(['/backoffice/home']);
           }
         } else {
           this.toastr.error('User Not found , please try again', 'Error')
@@ -94,7 +94,7 @@ export class AuthService {
       this.token = token;
       this.isUserAuthenticated = true;
       this.setAuthTimer(expiresIn / 1000);
-      this.router.navigate(['/backoffice']);
+      this.router.navigate(['/backoffice/home']);
       this.authStatusListener.next(true);
     }
 

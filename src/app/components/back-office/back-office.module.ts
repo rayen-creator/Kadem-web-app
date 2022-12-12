@@ -5,7 +5,9 @@ import { BackOfficeComponent } from './back-office.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
-import {FormsModule} from "@angular/forms";
+import { ClockComponent } from './shared/clock/clock.component';
+import { HomeComponent } from './shared/home/home.component';
+import { NgApexchartsModule } from 'ng-apexcharts';
 
 
 @NgModule({
@@ -13,12 +15,16 @@ import {FormsModule} from "@angular/forms";
     BackOfficeComponent,
     HeaderComponent,
     FooterComponent,
-    SidebarComponent
+    SidebarComponent,
+    ClockComponent,
+    HomeComponent
 
   ],
     imports: [
         CommonModule,
-        BackOfficeRoutingModule
+        BackOfficeRoutingModule,
+        NgApexchartsModule,
+
     ]
 })
 export class BackOfficeModule { }

@@ -20,6 +20,7 @@ import { ToastrModule } from "ngx-toastr";
 import { UnsavedChangesGuard } from './core/helpers/unsaved-changes.guard';
 import { RouterModule } from '@angular/router';
 import { AutocompleteLibModule } from 'angular-ng-autocomplete';
+import { NgApexchartsModule } from 'ng-apexcharts';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 
   ],
   imports: [
+
     BrowserModule,
     ReactiveFormsModule,
     HttpClientModule,
