@@ -1,0 +1,42 @@
+<!-- <div class="container-fluid">
+    <div class="card m-1 p-5" style="width:650px; height:550px;">
+        <h4 class="card-title">Students's age</h4>
+
+        <apx-chart [series]="series " [chart]="chart " [labels]="labels " [responsive]="responsive "></apx-chart>
+    </div>
+    <div class="card m-1 p-5" style="width:650px; height:550px;">
+        <h4 class="card-title">Students's age</h4>
+
+        <apx-chart [series]="series " [chart]="chart " [labels]="labels " [responsive]="responsive "></apx-chart>
+    </div>
+</div> -->
+<div class="container text-center">
+    <h2>Welcome back {{username | uppercase }}</h2>
+    <div class="divider">
+        <div class="divider-text">Notification</div>
+    </div>
+    <h5>There are {{nb}} involved students in Kadem project
+        <a routerLink="/backoffice/etudiants" class="badge text-bg-light">wanna get to know them more ?</a>
+    </h5>
+    <div class="divider">
+        <div class="divider-text">Statistics</div>
+    </div>
+    <div class="row align-items-start m-4">
+
+        <div class="col">
+            <div class="card m-1 p-2">
+                <h4 class="card-title">Students's age</h4>
+
+                <apx-chart [series]="seriesAge  " [chart]="chartAge " [labels]="labelsAge  " [responsive]="responsiveAge  "></apx-chart>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card m-1 p-2">
+                <!-- <h4 class="card-title">Students's age</h4> -->
+
+                <apx-chart [series]="series" [chart]="chart" [xaxis]="xaxis" [title]="title"></apx-chart>
+            </div>
+        </div>
+
+    </div>
+</div>
