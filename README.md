@@ -49,9 +49,7 @@ This is the official Kadem web app documentation <br/>
 </details>
 
 ## 📃 About The Project
-
-
-
+Kadem is an academic project build for student to help them explore professtionnel life finding new oppurtunty as intern or as employee as well the project isn't finish yet and it can evolve even more , we build it using nodejs express for authentification with jwt , springboot as backend and angular as frontend-framework using mysql as database 
 
 
 
@@ -124,7 +122,7 @@ _In order to install the app you need to follow the instructions below :_
    
 3. Run the server on 
    ```sh
-   npm run development
+   ng s --o
    ```
 4. Open localhost:4200 in the browser and that's it you can enjoy the project 🎉!
 
