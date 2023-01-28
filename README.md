@@ -3,7 +3,9 @@
  
 
   
-  
+    <a href="https://github.com/rayen-creator/Mini_Project/graphs/contributors">
+    <img src="https://img.shields.io/github/contributors/rayen-creator/Mini_Project.svg?style=for-the-badge"/>
+  </a>
 
   <a href="/issues">
     <img src="https://img.shields.io/github/issues/rayen-creator/Mini_Project.svg?style=for-the-badge"/>
