@@ -126,8 +126,10 @@ _In order to install the app you need to follow the instructions below :_
    ```sh
    npm run development
    ```
-4. Open localhost:3000 in the browser and that's it you can enjoy the project 🎉!
+4. Open localhost:4200 in the browser and that's it you can enjoy the project 🎉!
 
+link to [springBoot_Backend](https://github.com/rayen-creator/MiniProject_Backend). <br/>
+link to [nodejs_backend](https://github.com/rayen-creator/UserAuth).
  
 
 <p align="right">(<a href="#top">back to top</a>)</p>
