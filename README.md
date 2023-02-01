@@ -150,4 +150,4 @@ Don't forget to give the project a star! Thanks again!
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 
-Developed with 💕 by **Outsiders**.
+Developed with :heart: by **Outsiders**.
