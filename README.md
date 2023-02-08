@@ -7,7 +7,7 @@
 
 <img alt="GitHub forks" src="https://img.shields.io/github/forks/rayen-creator/Mini_Project?style=for-the-badge">
 
- 
+<img alt="GitHub" src="https://img.shields.io/github/license/rayen-creator/Mini_Project?style=for-the-badge">
 <h3 align="center">Kadem web app</h3>
   
   <p align="center">
